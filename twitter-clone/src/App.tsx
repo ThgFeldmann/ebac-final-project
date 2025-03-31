@@ -1,7 +1,13 @@
+import Login from "./pages/Login";
+
+import { GlobalStyle } from "./styles";
 
 function App() {
   return (
-    <div className="App"></div>
+    <div className="App">
+      <GlobalStyle/>
+      <Login/>
+    </div>
   );
 }
 
