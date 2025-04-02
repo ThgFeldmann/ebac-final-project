@@ -1,24 +1,27 @@
+import { Container } from "../../styles"
+import { AppName, ButtonContainer, InputContainer, LoginContainer } from "./styles"
+
 const LoginComponent = () => {
     return (
-        <>
-            <h1>Twitter clone</h1>
-            <div>
-                <div>
+        <Container>
+            <AppName>Twitter clone</AppName>
+            <LoginContainer>
+                <InputContainer>
                     <div>
-                        <label>Nome do Usuário:</label>
-                        <input type="text" />
+                        <label htmlFor="name">Nome do Usuário:</label>
+                        <input id="name" type="text" required />
                     </div>
                     <div>
-                        <label>Senha do Usuário:</label>
-                        <input type="password" />
+                        <label htmlFor="password">Senha do Usuário:</label>
+                        <input id="password" type="password" required />
                     </div>
-                </div>
-                <div>
-                    <button>Entrar</button>
-                    <button>Cadastre uma Conta</button>
-                </div>
-            </div>
-        </>
+                </InputContainer>
+                <ButtonContainer>
+                    <button className="loginButton" type="submit">Entrar</button>
+                    <button className="signUpButton" type="button">Crie uma Conta</button>
+                </ButtonContainer>
+            </LoginContainer>
+        </Container>
     )
 }
 

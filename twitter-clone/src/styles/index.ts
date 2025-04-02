@@ -17,15 +17,19 @@ export const GlobalStyle = createGlobalStyle`
         font-family: Roboto, sans-serif;
         list-style: none;
         text-decoration: none;
-        color: ${colors.preto}
-
-        button {
-            cursor: pointer;
-        }
-
-        .container {
-            max-width: 1024px;
-            margin: 0 auto;
-        }
+        color: ${colors.preto};
     }
+
+    body {
+        background-color: ${colors.azulDeFundo};
+    }
+
+    button {
+        cursor: pointer;
+    }
+`
+
+export const Container = styled.div`
+    max-width: 1024px;
+    margin: 0 auto;
 `
