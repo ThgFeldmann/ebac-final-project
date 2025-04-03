@@ -1,10 +1,13 @@
-import LoginComponent from "../../components/Login"
+import { Container } from "../../styles"
+import AppNameComponent from "../../components/App-Name"
+import LoginContainerComponent from "../../components/Login-Container"
 
 const Login = () => {
     return (
-        <>
-            <LoginComponent/>
-        </>
+        <Container>
+            <AppNameComponent/>
+            <LoginContainerComponent/>
+        </Container>
     )
 }
 

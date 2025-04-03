@@ -1,4 +1,4 @@
-import Login from "./pages/Login";
+import SignUp from "./pages/SingUp";
 
 import { GlobalStyle } from "./styles";
 
@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <GlobalStyle/>
-      <Login/>
+      <SignUp/>
     </div>
   );
 }
