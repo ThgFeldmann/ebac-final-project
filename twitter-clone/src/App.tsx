@@ -1,4 +1,4 @@
-import SignUp from "./pages/SingUp";
+import SignUp from "./pages/SignUp";
 
 import { GlobalStyle } from "./styles";
 

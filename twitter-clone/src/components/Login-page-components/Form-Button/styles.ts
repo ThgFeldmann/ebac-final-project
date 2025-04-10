@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../styles";
+import { colors } from "../../../styles";
 
 export const ButtonContainer = styled.div`
     max-width: 465px;

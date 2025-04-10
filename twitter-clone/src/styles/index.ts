@@ -7,6 +7,7 @@ export const colors = {
     azulClaro: '#176B87',
     azul: '#63ACFF',
     verdeClaro: '#64CCC5',
+    vermelho: '#9C0505',
 }
 
 export const GlobalStyle = createGlobalStyle`
