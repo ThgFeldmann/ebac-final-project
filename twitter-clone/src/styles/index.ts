@@ -3,10 +3,13 @@ import styled, { createGlobalStyle } from 'styled-components'
 export const colors = {
     branco: '#fff',
     preto: '#000',
+    cinzaClaro: '#DAFFFB',
     azulDeFundo: '#001C30',
     azulClaro: '#176B87',
     azul: '#63ACFF',
+    azulEscuro: '#071952',
     verdeClaro: '#64CCC5',
+    verde: '#35A29F',
     vermelho: '#9C0505',
 }
 
