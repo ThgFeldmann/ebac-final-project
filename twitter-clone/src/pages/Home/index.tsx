@@ -1,11 +1,15 @@
+import { HomeContainer } from "../../styles"
 import SideBar from "../../components/Home-page-components/SideBar"
-import { Container } from "../../styles"
+import PostSection from "../../components/Home-page-components/PostSection"
+import SpecialPostsSection from "../../components/Home-page-components/SpecialPostsSection"
 
 const Home = () => {
     return (
-        <Container>
+        <HomeContainer>
             <SideBar/>
-        </Container>
+            <PostSection/>
+            <SpecialPostsSection/>
+        </HomeContainer>
     )
 }
 

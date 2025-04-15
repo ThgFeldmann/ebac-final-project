@@ -8,9 +8,7 @@ export const SideBarContainer = styled.div`
 
     text-align: center;
 
-    position: absolute;
-    top: 28px;
-    left: 50px;
+    margin: 28px 50px 0;
 
     border: 2px solid ${colors.cinzaClaro};
     border-radius: 10px;

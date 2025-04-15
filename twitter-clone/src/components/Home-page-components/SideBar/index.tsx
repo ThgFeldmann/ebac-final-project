@@ -16,7 +16,7 @@ const SideBar = () => {
                     <p>Fulano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
                     <p>Siclano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
                     <p>Fulano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
-                    <p>ThgFeldmann<span>&nbsp;&bull;&bull;&bull;</span></p>
+                    <p>Siclano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
                 </FriendsList>
             </FriendsSection>
             <ButtonsContainer>
