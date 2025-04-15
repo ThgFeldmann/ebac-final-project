@@ -1,4 +1,4 @@
-import { FriendsSection, SideBarContainer, UserSection } from "./styles"
+import { ButtonsContainer, ExitButton, FriendsList, FriendsSection, PostButton, SideBarContainer, UserSection } from "./styles"
 
 const SideBar = () => {
     return (
@@ -10,13 +10,19 @@ const SideBar = () => {
             </UserSection>
             <FriendsSection>
                 <button>Amigos Online</button>
-                <div>
-                    <p>Fulano deTal <span>***</span></p>
-                    <p>Siclano deTal <span>***</span></p>
-                </div>
+                <FriendsList>
+                    <p>Fulano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
+                    <p>Siclano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
+                    <p>Fulano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
+                    <p>Siclano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
+                    <p>Fulano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
+                    <p>ThgFeldmann<span>&nbsp;&bull;&bull;&bull;</span></p>
+                </FriendsList>
             </FriendsSection>
-            <button>Criar uma postagem</button>
-            <button>Sair</button>
+            <ButtonsContainer>
+                <PostButton>Criar uma postagem</PostButton>
+                <ExitButton>Sair</ExitButton>
+            </ButtonsContainer>
         </SideBarContainer>
     )
 }
