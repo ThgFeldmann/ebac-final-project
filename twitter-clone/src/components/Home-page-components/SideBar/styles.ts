@@ -2,13 +2,18 @@ import styled from "styled-components";
 import { colors } from "../../../styles";
 
 export const SideBarContainer = styled.div`
+    width: 260px;
+    height: 100%;
+
+    position: fixed;
+    top: 35px;
+    left: 89px;
+`
+
+export const SidebarArea = styled.div`
     display: block;
-    width: 240px;
-    height: 92vh;
-
+    height: 650px;
     text-align: center;
-
-    margin: 28px 50px 0;
 
     border: 2px solid ${colors.cinzaClaro};
     border-radius: 10px;
@@ -22,21 +27,20 @@ export const UserSection = styled.div`
     margin: 18px auto 0;
 
     h3 {
-        max-width: 120px;
         margin: 0 auto -2px;
-        font-size: 20px;
+        font-size: 22px;
         font-weight: bold;
         color: ${colors.branco};
     }
 
     p {
-        font-size: 14px;
+        font-size: 16px;
         color: ${colors.branco};
     }
 
     button {
         width: 95px;
-        height: 16px;
+        height: 18px;
         margin-top: 12px;
         font-size: 13px;
         font-weight: 600;
@@ -52,7 +56,7 @@ export const FriendsSection = styled.div`
     border-bottom: 2px solid ${colors.cinzaClaro};
 
     button {
-        width: 180px;
+        width: 200px;
         height: 24px;
         margin-top: 38px;
         font-size: 18px;
@@ -63,7 +67,7 @@ export const FriendsSection = styled.div`
 `
 
 export const FriendsList = styled.div`
-    width: 180px;
+    width: 192px;
     max-height: 150px;
     height: 100%;
     margin-top: 8px;
@@ -72,6 +76,7 @@ export const FriendsList = styled.div`
     overflow-y: hidden;
     text-align: start;
 
+    border-right: 2px solid ${colors.branco};
     border-left: 2px solid ${colors.branco};
 
     p {
@@ -104,12 +109,12 @@ export const FriendsList = styled.div`
     }
 
     &: :-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px ${colors.branco};
+        -webkit-box-shadow: inset 0 0 6px rgba(218, 255, 251);
         border-radius: 10px;
     }
 
     &: :-webkit-scrollbar-thumb {
-        -webkit-box-shadow: inset 0 0 6px ${colors.cinzaClaro};
+        background-color: rgba(53, 162, 159, .8);
         border-radius: 10px;
     }
 

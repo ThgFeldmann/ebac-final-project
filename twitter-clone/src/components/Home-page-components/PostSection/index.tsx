@@ -1,3 +1,4 @@
+import Post from "../Post"
 import { PostSectionContainer } from "./styles"
 
 const PostSection = () => {
@@ -5,7 +6,9 @@ const PostSection = () => {
         <PostSectionContainer>
             <h4>Postagens mais recentes</h4>
             <div>
-                {/*postagens ficarão aqui*/}
+                <Post/>
+                <Post/>
+                <Post/>
             </div>
         </PostSectionContainer>
     )

@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 export const colors = {
     branco: '#fff',
     preto: '#000',
-    cinzaClaro: '#DAFFFB',
+    cinzaClaro: '#dafffb',
     azulDeFundo: '#001C30',
     azulClaro: '#176B87',
     azul: '#63ACFF',
@@ -39,8 +39,10 @@ export const Container = styled.div`
 `
 
 export const HomeContainer = styled.div`
-    max-width: 1024px;
+    max-width: fit-content;
+    height: 100%;
     margin: 0 auto;
 
-    display: inline-flex;
+    display: flex;
+    overflow: hidden;
 `

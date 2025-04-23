@@ -6,9 +6,9 @@ import SpecialPostsSection from "../../components/Home-page-components/SpecialPo
 const Home = () => {
     return (
         <HomeContainer>
-            <SideBar/>
+            <SideBar />
             <PostSection/>
-            <SpecialPostsSection/>
+            <SpecialPostsSection />
         </HomeContainer>
     )
 }
