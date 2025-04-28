@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors } from "../../../styles";
 
 export const SpecialPostContainer = styled.div`
-    width: 80%;
+    width: 270px;
     height: 120px;
     margin: 8px auto 0;
 
@@ -24,7 +24,7 @@ export const SpecialPostUserNameArea = styled.div`
 
     h4 {
         color: ${colors.cinzaClaro};
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 200;
         line-height: 30px;
         text-align: center;
@@ -32,15 +32,24 @@ export const SpecialPostUserNameArea = styled.div`
 `
 
 export const SpecialPostContentArea = styled.div`
+
     * { // Rules for everything inside the content area
-        height: 92px;
-        padding: 12px;
+        width: 90%;
+        height: 80%;
+        padding-top: 4px;
+        margin: 0 auto;
         color: ${colors.cinzaClaro};
 
-        white-space: nowrap;
-        text-wrap: wrap;
+
+    }
+
+    p {
+        --max-lines: 5;
+        
+        font-size: 14px;
+        display: -webkit-box;
         overflow: hidden;
-        overflow-wrap: break-word;
-        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: var(--max-lines);
     }
 `

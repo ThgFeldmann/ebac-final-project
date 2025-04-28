@@ -1,22 +1,23 @@
 import SpecialPost from "../SpecialPost"
-import { SpecialPostsArea, SpecialPostsContainer } from "./styles"
+import { SpecialPostsArea, SpecialPostsContainer, SpecialPostsScrollArea } from "./styles"
 
 const SpecialPostsSection = () => {
     return (
         <SpecialPostsContainer>
             <SpecialPostsArea>
-                <h3>
-                    Conversas mais comentadas hoje
-                </h3>
-                <SpecialPost />
-                <SpecialPost />
-            </SpecialPostsArea>
-            <SpecialPostsArea>
-                <h3>
-                    Postagens de seus amigos
-                </h3>
-                <SpecialPost />
-                <SpecialPost />
+                <button>
+                    Postagens mais comentadas hoje
+                </button>
+                <SpecialPostsScrollArea>
+                    <SpecialPost />
+                    <SpecialPost />
+                    <SpecialPost />
+                    <SpecialPost />
+                    <SpecialPost />
+                    <SpecialPost />
+                    <SpecialPost />
+                    <SpecialPost />
+                </SpecialPostsScrollArea>
             </SpecialPostsArea>
         </SpecialPostsContainer>
     )

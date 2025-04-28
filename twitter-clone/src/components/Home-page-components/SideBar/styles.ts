@@ -52,7 +52,7 @@ export const UserSection = styled.div`
 `
 
 export const FriendsSection = styled.div`
-    height: 220px;
+    height: 221px;
     border-bottom: 2px solid ${colors.cinzaClaro};
 
     button {
@@ -60,6 +60,7 @@ export const FriendsSection = styled.div`
         height: 24px;
         margin-top: 38px;
         font-size: 18px;
+        font-weight: bold;
         border: 1px solid ${colors.cinzaClaro};
         border-radius: 12px;
         background-color: ${colors.verde};
@@ -76,7 +77,6 @@ export const FriendsList = styled.div`
     overflow-y: hidden;
     text-align: start;
 
-    border-right: 2px solid ${colors.branco};
     border-left: 2px solid ${colors.branco};
 
     p {
@@ -109,12 +109,14 @@ export const FriendsList = styled.div`
     }
 
     &: :-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(218, 255, 251);
+        background-color: rgba(218, 255, 251, 0.656);
+        border: 3.5px solid ${colors.azulEscuro};
         border-radius: 10px;
     }
 
     &: :-webkit-scrollbar-thumb {
-        background-color: rgba(53, 162, 159, .8);
+        background-color: ${colors.azulClaro};
+        border: 2px solid rgba(218, 255, 251, 0.656);
         border-radius: 10px;
     }
 

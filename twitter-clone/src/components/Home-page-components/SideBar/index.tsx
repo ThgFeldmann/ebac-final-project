@@ -10,7 +10,7 @@ const SideBar = () => {
                     <button>Editar nome</button>
                 </UserSection>
                 <FriendsSection>
-                    <button>Amigos Online</button>
+                    <button>Amigos (Online)</button>
                     <FriendsList>
                         <p>Fulano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
                         <p>Siclano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
