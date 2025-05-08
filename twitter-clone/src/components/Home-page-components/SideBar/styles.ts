@@ -63,7 +63,14 @@ export const FriendsSection = styled.div`
         font-weight: bold;
         border: 1px solid ${colors.cinzaClaro};
         border-radius: 12px;
-        background-color: ${colors.verde};
+
+        &.OnlineList {
+            background-color: ${colors.verde};
+        }
+
+        &.OfflineList {
+            background-color: ${colors.cinza};
+        }
     }
 `
 
@@ -128,6 +135,20 @@ export const FriendsList = styled.div`
 export const ButtonsContainer = styled.div`
     display: flex;
     flex-direction: column;
+
+    a:last-child {
+        width: 145px;
+        height: 35px;
+        padding: 2px;
+        margin: 145px auto 0;
+        background-color: ${colors.vermelho};
+        border: 2px solid ${colors.verdeClaro};
+        border-radius: 16px;
+        color: ${colors.preto};
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+    }
 `
 
 export const PostButton = styled.button`
@@ -139,19 +160,6 @@ export const PostButton = styled.button`
     border-radius: 16px;
     color: ${colors.preto};
     font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-`
-
-export const ExitButton = styled.button`
-    width: 145px;
-    height: 35px;
-    margin: 145px auto 0;
-    background-color: ${colors.vermelho};
-    border: 2px solid ${colors.verdeClaro};
-    border-radius: 16px;
-    color: ${colors.preto};
-    font-size: 22px;
     font-weight: bold;
     text-align: center;
 `

@@ -13,14 +13,6 @@ export const SignUpContainerComponent = styled.div`
     background-color: ${colors.azulClaro};
 `
 
-export const Title = styled.h1`
-    font-size: 44px;
-    font-weight: 500;
-
-    margin-top: 25px;
-    text-align: center;
-`
-
 export const SignUpFormContainer = styled.div`
     max-width: 520px;
     height: 300px;

@@ -4,17 +4,10 @@ import { colors } from "../../../styles";
 export const SpecialPostsContainer = styled.div`
     width: 350px;
     height: 650px;
-    
+
     position: fixed;
     top: 35px;
     right: 50px;
-
-`
-
-export const SpecialPostsArea = styled.div`
-    width: 100%;
-    height: 100%;
-    margin-bottom: 35px;
 
     text-align: center;
 
@@ -35,7 +28,7 @@ export const SpecialPostsArea = styled.div`
     }
 `
 
-export const SpecialPostsScrollArea = styled.div`
+export const SpecialPostsArea = styled.div`
     width: 90%;
     height: 600px;
     margin: 0 auto;

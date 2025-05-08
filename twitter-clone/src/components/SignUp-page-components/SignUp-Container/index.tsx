@@ -1,10 +1,14 @@
-import SignUpButton from "../SignUp-Button";
-import { SignUpContainerComponent, SignUpFormContainer, Title } from "./styles";
+
+import { Link } from "react-router-dom";
+import PageTitle from "../Page_Title";
+
+import { SignUpContainerComponent, SignUpFormContainer } from "./styles";
+import SignUpButtonContainer from "../SignUp_Button_Container";
 
 const SignUpContainer = () => {
     return (
         <SignUpContainerComponent>
-            <Title>Cadastro</Title>
+            <PageTitle />
             <SignUpFormContainer>
                 <div>
                     <label htmlFor="email">Email do Usuário:</label>
@@ -23,7 +27,7 @@ const SignUpContainer = () => {
                     <input required id="password-confirm" type="text" />
                 </div>
             </SignUpFormContainer>
-            <SignUpButton/>
+            <SignUpButtonContainer />
         </SignUpContainerComponent>
     )
 }
