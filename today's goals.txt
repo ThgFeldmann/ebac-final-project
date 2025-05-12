@@ -1,3 +1,0 @@
-update posts and special posts to support the comment functionality
-
-(each comment will appear below the original post, a max of two comments will appear on each post of the home page. On the specific page for the post, all comments will be shown.)

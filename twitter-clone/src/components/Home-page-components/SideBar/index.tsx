@@ -45,19 +45,19 @@ const SideBar = () => {
                     {
                         (OnlineFriendsList === true) ?
                         <FriendsList>
-                            <p>Fulano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
-                            <p>Siclano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
-                            <p>Fulano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
-                            <p>Siclano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
-                            <p>Fulano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
-                            <p>Siclano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
+                            <p>Fulano deTal<button>&nbsp;&bull;&bull;&bull;</button></p>
+                            <p>Siclano deTal<button>&nbsp;&bull;&bull;&bull;</button></p>
+                            <p>Fulano deTal<button>&nbsp;&bull;&bull;&bull;</button></p>
+                            <p>Siclano deTal<button>&nbsp;&bull;&bull;&bull;</button></p>
+                            <p>Fulano deTal<button>&nbsp;&bull;&bull;&bull;</button></p>
+                            <p>Siclano deTal<button>&nbsp;&bull;&bull;&bull;</button></p>
                         </FriendsList>
                         :
                         (OfflineFriendsList === true) ?
                         <FriendsList>
-                            <p>Fulano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
-                            <p>Siclano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
-                            <p>Fulano deTal<span>&nbsp;&bull;&bull;&bull;</span></p>
+                            <p>Fulano deTal<button>&nbsp;&bull;&bull;&bull;</button></p>
+                            <p>Siclano deTal<button>&nbsp;&bull;&bull;&bull;</button></p>
+                            <p>Fulano deTal<button>&nbsp;&bull;&bull;&bull;</button></p>
                         </FriendsList>
                         :
                         <p>Não foi possível acessar sua lista de amigos!</p>

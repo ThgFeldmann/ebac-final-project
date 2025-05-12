@@ -93,7 +93,7 @@ export const FriendsList = styled.div`
         margin-left: 4px;
         color: ${colors.branco};
 
-        span {
+        button {
             display: none;
             cursor: pointer;
             vertical-align: middle;
@@ -105,7 +105,7 @@ export const FriendsList = styled.div`
         }
 
         &:hover {
-            span {
+            button {
                 display: inline;
             }
         }

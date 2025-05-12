@@ -1,0 +1,136 @@
+{
+    "users": [
+        {
+            "id": 12345, 
+            "username": "Fulano Detal", 
+            "password": "SenhaFulano", 
+            "email": "Fulano@email.com",
+            "posts": [
+                {
+                    "id": 1,
+                    "author": "Fulano Detal",
+                    "image": "https://placehold.co/500x200",
+                    "content": "Muita coisa aqui. Disse Fulano",
+                    "comments": [
+                        {
+                            "id": 1,
+                            "author": "Siclano Detal",
+                            "content": "Comentário de Siclano"
+                        },
+                        {
+                            "id": 2,
+                            "author": "Delano Detal",
+                            "content": "Comentário de Delano"
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "author": "Fulano Detal",
+                    "image": "",
+                    "content": "Agora tem pouca coisa aqui. Disse Fulano",
+                    "comments": [
+                        {
+                            "id": 1,
+                            "author": "Delano Detal",
+                            "content": "Comentário de Delano"
+                        },
+                        {
+                            "id": 2,
+                            "author": "Siclano Detal",
+                            "content": "Comentário de Siclano"
+                        }
+                    ]
+                }
+            ]
+        },
+        { 
+            "id": 23456, 
+            "username": "Siclano Detal", 
+            "password": "SenhaSiclano", 
+            "email": "Siclano@email.com",
+            "posts": [
+                {
+                    "id": 1,
+                    "author": "Siclano Detal",
+                    "image": "https://placehold.co/500x200",
+                    "content": "Muita coisa aqui. Disse Siclano",
+                    "comments": [
+                        {
+                            "id": 1,
+                            "author": "Delano Detal",
+                            "content": "Comentário de Delano"
+                        },
+                        {
+                            "id": 2,
+                            "author": "Fulano Detal",
+                            "content": "Comentário de Fulano"
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "author": "Siclano Detal",
+                    "image": "",
+                    "content": "Agora tem pouca coisa aqui. Disse Siclano",
+                    "comments": [
+                        {
+                            "id": 1,
+                            "author": "Fulano Detal",
+                            "content": "Comentário de Fulano"
+                        },
+                        {
+                            "id": 2,
+                            "author": "Delano Detal",
+                            "content": "Comentário de Delano"
+                        }
+                    ]
+                }
+            ]
+        },
+        { 
+            "id": 34567, 
+            "username": "Delano Detal", 
+            "password": "SenhaDelano", 
+            "email": "Delano@email.com",
+            "posts": [
+                {
+                    "id": 1,
+                    "author": "Delano Detal",
+                    "image": "https://placehold.co/500x200",
+                    "content": "Muita coisa aqui. Disse Delano",
+                    "comments": [
+                        {
+                            "id": 1,
+                            "author": "Fulano Detal",
+                            "content": "Comentário de Fulano"
+                        },
+                        {
+                            "id": 2,
+                            "author": "Siclano Detal",
+                            "content": "Comentário de Siclano"
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "author": "Delano Detal",
+                    "image": "",
+                    "content": "Agora tem pouca coisa aqui. Disse Delano",
+                    "comments": [
+                        {
+                            "id": 1,
+                            "author": "Siclano Detal",
+                            "content": "Comentário de Siclano"
+                        },
+                        {
+                            "id": 2,
+                            "author": "Fulano Detal",
+                            "content": "Comentário de Fulano"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
