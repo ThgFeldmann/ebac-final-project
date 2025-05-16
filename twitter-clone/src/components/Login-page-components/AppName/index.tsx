@@ -3,7 +3,7 @@ import { AppName } from "./styles"
 const AppNameComponent = () => {
     return (
         <>
-            <AppName>Twitter clone</AppName>
+            <AppName>Echo Network</AppName>
         </>
     )
 }

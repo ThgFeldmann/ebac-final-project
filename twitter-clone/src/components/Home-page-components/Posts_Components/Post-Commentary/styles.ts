@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../../styles";
+import { colors } from "../../../../styles";
 
 export const CommentUserArea = styled.div`
     border-top: 2px solid ${colors.cinzaClaro};

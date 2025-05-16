@@ -6,19 +6,7 @@ const Login = () => {
     return (
         <Container>
             <AppNameComponent />
-            <LoginContainerComponent 
-            LoginButton={{
-                Text: "Entrar",
-                ClassName: "LoginButton",
-                LinkURL: "/home",
-                ButtonType: "submit"
-            }} 
-            SignUpButton={{
-                Text: "Crie uma Conta",
-                ClassName: "SignUpButton",
-                LinkURL: "/SignUp",
-                ButtonType: "button"
-            }} />
+            <LoginContainerComponent />
         </Container>
     )
 }

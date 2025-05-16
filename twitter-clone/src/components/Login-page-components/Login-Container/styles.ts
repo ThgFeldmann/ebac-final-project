@@ -42,6 +42,13 @@ export const InputContainer = styled.form `
 
             font-size: 18px;
         }
+
+        p.error {
+            color: ${colors.vermelho};
+            margin 0 0 10px 10px;
+            text-align: left;
+            font-size: 10px;
+        }
     }
 `
 

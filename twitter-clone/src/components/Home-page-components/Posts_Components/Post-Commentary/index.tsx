@@ -1,16 +1,22 @@
 import { CommentContentArea, CommentUserArea } from "./styles"
 
-const Commentary = () => {
+type Props = {
+    id: number,
+    author: string,
+    content: string
+}
+
+const CommentComponent = ({ author, content }: Props) => {
     return (
         <div>
             <CommentUserArea>
-                <h4>Usuário que fez o comentário</h4>
+                <h4>{author}</h4>
             </CommentUserArea>
             <CommentContentArea>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut exercitationem accusamus modi quis fugit.</p>
+                <p>{content}</p>
             </CommentContentArea>
         </div>
     )
 }
 
-export default Commentary
+export default CommentComponent
