@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 import { apiPosts, apiUsers, Post, User } from "../../App"
@@ -11,18 +12,20 @@ import { HomeContainer } from "../../styles"
 const Home = () => {
     const [homeUser, setHomeUser] = useState<User>(Object)
     const [homePost, setHomePost] = useState<Post[]>([])
+    
+    const location = useLocation()
 
     useEffect(() => {
-        // GET request for the Users section of the api
-        fetch(apiUsers)
-            .then((response) => response.json())
-            .then((response) => setHomeUser(response))
+        const receivedState = location.state
+        setHomeUser(receivedState)
+
+        console.log(homeUser)
 
         // GET request for the Posts section of the api
         fetch(apiPosts)
             .then((response) => response.json())
             .then((response) => setHomePost(response))
-    })
+    }, [location.state, homeUser])
 
     return (
         <HomeContainer>

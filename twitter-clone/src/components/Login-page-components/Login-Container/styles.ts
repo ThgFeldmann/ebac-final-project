@@ -1,23 +1,27 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { colors } from "../../../styles";
+import { Link } from "react-router-dom";
 
-export const LoginContainer = styled.form`
-    max-width: 560px;
+export const LoginContainer = styled.div`
+    max-width: 470px;
     height: 400px;
     margin: 44px auto 0;
 
     align-items: center;
     text-align: center;
 
-    border: solid 3px ${colors.verdeClaro};
-    border-radius: 28px;
+    border: solid 3px ${colors.azulClaro};
+    border-radius: 2px;
 
     background-color: ${colors.azulClaro};
+
+    &.successContainer {
+        height: 300px;
+    }
 `
 
 export const InputContainer = styled.form `
-    margin: 46px auto 0;
+    margin: 44px auto 0;
     justify-content: center;
 
     div {
@@ -42,13 +46,6 @@ export const InputContainer = styled.form `
 
             font-size: 18px;
         }
-
-        p.error {
-            color: ${colors.vermelho};
-            margin 0 0 10px 10px;
-            text-align: left;
-            font-size: 10px;
-        }
     }
 `
 
@@ -58,9 +55,16 @@ export const ButtonContainer = styled.div`
     flex-direction: column;
     margin: 0 auto;
     padding-top: 45px;
+
+    p {
+        padding: 4px;
+        font-size: 18px;
+        font-weight: bold;
+        color: ${colors.preto};
+    }
 `
 
-export const LinkButton = styled(Link)`
+export const Button = styled.button`
     width: 70%;
     height: 30px;
     margin: 0 auto;
@@ -73,11 +77,8 @@ export const LinkButton = styled(Link)`
     font-weight: bold;
     color: ${colors.preto};
 
-    cursor: pointer;
-
     &.LoginButton {
         background-color: ${colors.azul};
-        margin-bottom: 15px;
     }
 
     &.SignUpButton {
@@ -86,5 +87,35 @@ export const LinkButton = styled(Link)`
 
     &:hover {
         border: 3px inset ${colors.preto};
+    }
+`
+
+export const SuccessSection = styled.div`
+    text-align: start;
+    padding: 30px;
+
+    h2 {
+        font-size: 28px;
+    }
+
+    p {
+        font-size: 20px;
+        margin: 20px 0;
+    }
+
+    button {
+        width: 160px;
+        background-color: ${colors.azul};
+
+        border: 1px solid ${colors.preto};
+        border-radius: 6px;
+
+        a {
+            font-size: 18px;
+        }
+
+        &:hover {
+            border: 3px inset ${colors.preto};
+        }
     }
 `

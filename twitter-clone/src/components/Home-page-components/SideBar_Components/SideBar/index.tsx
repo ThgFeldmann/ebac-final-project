@@ -17,7 +17,7 @@ const SideBar = ({ user }: Props) => {
                     <p>{user.id}</p>
                     <button>Editar nome</button>
                 </UserSection>
-                <FriendsSectionComponent />
+                <FriendsSectionComponent friend={user.friends} />
                 <ButtonsContainer>
                     <PostButton>Criar uma postagem</PostButton>
                     <Link to='/'>Sair</Link>
