@@ -29,7 +29,7 @@ const Home = () => {
 
     return (
         <HomeContainer>
-            <SideBar user={homeUser} />
+            <SideBar />
             <PostSection post={homePost}/>
             <SpecialPostsSection />
         </HomeContainer>

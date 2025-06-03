@@ -1,103 +1,156 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { apiUsers } from "../../../App";
-import { showMessage } from "../../../utils";
 
 import { ButtonContainer, InputContainer, Button, LoginContainer, SuccessSection } from "./styles" 
 
 const LoginContainerComponent = () => {
-    const [existingUsers, setExistingUsers] = useState([]) // Users stored in api
-    const [foundUser, setFoundUser] = useState({}) // Separates a user from the api if 'username' exists in it
-    const [username, setUsername] = useState(''); // User typed in form
-    const [password, setPassword] = useState(''); // User typed in form
-    const [usernameIsCorrect, setUsernameIsCorrect] = useState(false) // Set username as correct
-    const [passwordIsCorrect, setPasswordIsCorrect] = useState(false) // Set password as correct
     const [success, setSuccess] = useState(false) // Dictates if login is a success or not
-    const [loggedUser, setLoggedUser] = useState({}) // Stores user information in case login is a success
+    const [formData, setFormData] = useState({email: '', username: '', password: ''}) // informations typed on the form
+    const [loggedUser, setLoggedUser] = useState({
+        id: 0,
+        username: '',
+        password: '',
+        email: '',
+        friends: [
+            {
+                id: 0,
+                username: ''
+            }
+        ]
+    }) // Stores user information in case login is a success
+    const [formError, setFormError] = useState(false)
 
-    // catching every user data from api
+    // const signIn = useSignIn()
+    const navigate = useNavigate()
+
     useEffect(() => {
-        setUsername('')
-        setPassword('')
-        setUsernameIsCorrect(false)
-        setPasswordIsCorrect(false)
-        setFoundUser({})
-
-        fetch(apiUsers)
-            .then((res) => res.json())
-            .then((res) => setExistingUsers(res))
-    }, [])
-
-    // function that returns an object that contains the value of username
-    const authUser = () => {
-        const result = existingUsers.filter(item => {
-            return Object.values(item).some(value => {
-                if (typeof value === 'string') {
-                    return value.includes(username)
+        setSuccess(false)
+        setFormData({email: '', username: '', password: ''})
+        setLoggedUser({
+            id: 0,
+            username: '',
+            password: '',
+            email: '',
+            friends: [
+                {
+                    id: 0,
+                    username: ''
                 }
-                return false
-            })
+            ]
         })
-        setFoundUser(result) // saves the user informations on state
+    }, [setSuccess, setFormData, setLoggedUser])
 
-        setUsernameIsCorrect(true) // the username exists in api
-    }
-
-    // ******************* ERROR HERE
-    // function that checks if 'password' exists inside 'foundUser'
-    const authPassword = () => {
-        // const objValues: any[] = Object.values(foundUser)
-        // const result = objValues.includes(password)
-
-        // const someResult = 
-        //     Object.values(foundUser) // separates every value inside the object into a separate array
-        //     .some(
-        //         (value) => value === password // checks if the array has a value that is equal to 'password'
-        //     )
-
-        // const includeResult = Object.values(foundUser).includes(password)
-
-        // console.log(result)
-
-        const result = true
-
-        if (result) {
-            showMessage('A senha é deste usuário.')
-            setPasswordIsCorrect(true)
-        } else {
-            showMessage('A senha não é deste usuário ou ela não existe.')
-        }
-    }
-
-    // executes all submit functions and navigates if successful
+    // executes all submit functions and checks if successful
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
-        authUser()
-        authPassword()
+        // ####### MORE TESTS
 
-        showMessage('#############')
-        if (usernameIsCorrect && passwordIsCorrect) {
-            setSuccess(true)
-            setLoggedUser(foundUser)
-        } else {
-            showMessage('Houve um erro na verificação')
-        }
+
+        // THIS WORKED
+        fetch(apiUsers)
+        .then((response) => response.json())
+        .then((users) => {
+            const user = users.find(
+                (u: any) => u.email === formData.email && u.username === formData.username && u.password === formData.password
+            )
+            if (user) {
+                console.log("Login successful!")
+                setLoggedUser(user)
+                setSuccess(true)
+            } else {
+                console.log("Invalid Credentials")
+                setFormError(true)
+            }
+        })
+
+        // my token
+        // const token = 'byG9wZuXK0my1AhXHI88PEYAToR6DgKBwkDwa3X01IbL91VmCVgWavmiP64COuYz'
+
+        // fetch(apiUsers, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Authorization': `Bearer ${token}`,
+        //         'Content-Type': 'application/json',
+        //     }
+        // })
+        //     .then((response) => response.json())
+        //     .then(data => console.log(data))
+        //     .catch(error => console.error('Error: ', error))
+
+         // ********** ERROR HERE / POST RETURNS CODE 500 / GET REQUEST WORKS
+
+        // fetch(apiUsers, {
+        //     method: "POST",
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(formData)
+        // })
+        //     .then((response) => response.json())
+        //     .then((response) => {
+        //         console.log(response)
+        //     })
+
+        // axios.post('https://echo-fake-api.vercel.app/login', formData)
+        //     .then((response) => {
+        //         console.log(response.data)
+        //     })
+
+        // axios.post(apiLogin, formData)
+        //     .then((response) => {
+        //         if (response.status === 200) {
+        //             if (signIn({
+        //                 auth: {
+        //                     token: response.data.token,
+        //                     type: 'Bearer'
+        //                 },
+        //                 // refresh: response.data.refreshToken,
+        //                 userState: response.data.authUserState
+        //             })) {
+        //                 console.log('Refresh token')
+        //             }
+        //             console.log("Error after signIn")
+        //         } else {
+        //             console.log('Response status is not 200')
+        //         }
+        // })
+    }
+
+    const handleNavigate = () => {
+        navigate('/Home', {state: {user: loggedUser}})
+    }
+
+    const checkLoggedUser = () => {
+        console.log(loggedUser)
     }
 
     return (
         <LoginContainer className={success ? 'successContainer' : ''}>
             {(success === true) ?
                 <SuccessSection>
-                    <h2>Bem vindo {username}!</h2>
+                    <h2>Bem vindo {loggedUser.username}!</h2>
                     <p>Para ir até a página principal, aperte o botão abaixo.</p>
-                    <button>
-                        <Link to='/Home'>Clique aqui!</Link>
-                    </button>
+                    <button onClick={event => handleNavigate()}>Clique aqui!</button>
                 </SuccessSection>
             :
                 <InputContainer onSubmit={e => handleSubmit(e)}>
+                    {formError ? <p className="error">Algum dos campos abaixo está com informações erradas.</p> : null}
+                    <div>
+                        <label htmlFor="email">Email do Usuário:</label>
+                        <input 
+                            min={2}
+                            required 
+                            id="email" 
+                            type="email" 
+                            value={formData.email}
+                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            autoComplete="off"
+                            className={formError ? 'error' : ''}
+                        />
+                    </div>
                     <div>
                         <label htmlFor="username">Nome do Usuário:</label>
                         <input 
@@ -105,9 +158,10 @@ const LoginContainerComponent = () => {
                             required 
                             id="username" 
                             type="text" 
-                            value={username} 
-                            onChange={(e) => setUsername(e.target.value)} 
+                            value={formData.username}
+                            onChange={(e) => setFormData({...formData, username: e.target.value})}
                             autoComplete="off"
+                            className={formError ? 'error' : ''}
                         />
                     </div>
                     <div>
@@ -117,15 +171,18 @@ const LoginContainerComponent = () => {
                             required 
                             id="password" 
                             type="password" 
-                            value={password} 
-                            onChange={(e) => setPassword(e.target.value)} 
-                            autoComplete="off" 
+                            value={formData.password}
+                            onChange={(e) => setFormData({...formData, password: e.target.value})} 
+                            autoComplete="off"
+                            className={formError ? 'error' : ''}
                         />
                     </div>
                     <ButtonContainer>
                         <Button className="LoginButton" type="submit">Botão</Button>
                         <p>Não tem uma conta?</p>
-                        <Button className="SignUpButton" type="button">Crie uma conta</Button>
+                        <Button className="SignUpButton" type="button">
+                            <Link to='/SignUp'>Crie uma conta</Link>
+                        </Button>
                     </ButtonContainer>
                 </InputContainer>
             }

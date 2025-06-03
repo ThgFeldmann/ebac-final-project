@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import { colors } from "../../../styles";
-import { Link } from "react-router-dom";
 
 export const LoginContainer = styled.div`
     max-width: 470px;
-    height: 400px;
+    height: 420px;
     margin: 44px auto 0;
 
     align-items: center;
@@ -21,8 +20,15 @@ export const LoginContainer = styled.div`
 `
 
 export const InputContainer = styled.form `
-    margin: 44px auto 0;
+    margin: 22px auto 0;
     justify-content: center;
+
+    p.error {
+        position: relative;
+        top: -4px;
+        color: red;
+        font-weight: bold;
+    }
 
     div {
         max-width: 400px;
@@ -45,6 +51,10 @@ export const InputContainer = styled.form `
             margin-bottom: 16px;
 
             font-size: 18px;
+
+            &.error {
+                border: solid 2px #ff0000cc;
+            }
         }
     }
 `
@@ -54,7 +64,7 @@ export const ButtonContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    padding-top: 45px;
+    padding-top: 25px;
 
     p {
         padding: 4px;

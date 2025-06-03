@@ -20,7 +20,7 @@ const PostComponent = ({ author, image, content, comments }: Props) => {
                     <h4>{author}</h4>
                 </PostUserNameArea>
                 <PostContentArea>
-                    <img src={image} alt="placeholder" />
+                    <img src={image} alt="Imagem não encontrada" />
                     <p>{content}</p>
                 </PostContentArea>
                 {comments.map((comment) => (

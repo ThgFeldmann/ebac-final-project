@@ -1,27 +1,36 @@
-import { Link } from "react-router-dom"
-import { User } from "../../../../App"
+import { Link, useLocation } from "react-router-dom"
+
 import FriendsSectionComponent from "../FriendsSection"
 
 import { ButtonsContainer, PostButton, SidebarArea, SideBarContainer, UserSection } from "./styles"
 
-type Props = {
-    user: User
-}
+const SideBar = () => {
 
-const SideBar = ({ user }: Props) => {
+    const location = useLocation()
+
+    const user = location.state.user
+
     return (
         <SideBarContainer>
             <SidebarArea>
-                <UserSection>
-                    <h3>{user.username}</h3>
-                    <p>{user.id}</p>
-                    <button>Editar nome</button>
-                </UserSection>
-                <FriendsSectionComponent friend={user.friends} />
-                <ButtonsContainer>
-                    <PostButton>Criar uma postagem</PostButton>
-                    <Link to='/'>Sair</Link>
-                </ButtonsContainer>
+                {(user == null ) ?
+                    <div>
+                        <p>Não foi possível encontrar um usuário conectado!</p>
+                    </div>
+                :
+                    <>
+                        <UserSection>
+                            <h3>{user.username}</h3>
+                            <p>#{user.id}</p>
+                            <button>Editar nome</button>
+                        </UserSection>
+                        <FriendsSectionComponent friend={user.friends} />
+                        <ButtonsContainer>
+                            <PostButton>Criar uma postagem</PostButton>
+                            <Link to='/'>Sair</Link>
+                        </ButtonsContainer>
+                    </>
+                }
             </SidebarArea>
         </SideBarContainer>
     )

@@ -1,6 +1,11 @@
-import { RouterProvider } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import AppRoutes from "./routes";
+import createStore from "react-auth-kit/createStore";
+import AuthProvider from "react-auth-kit";
+
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 import { GlobalStyle } from "./styles";
 
@@ -9,6 +14,8 @@ import { GlobalStyle } from "./styles";
 export const apiUsers = "https://echo-fake-api.vercel.app/users"
 // this is the URL for Posts section
 export const apiPosts = "https://echo-fake-api.vercel.app/posts"
+
+export const apiLogin = "https://echo-fake-api.vercel.app/login"
 
 // Prop with User infos
 export type User = {
@@ -45,10 +52,27 @@ export type Comment = {
 }
 
 function App() {
+
+  const store = createStore({
+    authName: '_auth',
+    authType: 'cookie',
+    cookieDomain: window.location.hostname,
+    cookieSecure: window.location.protocol === 'https:'
+  })
+
   return (
     <div className="App">
-      <GlobalStyle/>
-      <RouterProvider router={AppRoutes} />
+      <AuthProvider store={store}>
+        <BrowserRouter>
+        <GlobalStyle/>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Home" element={<Home />} />
+            <Route path="/SignUp" element={<SignUp />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }
