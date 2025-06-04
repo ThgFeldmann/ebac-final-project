@@ -46,10 +46,6 @@ const LoginContainerComponent = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
-        // ####### MORE TESTS
-
-
-        // THIS WORKED
         fetch(apiUsers)
         .then((response) => response.json())
         .then((users) => {
@@ -66,7 +62,7 @@ const LoginContainerComponent = () => {
             }
         })
 
-        // my token
+        // SWITCH TO THIS FUNCTION WHEN BACK-END IS DONE
         // const token = 'byG9wZuXK0my1AhXHI88PEYAToR6DgKBwkDwa3X01IbL91VmCVgWavmiP64COuYz'
 
         // fetch(apiUsers, {
@@ -79,52 +75,10 @@ const LoginContainerComponent = () => {
         //     .then((response) => response.json())
         //     .then(data => console.log(data))
         //     .catch(error => console.error('Error: ', error))
-
-         // ********** ERROR HERE / POST RETURNS CODE 500 / GET REQUEST WORKS
-
-        // fetch(apiUsers, {
-        //     method: "POST",
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(formData)
-        // })
-        //     .then((response) => response.json())
-        //     .then((response) => {
-        //         console.log(response)
-        //     })
-
-        // axios.post('https://echo-fake-api.vercel.app/login', formData)
-        //     .then((response) => {
-        //         console.log(response.data)
-        //     })
-
-        // axios.post(apiLogin, formData)
-        //     .then((response) => {
-        //         if (response.status === 200) {
-        //             if (signIn({
-        //                 auth: {
-        //                     token: response.data.token,
-        //                     type: 'Bearer'
-        //                 },
-        //                 // refresh: response.data.refreshToken,
-        //                 userState: response.data.authUserState
-        //             })) {
-        //                 console.log('Refresh token')
-        //             }
-        //             console.log("Error after signIn")
-        //         } else {
-        //             console.log('Response status is not 200')
-        //         }
-        // })
     }
 
     const handleNavigate = () => {
         navigate('/Home', {state: {user: loggedUser}})
-    }
-
-    const checkLoggedUser = () => {
-        console.log(loggedUser)
     }
 
     return (
