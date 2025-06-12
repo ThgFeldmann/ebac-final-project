@@ -19,8 +19,6 @@ const Home = () => {
         const receivedState = location.state
         setHomeUser(receivedState)
 
-        console.log(homeUser)
-
         // GET request for the Posts section of the api
         fetch(apiPosts)
             .then((response) => response.json())

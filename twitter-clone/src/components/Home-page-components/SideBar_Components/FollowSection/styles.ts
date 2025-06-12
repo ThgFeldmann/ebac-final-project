@@ -1,32 +1,14 @@
 import styled from "styled-components"
 import { colors } from "../../../../styles"
 
-export const FriendsSection = styled.div`
+export const FollowSection = styled.div`
     height: 221px;
     border-bottom: 2px solid ${colors.cinzaClaro};
 `
 
-export const ToggleButton = styled.button`
-    width: 200px;
-    height: 24px;
-    margin-top: 38px;
-    font-size: 18px;
-    font-weight: bold;
-    border: 1px solid ${colors.cinzaClaro};
-    border-radius: 12px;
-
-    &.OnlineList {
-        background-color: ${colors.verde};
-    }
-
-    &.OfflineList {
-        background-color: ${colors.cinza};
-    }
-`
-
-export const FriendsList = styled.ul`
+export const FollowList = styled.ul`
     width: 192px;
-    max-height: 150px;
+    max-height: 172px;
     height: 100%;
     margin-top: 8px;
     margin-left: 32px;
@@ -65,17 +47,33 @@ export const FriendsList = styled.ul`
     }
 `
 
-export const DropdownButton = styled.button`
-    display: none;
-    cursor: pointer;
-    vertical-align: middle;
-    margin-top: -10px;
-    font-size: 36px;
-    line-height: 0;
-    letter-spacing: -1px;
-    color: ${colors.branco};
+export const FollowedUserItem = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
 
-    &:hover {
-        display: inline;
+    text-align: center;
+
+    &: hover {
+        button {
+            display: block;
+        }
+    }
+
+    button {
+        display: none;
+
+        height: 25px;
+    
+        background: none;
+        border: none;
+
+        font-size: 26px;
+        font-weight: bold;
+        color: ${colors.cinzaClaro};
+
+        &: hover {
+            color: ${colors.verde}
+        }
     }
 `
