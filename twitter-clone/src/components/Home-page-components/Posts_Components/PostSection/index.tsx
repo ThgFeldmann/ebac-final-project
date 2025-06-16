@@ -11,7 +11,7 @@ const PostSection = ({ post }: Props) => {
         <PostSectionContainer>
             {post.map((post) => (
                 <div key={post.id}>
-                    <PostComponent id={post.id} author={post.author} image={post.image} content={post.content} comments={post.comments} />
+                    <PostComponent post={post} />
                 </div>
             ))}
         </PostSectionContainer>

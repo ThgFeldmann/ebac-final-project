@@ -8,7 +8,6 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 
 import { GlobalStyle } from "./styles";
-import { JSX } from "react/jsx-runtime";
 
 // Saving the api URLs for simplicity
 // this is the URL for 'Users' section
@@ -18,7 +17,7 @@ export const apiPosts = "https://echo-fake-api.vercel.app/posts"
 // this is the URL for the 'Follows' section
 export const apiFollows = "https://echo-fake-api.vercel.app/follows"
 
-// Prop with User infos
+// Type of User
 export type User = {
   id: number,
   username: string,
@@ -26,25 +25,25 @@ export type User = {
   email: string
 }
 
-// Prop with Follows infos
+// Type of Follows
 export type Follow = {
     caseId: number
     userId: number
     followingId: number,
 }
 
-// Prop with Post infos
+// Type of Post
 export type Post = {
   id: number,
   author: string,
   image?: string,
   content?: string,
-  comments: [Comment]
+  comments: Comment[]
 }
 
-// Prop with Comment infos
+// Type of Comment
 export type Comment = {
-  id: number,
+  commentId: number,
   author: string,
   content: string
 }

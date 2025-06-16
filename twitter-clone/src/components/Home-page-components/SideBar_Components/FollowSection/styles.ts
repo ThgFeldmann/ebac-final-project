@@ -19,11 +19,15 @@ export const FollowList = styled.ul`
     border-left: 2px solid ${colors.branco};
 
     li {
-        text-decoration: underline;
+        text-decoration: none;
         font-size: 18px;
         margin-top: 8px;
         margin-left: 4px;
         color: ${colors.branco};
+
+        &: hover {
+            text-decoration: underline;
+        }
     }
 
     &: :-webkit-scrollbar {
@@ -75,5 +79,11 @@ export const FollowedUserItem = styled.div`
         &: hover {
             color: ${colors.verde}
         }
+    }
+`
+
+export const FollowInfo = styled.div`
+    h3, h4 {
+        color: ${colors.cinzaClaro};
     }
 `

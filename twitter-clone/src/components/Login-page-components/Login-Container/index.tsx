@@ -1,24 +1,18 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 
-import { apiUsers } from "../../../App";
+import { apiUsers, User } from "../../../App";
 
 import { ButtonContainer, InputContainer, Button, LoginContainer, SuccessSection } from "./styles" 
 
 const LoginContainerComponent = () => {
     const [success, setSuccess] = useState(false) // Dictates if login is a success or not
-    const [formData, setFormData] = useState({email: '', username: '', password: ''}) // informations typed on the form
-    const [loggedUser, setLoggedUser] = useState({
+    const [formData, setFormData] = useState({email: '', password: ''}) // informations typed on the form
+    const [loggedUser, setLoggedUser] = useState<User>({
         id: 0,
         username: '',
         password: '',
-        email: '',
-        friends: [
-            {
-                id: 0,
-                username: ''
-            }
-        ]
+        email: ''
     }) // Stores user information in case login is a success
     const [formError, setFormError] = useState(false)
 
@@ -27,18 +21,12 @@ const LoginContainerComponent = () => {
 
     useEffect(() => {
         setSuccess(false)
-        setFormData({email: '', username: '', password: ''})
+        setFormData({email: '', password: ''})
         setLoggedUser({
             id: 0,
             username: '',
             password: '',
-            email: '',
-            friends: [
-                {
-                    id: 0,
-                    username: ''
-                }
-            ]
+            email: ''
         })
     }, [setSuccess, setFormData, setLoggedUser])
 
@@ -50,7 +38,10 @@ const LoginContainerComponent = () => {
         .then((response) => response.json())
         .then((users) => {
             const user = users.find(
-                (u: any) => u.email === formData.email && u.username === formData.username && u.password === formData.password
+                (u: any) =>
+                    u.email === formData.email 
+                    &&
+                    u.password === formData.password
             )
             if (user) {
                 console.log("Login successful!")
@@ -101,19 +92,6 @@ const LoginContainerComponent = () => {
                             type="email" 
                             value={formData.email}
                             onChange={(e) => setFormData({...formData, email: e.target.value})}
-                            autoComplete="off"
-                            className={formError ? 'error' : ''}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="username">Nome do Usuário:</label>
-                        <input 
-                            min={2}
-                            required 
-                            id="username" 
-                            type="text" 
-                            value={formData.username}
-                            onChange={(e) => setFormData({...formData, username: e.target.value})}
                             autoComplete="off"
                             className={formError ? 'error' : ''}
                         />

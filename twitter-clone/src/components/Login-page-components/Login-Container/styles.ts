@@ -3,7 +3,7 @@ import { colors } from "../../../styles";
 
 export const LoginContainer = styled.div`
     max-width: 470px;
-    height: 420px;
+    height: 340px;
     margin: 44px auto 0;
 
     align-items: center;

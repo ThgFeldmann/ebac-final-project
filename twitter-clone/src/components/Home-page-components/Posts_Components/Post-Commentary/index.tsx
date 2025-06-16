@@ -1,19 +1,19 @@
+import { Comment } from '../../../../App'
+
 import { CommentContentArea, CommentUserArea } from "./styles"
 
 type Props = {
-    id: number,
-    author: string,
-    content: string
+    comment: Comment
 }
 
-const CommentComponent = ({ author, content }: Props) => {
+const CommentComponent = ({ comment }: Props) => {
     return (
         <div>
             <CommentUserArea>
-                <h4>{author}</h4>
+                <h4>{comment.author}</h4>
             </CommentUserArea>
             <CommentContentArea>
-                <p>{content}</p>
+                <p>{comment.content}</p>
             </CommentContentArea>
         </div>
     )

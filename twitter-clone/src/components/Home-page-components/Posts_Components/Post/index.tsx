@@ -1,31 +1,27 @@
-import { Comment } from "../../../../App"
+import { Comment, Post } from "../../../../App"
 
 import CommentComponent from "../Post-Commentary"
 
 import { PostContainer, PostContentArea, PostUserNameArea } from "./styles"
 
 type Props = {
-    id: number,
-    author: string,
-    image?: string,
-    content?: string,
-    comments: Comment[]
+    post: Post
 }
 
-const PostComponent = ({ author, image, content, comments }: Props) => {
+const PostComponent = ({ post }: Props) => {
     return (
         <>
             <PostContainer>
                 <PostUserNameArea>
-                    <h4>{author}</h4>
+                    <h4>{post.author}</h4>
                 </PostUserNameArea>
                 <PostContentArea>
-                    <img src={image} alt="Imagem não encontrada" />
-                    <p>{content}</p>
+                    <img src={post.image} alt="Imagem não encontrada" />
+                    <p>{post.content}</p>
                 </PostContentArea>
-                {comments.map((comment) => (
-                    <div key={comment.id}>
-                        <CommentComponent id={comment.id} author={comment.author} content={comment.content} />
+                {post.comments.map((comment: Comment) => (
+                    <div key={comment.commentId}>
+                        <CommentComponent comment={comment} />
                     </div>
                 ))}
             </PostContainer>
