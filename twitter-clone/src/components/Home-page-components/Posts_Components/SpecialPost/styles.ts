@@ -5,6 +5,7 @@ export const SpecialPostContainer = styled.div`
     width: 270px;
     height: 120px;
     margin: 8px auto 0;
+    z-index: 0;
 
     border: 1px solid ${colors.cinzaClaro};
     border-radius: 12px;
@@ -31,9 +32,9 @@ export const SpecialPostUserNameArea = styled.div`
     }
 `
 
+ // Rules for everything inside the content area
 export const SpecialPostContentArea = styled.div`
-
-    * { // Rules for everything inside the content area
+    * {
         width: 90%;
         height: 80%;
         padding-top: 4px;

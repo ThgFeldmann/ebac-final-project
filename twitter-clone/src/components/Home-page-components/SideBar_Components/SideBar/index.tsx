@@ -3,9 +3,10 @@ import { Link, useLocation } from "react-router-dom"
 
 import { apiFollows, Follow, User } from "../../../../App"
 
+import UserSectionComponent from "../UserSection"
 import FollowsSectionComponent from "../FollowSection"
 
-import { ButtonsContainer, PostButton, SidebarArea, SideBarContainer, UserSection } from "./styles"
+import { ButtonsContainer, PostButton, SidebarArea, SideBarContainer } from "./styles"
 
 const SideBar = () => {
     const [followingList, setFollowingList] = useState<Follow[]>([])
@@ -32,12 +33,6 @@ const SideBar = () => {
             })
     }, [user, setFollowingList])
 
-    // Test function, will be removed
-    const test = () => {
-        console.log("test sidebar followingList: ")
-        console.log(followingList)
-    }
-
     return (
         <SideBarContainer>
             <SidebarArea>
@@ -47,14 +42,10 @@ const SideBar = () => {
                     </div>
                 :
                     <>
-                        <UserSection>
-                            <h3>{user.username}</h3>
-                            <p>#{user.id}</p>
-                            <button>Editar nome</button>
-                        </UserSection>
+                        <UserSectionComponent username={user.username} id={user.id} />
                         <FollowsSectionComponent followList={followingList} followedList={followedList} />
                         <ButtonsContainer>
-                            <PostButton onClick={e => test()}>Criar uma postagem</PostButton>
+                            <PostButton>Criar uma postagem</PostButton>
                             <Link to='/'>Sair</Link>
                         </ButtonsContainer>
                     </>

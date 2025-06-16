@@ -116,6 +116,7 @@ const SignUpContainer = () => {
                                 id="email" 
                                 type="email"
                                 value={formData.email}
+                                autoComplete="off"
                                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                             />
                         </div>
@@ -127,6 +128,7 @@ const SignUpContainer = () => {
                                 id="username"
                                 type="text" 
                                 value={formData.username}
+                                autoComplete="off"
                                 onChange={(e) => setFormData({...formData, username: e.target.value})}
                             />
                         </div>
@@ -138,6 +140,7 @@ const SignUpContainer = () => {
                                 id="password" 
                                 type="password"
                                 value={formData.password}
+                                autoComplete="off"
                                 onChange={(e) => setFormData({...formData, password: e.target.value})}
                             />
                         </div>
@@ -154,6 +157,7 @@ const SignUpContainer = () => {
                                 id="password-confirm" 
                                 type="text"
                                 value={confirmationValue}
+                                autoComplete="off"
                                 onChange={(e) => setConfirmationValue(e.target.value)}
                             />
                         </div>

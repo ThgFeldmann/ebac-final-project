@@ -8,6 +8,7 @@ export const SpecialPostsContainer = styled.div`
     position: fixed;
     top: 35px;
     right: 50px;
+    z-index: -1;
 
     text-align: center;
 
