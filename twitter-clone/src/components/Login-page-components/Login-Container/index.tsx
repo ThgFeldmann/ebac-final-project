@@ -19,6 +19,7 @@ const LoginContainerComponent = () => {
     // const signIn = useSignIn()
     const navigate = useNavigate()
 
+    // resets the states on re-render
     useEffect(() => {
         setSuccess(false)
         setFormData({email: '', password: ''})
@@ -35,23 +36,23 @@ const LoginContainerComponent = () => {
         e.preventDefault()
 
         fetch(apiUsers)
-        .then((response) => response.json())
-        .then((users) => {
-            const user = users.find(
-                (u: any) =>
-                    u.email === formData.email 
-                    &&
-                    u.password === formData.password
-            )
-            if (user) {
-                console.log("Login successful!")
-                setLoggedUser(user)
-                setSuccess(true)
-            } else {
-                console.log("Invalid Credentials")
-                setFormError(true)
-            }
-        })
+            .then((response) => response.json())
+            .then((users) => {
+                const user = users.find(
+                    (u: User) =>
+                        u.email === formData.email 
+                        &&
+                        u.password === formData.password
+                )
+                if (user) {
+                    console.log("Login successful!")
+                    setLoggedUser(user)
+                    setSuccess(true)
+                } else {
+                    console.log("Invalid Credentials")
+                    setFormError(true)
+                }
+            })
 
         // SWITCH TO THIS FUNCTION WHEN BACK-END IS DONE
         // const token = 'byG9wZuXK0my1AhXHI88PEYAToR6DgKBwkDwa3X01IbL91VmCVgWavmiP64COuYz'

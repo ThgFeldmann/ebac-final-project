@@ -48,6 +48,13 @@ export type Comment = {
   content: string
 }
 
+// Type of Form values
+export type FormValues = {
+  email?: string
+  username?: string
+  password?: string
+}
+
 function App() {
 
   const store = createStore({
