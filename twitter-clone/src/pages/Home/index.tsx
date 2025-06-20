@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 
-import { apiPosts, apiUsers, Post, User } from "../../App"
+import { apiPosts, Post, User } from "../../App"
 
 import SideBar from "../../components/Home-page-components/SideBar_Components/SideBar"
 import PostSection from "../../components/Home-page-components/Posts_Components/PostSection"

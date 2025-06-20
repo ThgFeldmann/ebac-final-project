@@ -23,10 +23,11 @@ export const SignUpFormContainer = styled.div`
     display: block;
     max-width: 380px;
     height: 280px;
-    margin: 17px auto 34px;
+    margin: 17px auto;
     justify-content: center;
 
     p.error {
+        margin-top: -6px;
         font-size: 16px;
         color: #ff0000;
     }
@@ -66,7 +67,7 @@ export const Button = styled.button`
     display: block;
     width: 400px;
     height: 38px;
-    margin: 0 auto;
+    margin: 34px auto 0;
     
     border: 1px outset ${colors.preto};
     border-radius: 12px;
@@ -79,6 +80,7 @@ export const Button = styled.button`
     background-color: ${colors.verdeClaro};
 
     &.goBack {
+        margin: 0 auto;
         width: 200px;
     
         position: absolute;

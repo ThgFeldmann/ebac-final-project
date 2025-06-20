@@ -1,7 +1,11 @@
+//*Note: The name 'value' refers to the input values in general
+// TODO fix being able to empty values
+// TODO check if value is above it's minimum requirement
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { apiUsers } from "../../../App";
+import { apiUsers, FormValues } from "../../../App";
 
 import PageTitle from "../Page_Title";
 
@@ -21,13 +25,17 @@ type User = {
 }
 
 const SignUpContainer = () => {
-    const [success, setSuccess] = useState<boolean>(false) // Dictates if the user has been created
-    const [emptyFormError, setEmptyFormValue] = useState<boolean>(false)
-    const [formValuesError, setFormValuesError] = useState<boolean>(false) // Dictates if the form has an error
+    //*Error states
+    const [emptyFormError, setEmptyFormError] = useState<boolean>(false)
+    const [existingUserError, setExistingUserError] = useState<boolean>(false) // Dictates if the form has an error
     const [confirmationError, setConfirmationError] = useState<boolean>(false) // Dictates if the password isn't confirmed
+
+    //*Main states
+    const [success, setSuccess] = useState<boolean>(false) // Dictates if the user has been created
     const [passwordConfirmed, setPasswordConfirmed] = useState<boolean>(false) // Dictates if the password is confirmed
     const [confirmationValue, setConfirmationValue] = useState<string>('') // The password confirmation input value
-    const [formData, setFormData] = useState({ // Informations typed on the form, excluding the password confirmation
+    const [formChecked, setFormChecked] = useState<boolean>(false)
+    const [formData, setFormData] = useState<FormValues>({ // Informations typed on the form, excluding the password confirmation
         email: '',
         username: '',
         password: ''
@@ -35,18 +43,41 @@ const SignUpContainer = () => {
 
     const navigate = useNavigate()
 
+
+    // TODO
+    // Checks if an input is empty
+    const checkIfEmpty = (data: FormValues) => { //* 'data' refers to 'formData'
+        // extracting the values from 'data'
+        const values = Object.values(data)
+
+        // mapping the 'values' array and creating a new array | 
+        // the new array holds boolean values, true id string is empty or false if string has content 
+        const valuesMap: boolean[] = values.map(
+            (item: string) => item === ''
+        )
+
+        // reads each boolean value and sends an error if 'true' is passed
+        valuesMap.forEach((item: boolean) => {
+            if (item === true) { //*IF VALUE IS EMPTY
+                return setEmptyFormError(true)
+            }
+        })
+    }
+
+    //? Executed twice, first returned the empty error, then executed as normal
     // handles submit functions
     const handleSubmit = async (e: any) => {
         e.preventDefault()
 
-        if (formData.email === '' && formData.username === '' && formData.password === '') { // IF FORM IS EMPTY
-            console.log('Por favor, complete os campos abaixo.')
-            setEmptyFormValue(true)
-        } else { // IF FORM ISN'T EMPTY
-            if (formData.password !== confirmationValue) { // IF PASSWORD ISN'T CONFIRMED
+        checkIfEmpty(formData)
+
+        if (emptyFormError) {
+            return null
+        } else {
+            if (formData.password !== confirmationValue) { //*IF PASSWORD ISN'T CONFIRMED
                 console.log('Por favor, confirme sua senha.')
                 setConfirmationError(true)
-            } else if (formData.password === confirmationValue) { // IF PASSWORD IS CONFIRMED
+            } else if (formData.password === confirmationValue) { //*IF PASSWORD IS CONFIRMED
                 setPasswordConfirmed(true)
                 fetch(apiUsers) // fetches users from api
                     .then((response) => response.json())
@@ -57,10 +88,10 @@ const SignUpContainer = () => {
                                 user.username === formData.username && 
                                 user.password === formData.password
                         )
-                        if (userExists) { // IF USER EXISTS
+                        if (userExists) { //*IF USER EXISTS
                             console.log("User already exists!")
-                            setFormValuesError(true)
-                        } else { // IF USER DOES NOT EXIST
+                            setExistingUserError(true)
+                        } else { //*IF USER DOES NOT EXIST
                             fetch(apiUsers, { // creating the new user
                                 method: 'POST',
                                 headers: {
@@ -79,6 +110,7 @@ const SignUpContainer = () => {
                     })
             }
         }
+
     }
 
     // handles the navigation in case of success
@@ -103,12 +135,12 @@ const SignUpContainer = () => {
                     <SignUpFormContainer>
                         {(emptyFormError) ? 
                             <p className="error">Por favor complete os campos abaixo</p>
-                        : (formValuesError) ?
+                        : (existingUserError) ?
                             <p className="error">Um usuário com essas informações já existe.</p>
                         :
                             null
                         }
-                        <div className={formValuesError ? 'error' : ''}>
+                        <div className={existingUserError || existingUserError ? 'error' : ''}>
                             <label htmlFor="email">Email do Usuário:</label>
                             <input 
                                 min={2}
@@ -120,7 +152,7 @@ const SignUpContainer = () => {
                                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                             />
                         </div>
-                        <div className={formValuesError ? 'error' : ''}>
+                        <div className={existingUserError || existingUserError ? 'error' : ''}>
                             <label htmlFor="username">Nome de Usuário:</label>
                             <input 
                                 min={2}
@@ -132,7 +164,7 @@ const SignUpContainer = () => {
                                 onChange={(e) => setFormData({...formData, username: e.target.value})}
                             />
                         </div>
-                        <div className={formValuesError ? 'error' : ''}>
+                        <div className={existingUserError || existingUserError ? 'error' : ''}>
                             <label htmlFor="password">Senha do Usuário:</label>
                             <input
                                 min={8}
@@ -144,7 +176,7 @@ const SignUpContainer = () => {
                                 onChange={(e) => setFormData({...formData, password: e.target.value})}
                             />
                         </div>
-                        <div className={(confirmationError && !passwordConfirmed) ? 'error' : (formValuesError) ? 'error' : ''}>
+                        <div className={(confirmationError && !passwordConfirmed) ? 'error' : (existingUserError) ? 'error' : ''}>
                             <label htmlFor="password-confirm">Confirme a senha: </label>
                             {(confirmationError && !passwordConfirmed) ?
                                 <p className="error">Por favor, confirme sua senha</p>

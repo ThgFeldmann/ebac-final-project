@@ -5,7 +5,6 @@ export const SpecialPostContainer = styled.div`
     width: 270px;
     height: 120px;
     margin: 8px auto 0;
-    z-index: 0;
 
     border: 1px solid ${colors.cinzaClaro};
     border-radius: 12px;
