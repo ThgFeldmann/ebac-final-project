@@ -36,7 +36,8 @@ export type Follow = {
 export type Post = {
   id: number,
   author: string,
-  image?: string,
+  authorId: number,
+  image: string | null,
   content?: string,
   comments: Comment[]
 }

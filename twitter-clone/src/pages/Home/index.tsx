@@ -10,25 +10,23 @@ import SpecialPostsSection from "../../components/Home-page-components/Posts_Com
 import { HomeContainer } from "../../styles"
 
 const Home = () => {
-    const [homeUser, setHomeUser] = useState<User>(Object)
     const [homePost, setHomePost] = useState<Post[]>([])
     
     const location = useLocation()
 
-    useEffect(() => {
-        const receivedState = location.state
-        setHomeUser(receivedState)
+    const receivedState: User = location.state
 
+    useEffect(() => {
         // GET request for the Posts section of the api
         fetch(apiPosts)
             .then((response) => response.json())
             .then((response) => setHomePost(response))
-    }, [location.state, homeUser])
+    }, [])
 
     return (
         <HomeContainer>
             <SideBar />
-            <PostSection post={homePost}/>
+            <PostSection user={receivedState} posts={homePost}/>
             <SpecialPostsSection />
         </HomeContainer>
     )

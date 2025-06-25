@@ -16,7 +16,7 @@ const PostComponent = ({ post }: Props) => {
                     <h4>{post.author}</h4>
                 </PostUserNameArea>
                 <PostContentArea>
-                    <img src={post.image} alt="Imagem não encontrada" />
+                    <img src={(post.image !== null) ? post.image : ''} alt={(post.image !== null) ? "Imagem não encontrada" : ''} />
                     <p>{post.content}</p>
                 </PostContentArea>
                 {post.comments.map((comment: Comment) => (
