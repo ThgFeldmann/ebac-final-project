@@ -20,7 +20,7 @@ const UserSectionComponent = ({ username, id }: Props) => {
     const [usernameExist, setUsernameExist] = useState<boolean>(false) // Default value is false, the check will work as intended
     const [success, setSuccess] = useState<boolean>(false)
 
-    // Function that resets the states on callback
+    // Function that resets the error states on callback
     const resetErrors = () => {
         setLenghtError(false)
         setExistsError(false)
@@ -29,6 +29,7 @@ const UserSectionComponent = ({ username, id }: Props) => {
     // Checks if the 'newUsername' exists inside the api on every re-render
     useEffect(() => {
         resetErrors()
+        // checks if the 'newUsername' exists
         const checkUserName = () => {
             fetch(apiUsers)
                 .then((response) => response.json())
@@ -37,9 +38,9 @@ const UserSectionComponent = ({ username, id }: Props) => {
                         (u: User) =>
                             u.username === newUsername
                     )
-                    if (result) { // IF USERNAME EXISTS
+                    if (result) { //* IF USERNAME EXISTS
                         return setUsernameExist(true)
-                    } else { // IF USERNAME DOESN'T EXISTS
+                    } else { //* IF USERNAME DOESN'T EXISTS
                         return setUsernameExist(false)
                     }
                 })
@@ -50,17 +51,17 @@ const UserSectionComponent = ({ username, id }: Props) => {
 
     // Handles the submit functions, mostly error checking
     // if no errors are found the PATCH request will execute
-    const handleSubmit = (username: string) => { // ** NOTE: THIS USERNAME IS THE SAME AS THE 'newUsername'
+    const handleSubmit = (username: string) => { //* NOTE: THIS USERNAME IS THE SAME AS THE 'newUsername'
 
         // checks if the 'newUsername' is above the minimum digits
-        if (newUsername.length <= 2) { // IF 'newUsername' IS BELLOW MINIMUM
+        if (newUsername.length <= 2) { //* IF 'newUsername' IS BELLOW MINIMUM
             console.log('Este nome é pequeno demais! Tente com no mínimo 3 dígitos')
             setLenghtError(true)
-        } else if (usernameExist) { // IF THE USERNAME EXISTS
+        } else if (usernameExist) { //* IF THE USERNAME EXISTS
             console.log('Username already exists!')
             return setExistsError(true)
-        } else { // IF 'newUsername' IS ABOVE MINIMUM DIGITS AND DOESN'T EXIST
-            console.log('Username does not exist, trying to edit your username.')
+        } else { //* IF 'newUsername' IS ABOVE MINIMUM DIGITS AND DOESN'T EXIST
+            console.log('Username does not exist, changing your username.')
             fetch(apiUsers + '/' + id, { // Editing the username
                 method: 'PATCH',
                 headers: {
@@ -91,7 +92,7 @@ const UserSectionComponent = ({ username, id }: Props) => {
                 <p>- {id} -</p>
                 <button onClick={e => setEditUsername(true)}>Editar nome</button>
             </UserSection>
-            { // ****** MODAL
+            { //* Edit username modal
                 (editUsername === false) ?
                 null
                 :

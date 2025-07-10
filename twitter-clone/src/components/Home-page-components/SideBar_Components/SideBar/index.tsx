@@ -8,30 +8,43 @@ import FollowsSectionComponent from "../FollowSection"
 
 import { ButtonsContainer, PostButton, SidebarArea, SideBarContainer } from "./styles"
 
-const SideBar = () => {
-    const [followingList, setFollowingList] = useState<Follow[]>([])
-    const [followedList, setFollowedList] = useState<Follow[]>([])
+type Props = {
+    user: User
+    followingList: Follow[]
+    followedList: Follow[]
+}
 
-    const location = useLocation()
+const SideBar = ({user, followingList, followedList}: Props) => {
+    // const [followingList, setFollowingList] = useState<Follow[]>([])
+    // const [followedList, setFollowedList] = useState<Follow[]>([])
 
-    const user: User = location.state.user
+    // const location = useLocation()
 
-    // Executes fetches on page render for the 'follow list' and 'followed' number
-    useEffect(() => {
-        // Fetches the logged user follow cases
-        fetch(apiFollows)
-            .then((response) => response.json())
-            .then((response) => {
-                // Filters response based on who the logged user follows
-                const followingListResult = response.filter((item: Follow) => item.userId === user.id)
+    // const user: User = location.state.user
 
-                // Filters response based on who follows the logged user
-                const followedListResult = response.filter((item: Follow) => item.followingId === user.id)
+    // // Executes fetches on page render for the 'follow list' and 'followed' number
+    // useEffect(() => {
+    //     // Fetches the logged user follow cases
+    //     fetch(apiFollows)
+    //         .then((response) => response.json())
+    //         .then((response) => {
+    //             // Filters response based on who the logged user follows
+    //             const followingListResult = response.filter((item: Follow) => item.userId === user.id)
 
-                setFollowingList(followingListResult)
-                setFollowedList(followedListResult)
-            })
-    }, [user, setFollowingList])
+    //             // Filters response based on who follows the logged user
+    //             const followedListResult = response.filter((item: Follow) => item.followingId === user.id)
+
+    //             setFollowingList(followingListResult)
+    //             setFollowedList(followedListResult)
+    //         })
+    // }, [user, setFollowingList])
+
+    const test = () => {
+        console.log("sidebar props: ")
+        console.log("user: ", user)
+        console.log("followingList: ", followingList)
+        console.log("followedList: ", followedList)
+    }
 
     return (
         <SideBarContainer>
@@ -43,9 +56,9 @@ const SideBar = () => {
                 :
                     <>
                         <UserSectionComponent username={user.username} id={user.id} />
-                        <FollowsSectionComponent followList={followingList} followedList={followedList} />
+                        <FollowsSectionComponent followingList={followingList} followedList={followedList} />
                         <ButtonsContainer>
-                            <PostButton>Criar uma postagem</PostButton>
+                            <PostButton onClick={e => test()}>Criar uma postagem</PostButton>
                             <Link to='/'>Sair</Link>
                         </ButtonsContainer>
                     </>

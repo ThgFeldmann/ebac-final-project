@@ -1,6 +1,6 @@
 import { Comment, Post } from "../../../../App"
 
-import CommentComponent from "../Post-Commentary"
+import CommentComponent from "../Post_Comment"
 
 import { PostContainer, PostContentArea, PostUserNameArea } from "./styles"
 
@@ -16,7 +16,12 @@ const PostComponent = ({ post }: Props) => {
                     <h4>{post.author}</h4>
                 </PostUserNameArea>
                 <PostContentArea>
-                    <img src={(post.image !== null) ? post.image : ''} alt={(post.image !== null) ? "Imagem não encontrada" : ''} />
+                    {(post.image !== null) ?
+                        <img src={post.image} alt={''} />
+                    :
+                        null
+                    }
+                    {/* <img src={(post.image !== null) ? post.image : ''} alt={(post.image !== null) ? "Imagem não encontrada" : ''} /> */}
                     <p>{post.content}</p>
                 </PostContentArea>
                 {post.comments.map((comment: Comment) => (

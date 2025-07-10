@@ -3,52 +3,48 @@ import { useEffect, useState } from "react"
 import { apiUsers, Follow, User } from "../../../../App"
 
 import { FollowedUserItem, FollowInfo, FollowList, FollowSection } from "./styles"
+import { fetchFollowingUsersData } from "../../../../utils"
 
-// Typing the props
 type Props = {
-    followList: Follow[], // Prop for the follow list cases and id's
+    followingList: Follow[],
     followedList: Follow[]
 }
 
-const FollowsSectionComponent = ({ followList, followedList }: Props) => {
-    const [followingUsers, setFollowingUsers] = useState<User[]>([])
+const FollowsSectionComponent = ({ followingList, followedList }: Props) => {
+    // Dictates if the page is loading
     const [loading, setLoading] = useState<boolean>(true)
+    // List of informations on who the user follows
+    const [followingUsers, setFollowingUsers] = useState<User[]>([])
 
-    const followingIdList: number[] = followList.map((item: Follow) => item.followingId)
-    let usersList: User[] = []
+    // Fetches various users from the api with an array of id's
+    const fetchData = async (idArray: number[]) => {
+        const response = await fetchFollowingUsersData(idArray)
+        setFollowingUsers(response)
+    }
 
     // Handles the follows list functions on render
     useEffect(() => {
 
-        // Fetches a user with the received id
-        const fetchData = (id: number) => {
-            fetch(apiUsers + '/' + id) // GET request for the 'following' user
-                .then((response) => response.json())
-                .then((response: User) => {
-                    usersList.push(response)
-                    if (usersList.length === followList.length) {
-                        setFollowingUsers(usersList)
-                    }
-                })
-        }
+        // list of the id of the users you follow
+        const idList: number[] = followingList.map((item: Follow) => item.followingId)
 
-        // Executes the 'fetchData' function with each element inside the passed array
-        const forEachId = (idArray: number[]) => {
-            idArray.forEach((id: number) => {
-                fetchData(id)
-            })
-        }
+        // fetching users data from each id on the array
+        fetchData(idList)
 
-        forEachId(followingIdList)
-
+        // the component is not loading anymore at this point
         setLoading(false)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [followList])
+    }, [followingList])
+
+    const test = () => {
+        console.log("following users: ", followingUsers)
+    }
 
     return (
         <FollowSection>
             <FollowInfo>
-                <h3>Seguindo: {followList.length}</h3>
+                <h3>Seguindo: {followingList.length}</h3>
                 <h4>Você é seguido por: {followedList.length}</h4>
             </FollowInfo>
             <FollowList>
@@ -67,10 +63,10 @@ const FollowsSectionComponent = ({ followList, followedList }: Props) => {
                     followingUsers.map((followedUser: User) => (
                         <FollowedUserItem key={followedUser.id}>
                             <li>{followedUser.username}</li>
-                            <button>&nbsp;&bull;&bull;&bull;</button>
+                            <button onClick={e => test()}>&nbsp;&bull;&bull;&bull;</button>
                         </FollowedUserItem>
                     ))
-                : (followingUsers.length <= 0) ?
+                : (followingUsers.length === 0) ?
                     <>
                         <ul>
                             <li>Você não está seguindo ninguém no momento.</li>

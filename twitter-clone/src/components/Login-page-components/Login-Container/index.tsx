@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 
-import { apiUsers, User } from "../../../App";
+import { apiUsers, FormValues, User } from "../../../App";
 
 import { ButtonContainer, InputContainer, Button, LoginContainer, SuccessSection } from "./styles" 
+import { fetchUserFollowedData, fetchUserFollowingData } from "../../../utils";
 
 const LoginContainerComponent = () => {
-    const [success, setSuccess] = useState(false) // Dictates if login is a success or not
-    const [formData, setFormData] = useState({email: '', password: ''}) // informations typed on the form
+    // Dictates if login is a success or not
+    const [success, setSuccess] = useState<boolean>(false) 
+    // Holds informations typed on the form
+    const [formData, setFormData] = useState<FormValues>({email: '', password: ''}) 
+    // Stores user information in case login is a success
     const [loggedUser, setLoggedUser] = useState<User>({
         id: 0,
         username: '',
         password: '',
         email: ''
-    }) // Stores user information in case login is a success
-    const [formError, setFormError] = useState(false)
+    })
+    // Dictates if there is an error inside the form
+    const [formError, setFormError] = useState<boolean>(false)
 
     // const signIn = useSignIn()
     const navigate = useNavigate()
@@ -44,7 +49,7 @@ const LoginContainerComponent = () => {
                         &&
                         u.password === formData.password
                 )
-                if (user) {
+                if (user) { //? add extra checks
                     console.log("Login successful!")
                     setLoggedUser(user)
                     setSuccess(true)
@@ -69,8 +74,17 @@ const LoginContainerComponent = () => {
         //     .catch(error => console.error('Error: ', error))
     }
 
-    const handleNavigate = () => {
-        navigate('/Home', {state: {user: loggedUser}})
+    //* handles the navigation
+    const handleNavigate = async (user: User) => {
+
+        const followingData = await fetchUserFollowingData(user)
+        const followedData = await fetchUserFollowedData(user)
+
+        console.log("followingData: ", followingData)
+        console.log("followedData: ", followedData)
+
+        //* removed temporarily for tests
+        navigate('/Home', {state: {user: loggedUser, followingList: followingData, followedList: followedData}})
     }
 
     return (
@@ -79,7 +93,7 @@ const LoginContainerComponent = () => {
                 <SuccessSection>
                     <h2>Bem vindo {loggedUser.username}!</h2>
                     <p>Para ir até a página principal, aperte o botão abaixo.</p>
-                    <button onClick={event => handleNavigate()}>Clique aqui!</button>
+                    <button onClick={event => handleNavigate(loggedUser)}>Clique aqui!</button>
                 </SuccessSection>
             :
                 <InputContainer onSubmit={e => handleSubmit(e)}>
