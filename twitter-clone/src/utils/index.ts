@@ -1,6 +1,6 @@
 //* This file will store useful functions that can be used anywhere inside of the project
 
-import { apiFollows, apiPosts, apiUsers, Follow, User } from "../App"
+import { apiFollows, apiPosts, apiUsers, Follow, Post, User } from "../App"
 
 // Function that executes a timeout after a set number of seconds
 export const sleep = (s: number) => {
@@ -74,8 +74,7 @@ export const fetchUserFollowedData = async (user: User) => {
 // Function that fetches informations of all the users the 'loggedUser' follows
 // this function receives an id array
 export const fetchFollowingUsersData = (idArray: number[]) => {
-    const result =
-        Promise.all(
+    const result = Promise.all(
             idArray.map((id: number) => 
                 fetch(apiUsers + '/' + id)
                     .then((response) => response.json())
@@ -83,5 +82,20 @@ export const fetchFollowingUsersData = (idArray: number[]) => {
         ).then((responses: User[]) => {
                 return responses
             })
+
     return result
 }
+
+// export const fetchFollowingUsersPosts = (idArray: number[], postArray: Post[]) => {
+//     const result = Promise.all(
+//             idArray.map((id: number) => {
+//                 const authorIdUrl = `https://echo-fake-api.vercel.app/posts?authorId=${id}`
+//                 fetch(authorIdUrl)
+//                     .then((response) => response.json())
+//             })
+//         ).then((responses: Post[]) => {
+//                 return responses
+//             })
+
+//     return result
+// }

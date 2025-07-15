@@ -24,11 +24,17 @@ const PostComponent = ({ post }: Props) => {
                     {/* <img src={(post.image !== null) ? post.image : ''} alt={(post.image !== null) ? "Imagem não encontrada" : ''} /> */}
                     <p>{post.content}</p>
                 </PostContentArea>
-                {post.comments.map((comment: Comment) => (
-                    <div key={comment.commentId}>
-                        <CommentComponent comment={comment} />
+                {(post.comments === null || undefined) ?
+                    <div>
+                        <h4>Este post ainda não tem comentários</h4>
                     </div>
-                ))}
+                :
+                    post.comments.map((comment: Comment) => (
+                        <div key={comment.commentId}>
+                            <CommentComponent comment={comment} />
+                        </div>
+                    ))
+                }
             </PostContainer>
         </>
     )

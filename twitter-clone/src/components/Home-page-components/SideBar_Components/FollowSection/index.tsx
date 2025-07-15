@@ -37,10 +37,6 @@ const FollowsSectionComponent = ({ followingList, followedList }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [followingList])
 
-    const test = () => {
-        console.log("following users: ", followingUsers)
-    }
-
     return (
         <FollowSection>
             <FollowInfo>
@@ -63,7 +59,7 @@ const FollowsSectionComponent = ({ followingList, followedList }: Props) => {
                     followingUsers.map((followedUser: User) => (
                         <FollowedUserItem key={followedUser.id}>
                             <li>{followedUser.username}</li>
-                            <button onClick={e => test()}>&nbsp;&bull;&bull;&bull;</button>
+                            <button>&nbsp;&bull;&bull;&bull;</button>
                         </FollowedUserItem>
                     ))
                 : (followingUsers.length === 0) ?

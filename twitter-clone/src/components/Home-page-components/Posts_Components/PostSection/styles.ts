@@ -3,7 +3,7 @@ import { colors } from "../../../../styles";
 
 export const PostSectionContainer = styled.div`
     width: 650px;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     

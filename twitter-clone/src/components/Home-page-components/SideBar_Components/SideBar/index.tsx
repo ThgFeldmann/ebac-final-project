@@ -39,13 +39,6 @@ const SideBar = ({user, followingList, followedList}: Props) => {
     //         })
     // }, [user, setFollowingList])
 
-    const test = () => {
-        console.log("sidebar props: ")
-        console.log("user: ", user)
-        console.log("followingList: ", followingList)
-        console.log("followedList: ", followedList)
-    }
-
     return (
         <SideBarContainer>
             <SidebarArea>
@@ -58,7 +51,7 @@ const SideBar = ({user, followingList, followedList}: Props) => {
                         <UserSectionComponent username={user.username} id={user.id} />
                         <FollowsSectionComponent followingList={followingList} followedList={followedList} />
                         <ButtonsContainer>
-                            <PostButton onClick={e => test()}>Criar uma postagem</PostButton>
+                            <PostButton>Criar uma postagem</PostButton>
                             <Link to='/'>Sair</Link>
                         </ButtonsContainer>
                     </>
