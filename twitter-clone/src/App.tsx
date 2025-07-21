@@ -14,7 +14,9 @@ import { GlobalStyle } from "./styles";
 export const apiUsers = "https://echo-fake-api.vercel.app/users"
 // this is the URL for 'Posts' section
 export const apiPosts = "https://echo-fake-api.vercel.app/posts"
-// this is the URL for the 'Follows' section
+//this is the URL for 'Comment' section
+export const apiComments = "https://echo-fake-api.vercel.app/comments"
+// this is the URL for 'Follows' section
 export const apiFollows = "https://echo-fake-api.vercel.app/follows"
 
 // Type of User
@@ -37,14 +39,15 @@ export type Post = {
   id: number,
   author: string,
   authorId: number,
-  image: string | null,
-  content?: string,
-  comments: Comment[]
+  image?: string | null,
+  content?: string
 }
 
 // Type of Comment
 export type Comment = {
+  postId: number,
   commentId: number,
+  authorId: number,
   author: string,
   content: string
 }

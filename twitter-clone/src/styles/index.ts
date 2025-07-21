@@ -41,21 +41,20 @@ export const Container = styled.div`
 
 export const HomeContainer = styled.div`
     max-width: fit-content;
-    height: 100%;
+    height: auto;
     margin: 0 auto;
 
     display: flex;
-    overflow: hidden;
 `
 
 export const Overlay = styled.div`
     position: fixed;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.7);
-    z-index: 1;
+    z-index: 2;
 `

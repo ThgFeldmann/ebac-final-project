@@ -31,7 +31,7 @@ export const SpecialPostUserNameArea = styled.div`
     }
 `
 
- // Rules for everything inside the content area
+// Rules for everything inside the content area
 export const SpecialPostContentArea = styled.div`
     * {
         width: 90%;

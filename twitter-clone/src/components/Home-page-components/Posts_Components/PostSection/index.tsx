@@ -1,25 +1,19 @@
-//TODO Render posts from the logged user and his follows
-//* DONE | fetch a list of the logged user posts
-//* DONE | fetch a list of the following posts
-
-//TODO fix the valid posts having incorrect structure due to following posts, the structure: [{}, {}, [{}, {}], [{}, {}]]
-
 import { useEffect, useState } from "react"
 
-import { Follow, Post, User } from "../../../../App"
+import { Comment, Follow, Post, User } from "../../../../App"
 
 import PostComponent from "../Post_Item"
 
 import { PostSectionContainer } from "./styles"
-import { sleep } from "../../../../utils"
 
 type Props = {
-    user: User
-    posts: Post[]
+    user: User,
+    posts: Post[],
+    comments: Comment[],
     followingList: Follow[]
 }
 
-const PostSection = ({ posts, user, followingList }: Props) => {
+const PostSection = ({ user, posts, comments, followingList }: Props) => {
     const [loading, setLoading] = useState<boolean>(true)
     // logged user posts
     const [userPosts, setUserPosts] = useState<Post[]>([])
@@ -32,18 +26,6 @@ const PostSection = ({ posts, user, followingList }: Props) => {
         setUserPosts(result)
     }
 
-    const mapPromiseResponses = (responses: any[]) => {
-        const result = responses.map((array: Post[]) => {
-            const postMapResult = array.map((item: Post) => {
-                return item
-            })
-            console.log("result: ", postMapResult)
-            return postMapResult
-        })
-    }
-
-    //TODO fix this \/
-    //? returns data of the following structure: [[{}, {}], [{}, {}], [{}, {}]]
     // Fetches the following posts from the api
     const fetchFollowingPosts = async (followArray: Follow[], postArray: Post[]) => {
         // maps the followingIds received from props
@@ -54,20 +36,25 @@ const PostSection = ({ posts, user, followingList }: Props) => {
                 const authorIdUrl = `https://echo-fake-api.vercel.app/posts?authorId=${id}`
                 const res = fetch(authorIdUrl)
                     .then((response) => response.json())
-                    .then((response) => {return response})
+                    .then((response) => {
+                        const mapPosts = response.map((posts: Post[]) => posts)
+                        return mapPosts
+                    })
                 return res
             })
-        ).then((responses: any[]) => {
+        ).then((responses: Post[][]) => {
                 return responses
             })
-        
-        mapPromiseResponses(result)
+
+        const flattenedArray = result.flat()
+
+        setFollowingPosts(flattenedArray)
     }
 
     // Concats the 'userPosts' and the 'followingPosts' states into the 'validPosts' state
-    const concatArrays = () => {
+    const concatArrays = (array_1: Post[], array_2: Post[]) => {
         // concatenating both of the posts array into a single one
-        let concatArray = userPosts.concat(followingPosts)
+        let concatArray = array_1.concat(array_2)
         // storing the previous array into a state
         setValidPosts(concatArray)
     }
@@ -84,31 +71,17 @@ const PostSection = ({ posts, user, followingList }: Props) => {
             // filtering the logged user posts and storing the result into a state
             filterLoggedUserPosts(posts)
 
-            concatArrays()
+            concatArrays(userPosts, followingPosts)
         }
+
+        setLoading(false)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, posts])
 
-    // remove this later
-    const log = () => {
-        console.log("followingList: ", followingList)
-        console.log("posts: ")
-        console.log("posts from props: ", posts)
-        console.log("posts from the logged user: ", userPosts)
-        console.log("posts from the following users: ", followingPosts)
-        console.log("valid posts: ", validPosts)
-    }
-
-    // const test = () => {
-    //     const array_1 = [{id: "1", name: "Jorge"}, {id: "2", name: "Cleber"}]
-    //     const array_2 = [[{id: "3", name: "Julia"}, {id: "4", name: "Judas"}], [{id: "5",}]]
-    // }
-
     return (
         <PostSectionContainer>
             <div>
-                <button onClick={e => log()}>log posts</button> {/* remove this later */}
                 {(loading) ?
                     <div>
                         <h4>Carregando...</h4>
@@ -120,7 +93,7 @@ const PostSection = ({ posts, user, followingList }: Props) => {
                 :
                     validPosts.map((post: Post) => (
                         <div key={post.id}>
-                            <PostComponent post={post} />
+                            <PostComponent post={post} comments={comments} />
                         </div>
                     ))
                 }

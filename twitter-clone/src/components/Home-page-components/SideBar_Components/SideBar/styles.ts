@@ -5,7 +5,7 @@ export const SideBarContainer = styled.div`
     width: 260px;
     height: 100%;
 
-    position: fixed;
+    position: sticky;
     top: 35px;
     left: 89px;
 `

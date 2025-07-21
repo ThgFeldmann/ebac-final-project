@@ -5,10 +5,9 @@ export const SpecialPostsContainer = styled.div`
     width: 350px;
     height: 650px;
 
-    position: fixed;
+    position: sticky;
     top: 35px;
     right: 50px;
-    z-index: -1;
 
     text-align: center;
 

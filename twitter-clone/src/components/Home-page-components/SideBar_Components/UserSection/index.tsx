@@ -1,3 +1,5 @@
+//TODO fix the overlay not working on the special posts
+
 import { useEffect, useState } from "react"
 
 import { Modal, UserSection } from "./styles"
@@ -103,7 +105,7 @@ const UserSectionComponent = ({ username, id }: Props) => {
                         <input
                             className={(!lenghtError) ? '' : 'error'}
                             min={2}
-                            type="text" 
+                            type="text"
                             required
                             autoComplete='off'
                             value={newUsername}
