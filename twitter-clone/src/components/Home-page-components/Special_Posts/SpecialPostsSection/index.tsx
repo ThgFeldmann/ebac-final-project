@@ -4,33 +4,17 @@ import SpecialPost from "../SpecialPost"
 
 import { SpecialPostsContainer, SpecialPostsArea } from "./styles"
 
-import { apiPosts, Comment, Post, User } from "../../../../App"
+import { apiPosts, Comment, Post } from "../../../../App"
 import { sleep } from "../../../../utils"
 
 type Props = {
-    user: User
     posts: Post[]
     comments: Comment[]
 }
 
 const SpecialPostsSection = ({ posts, comments }: Props) => {
-    // toggle states
-    const [PopularPostsList, setPopularPostsList] = useState<boolean>(true)
-    const [FriendsPostsList, setFriendsPostsList] = useState<boolean>(false)
     // posts that will be rendered
     const [validPosts, setValidPosts] = useState<Post[]>([])
-
-    // function that toggles the current list that is being rendered
-    const TogglePostsList = () => {
-        if (PopularPostsList === true) {
-            setPopularPostsList(false)
-            setFriendsPostsList(true)
-        } 
-        else if (FriendsPostsList === true) {
-            setPopularPostsList(true)
-            setFriendsPostsList(false)
-        }
-    }
 
     // function that sorts the 'postId's (from the comments) based on frequency
     const SortComments = (array: number[]) => {
@@ -85,23 +69,17 @@ const SpecialPostsSection = ({ posts, comments }: Props) => {
         filterPosts(sortArray)
         sleep(2)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [posts, PopularPostsList])
+    }, [posts])
 
     return (
         <SpecialPostsContainer>
-            <button onClick={event => TogglePostsList()}>
-                { //* TOGGLE BUTTON FUNCTION AND MESSAGE
-                    (PopularPostsList === true) ?
-                    'Postagens mais comentadas'
-                    :
-                    (FriendsPostsList === true) ?
-                    'Postagens de seus amigos'
-                    :
-                    'Postagens não encontradas'
-                }
-            </button>
+            <div className="headliner">
+                <h2>
+                    Postagens mais comentadas
+                </h2>
+            </div>
             {
-                (PopularPostsList === true) ? //* POPULAR POSTS LIST
+                (validPosts.length > 0) ? //* IF THERE ARE VALID POSTS
                 <SpecialPostsArea>
                     {
                         validPosts.map((post: Post) => {
@@ -111,19 +89,8 @@ const SpecialPostsSection = ({ posts, comments }: Props) => {
                         })
                     }
                 </SpecialPostsArea>
-                : //? maybe remove this section
-                (FriendsPostsList === true) ? //* FOLLOWING POSTS LIST
-                <SpecialPostsArea>
-                    {
-                        posts.map((post: Post) => {
-                            return (
-                                <SpecialPost post={post} />
-                            )
-                        })
-                    }
-                </SpecialPostsArea>
-                :
-                'Não foi possível acessar esta lista de postagens!'
+                : //* IF THERE ARE NO VALID POSTS
+                'Não foi encotrado nenhuma postagem com comentários!'
             }
         </SpecialPostsContainer>
     )

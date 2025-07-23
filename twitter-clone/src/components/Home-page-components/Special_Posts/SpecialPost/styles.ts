@@ -3,7 +3,8 @@ import { colors } from "../../../../styles";
 
 export const SpecialPostContainer = styled.div`
     width: 270px;
-    min-height: 100px;
+    min-height: 105px;
+    max-height: 120px;
     margin: 8px auto 0;
 
     border: 1px solid ${colors.cinzaClaro};

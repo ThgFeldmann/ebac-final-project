@@ -35,7 +35,7 @@ const Home = () => {
         <HomeContainer>
             <SideBar user={user} followingList={followingList} followedList={followedList} />
             <PostSection user={user} posts={PostList} followingList={followingList} comments={CommentList}/>
-            <SpecialPostsSection user={user} posts={PostList} comments={CommentList} />
+            <SpecialPostsSection posts={PostList} comments={CommentList} />
         </HomeContainer>
     )
 }

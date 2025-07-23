@@ -16,15 +16,20 @@ export const SpecialPostsContainer = styled.div`
 
     background-color: ${colors.azulEscuro};
 
-    button {
+    .headliner {
         width: 240px;
         height: 30px;
         margin: 8px auto;
-        font-size: 14px;
-        font-weight: bold;
+        text-align: center;
         border: 1px solid ${colors.cinzaClaro};
         border-radius: 10px;
         background-color: ${colors.verdeClaro};
+
+        h2 {
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
     }
 `
 
