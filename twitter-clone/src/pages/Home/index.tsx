@@ -8,8 +8,11 @@ import PostSection from "../../components/Home-page-components/Posts_Components/
 import SpecialPostsSection from "../../components/Home-page-components/Special_Posts/SpecialPostsSection"
 
 import { HomeContainer } from "../../styles"
+import CreationSection from "../../components/Home-page-components/Creation_Components/Creation_Section"
 
 const Home = () => {
+    const [Create, setCreate] = useState<boolean>(false)
+
     const [PostList, setPostList] = useState<Post[]>([])
     const [CommentList, setCommentList] = useState<Comment[]>([])
     
@@ -18,6 +21,10 @@ const Home = () => {
     const user: User = location.state.user
     const followingList: Follow[] = location.state.followingList
     const followedList: Follow[] = location.state.followedList
+
+    const ChangeCreateStatus = (boolean: boolean) => {
+        setCreate(boolean)
+    }
 
     useEffect(() => {
         // GET request for the Posts section of the api
@@ -33,9 +40,32 @@ const Home = () => {
 
     return (
         <HomeContainer>
-            <SideBar user={user} followingList={followingList} followedList={followedList} />
-            <PostSection user={user} posts={PostList} followingList={followingList} comments={CommentList}/>
-            <SpecialPostsSection posts={PostList} comments={CommentList} />
+            <SideBar 
+                user={user}
+                followingList={followingList} 
+                followedList={followedList} 
+                Create={Create} 
+                changeCreate={ChangeCreateStatus} 
+            />
+            {
+                (!Create) ?
+                <>
+                    <PostSection 
+                        user={user} 
+                        posts={PostList} 
+                        followingList={followingList} 
+                        comments={CommentList}
+                    />
+                </>
+                :
+                <>
+                    <CreationSection />
+                </>
+            }
+            <SpecialPostsSection 
+                posts={PostList} 
+                comments={CommentList} 
+            />
         </HomeContainer>
     )
 }

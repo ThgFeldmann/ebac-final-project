@@ -8,12 +8,23 @@ import FollowsSectionComponent from "../FollowSection"
 import { ButtonsContainer, PostButton, SidebarArea, SideBarContainer } from "./styles"
 
 type Props = {
+    Create: boolean
+    changeCreate: any
     user: User
     followingList: Follow[]
     followedList: Follow[]
 }
 
-const SideBar = ({user, followingList, followedList}: Props) => {
+const SideBar = ({user, followingList, followedList, Create, changeCreate}: Props) => {
+
+    const handleClick = () => {
+        if (!Create) {
+            changeCreate(true)
+        } else {
+            changeCreate(false)
+        }
+    }
+
     return (
         <SideBarContainer>
             <SidebarArea>
@@ -26,7 +37,7 @@ const SideBar = ({user, followingList, followedList}: Props) => {
                         <UserSectionComponent username={user.username} id={user.id} />
                         <FollowsSectionComponent followingList={followingList} followedList={followedList} />
                         <ButtonsContainer>
-                            <PostButton>Criar uma postagem</PostButton>
+                            <PostButton onClick={e => handleClick()}>Criar uma postagem</PostButton>
                             <Link to='/' reloadDocument >Sair</Link>
                         </ButtonsContainer>
                     </>
