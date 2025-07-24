@@ -1,3 +1,5 @@
+//TODO fix the posts not appearing when going back from post creation
+
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 
@@ -51,6 +53,7 @@ const Home = () => {
                 (!Create) ?
                 <>
                     <PostSection 
+                        Create={Create}
                         user={user} 
                         posts={PostList} 
                         followingList={followingList} 
@@ -59,7 +62,7 @@ const Home = () => {
                 </>
                 :
                 <>
-                    <CreationSection />
+                    <CreationSection user={user} />
                 </>
             }
             <SpecialPostsSection 

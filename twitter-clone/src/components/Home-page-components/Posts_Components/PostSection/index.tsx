@@ -7,13 +7,14 @@ import PostComponent from "../Post_Item"
 import { PostSectionContainer } from "./styles"
 
 type Props = {
+    Create: boolean,
     user: User,
     posts: Post[],
     comments: Comment[],
     followingList: Follow[]
 }
 
-const PostSection = ({ user, posts, comments, followingList }: Props) => {
+const PostSection = ({ user, posts, comments, followingList, Create }: Props) => {
     const [loading, setLoading] = useState<boolean>(true)
     // logged user posts
     const [userPosts, setUserPosts] = useState<Post[]>([])
@@ -77,7 +78,7 @@ const PostSection = ({ user, posts, comments, followingList }: Props) => {
         setLoading(false)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user, posts])
+    }, [user, posts, Create])
 
     return (
         <PostSectionContainer>

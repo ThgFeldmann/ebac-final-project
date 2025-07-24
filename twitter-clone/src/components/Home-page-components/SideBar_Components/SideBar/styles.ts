@@ -46,7 +46,7 @@ export const ButtonsContainer = styled.div`
 `
 
 export const PostButton = styled.button`
-    max-width: 145px;
+    width: 145px;
     height: 55px;
     margin: 35px auto 0;
     background-color: ${colors.azul};
@@ -56,6 +56,11 @@ export const PostButton = styled.button`
     font-size: 16px;
     font-weight: bold;
     text-align: center;
+
+    &.goBack {
+        font-size: 22px;
+        background-color: ${colors.cinza};
+    }
 
     &:hover {
         border: 4px inset ${colors.cinza};

@@ -37,7 +37,16 @@ const SideBar = ({user, followingList, followedList, Create, changeCreate}: Prop
                         <UserSectionComponent username={user.username} id={user.id} />
                         <FollowsSectionComponent followingList={followingList} followedList={followedList} />
                         <ButtonsContainer>
-                            <PostButton onClick={e => handleClick()}>Criar uma postagem</PostButton>
+                            {
+                                (!Create) ?
+                                    <PostButton onClick={e => handleClick()}>
+                                        Criar uma postagem
+                                    </PostButton>
+                                :
+                                    <PostButton onClick={e => handleClick()} className={(!Create) ? "" : "goBack"}>
+                                        Voltar
+                                    </PostButton>
+                            }
                             <Link to='/' reloadDocument >Sair</Link>
                         </ButtonsContainer>
                     </>
