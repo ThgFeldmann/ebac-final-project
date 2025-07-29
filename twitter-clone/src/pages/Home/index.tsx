@@ -62,11 +62,11 @@ const Home = () => {
                 </>
                 :
                 <>
-                    <CreationSection user={user} />
+                    <CreationSection user={user} followingList={followingList} />
                 </>
             }
-            <SpecialPostsSection 
-                posts={PostList} 
+            <SpecialPostsSection
+                posts={PostList}
                 comments={CommentList} 
             />
         </HomeContainer>

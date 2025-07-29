@@ -22,6 +22,7 @@ const SideBar = ({user, followingList, followedList, Create, changeCreate}: Prop
             changeCreate(true)
         } else {
             changeCreate(false)
+            window.location.reload()
         }
     }
 

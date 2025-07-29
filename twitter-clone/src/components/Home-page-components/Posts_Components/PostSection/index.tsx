@@ -5,6 +5,7 @@ import { Comment, Follow, Post, User } from "../../../../App"
 import PostComponent from "../Post_Item"
 
 import { PostSectionContainer } from "./styles"
+import { sleep } from "../../../../utils"
 
 type Props = {
     Create: boolean,
@@ -62,18 +63,28 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
 
     useEffect(() => {
 
-        if (validPosts.length > 0) { //* IF THE 'validPosts' ISN'T EMPTY
-            setLoading(false)
-        } else { //* IF THE 'validPosts' IS EMPTY
+        // if (validPosts.length > 0) { //* IF THE 'validPosts' ISN'T EMPTY
+        //     setLoading(false)
+        // } else { //* IF THE 'validPosts' IS EMPTY
             
-            // filtering the following posts and storing the result into a state
-            fetchFollowingPosts(followingList, posts)
+        //     // filtering the following posts and storing the result into a state
+        //     fetchFollowingPosts(followingList, posts)
 
-            // filtering the logged user posts and storing the result into a state
-            filterLoggedUserPosts(posts)
+        //     // filtering the logged user posts and storing the result into a state
+        //     filterLoggedUserPosts(posts)
 
-            concatArrays(userPosts, followingPosts)
-        }
+        //     concatArrays(userPosts, followingPosts)
+        // }
+
+        // filtering the following posts and storing the result into a state
+        fetchFollowingPosts(followingList, posts)
+
+        // filtering the logged user posts and storing the result into a state
+        filterLoggedUserPosts(posts)
+
+        concatArrays(userPosts, followingPosts)
+
+        sleep(3)
 
         setLoading(false)
 
@@ -94,7 +105,12 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
                 :
                     validPosts.map((post: Post) => (
                         <div key={post.id}>
-                            <PostComponent post={post} comments={comments} />
+                            <PostComponent
+                                userId={user.id}
+                                post={post}
+                                comments={comments}
+                                followingList={followingList}
+                            />
                         </div>
                     ))
                 }

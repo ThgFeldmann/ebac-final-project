@@ -13,6 +13,7 @@ export const PostContainer = styled.div`
 `
 
 export const PostUserNameArea = styled.div`
+    position: relative;
     width: 100%;
     height: 26px;
     border-bottom: 1px solid ${colors.cinzaClaro};
@@ -24,6 +25,7 @@ export const PostUserNameArea = styled.div`
         font-weight: 200;
         line-height: 30px;
         text-align: center;
+        cursor: pointer;
     }
 `
 

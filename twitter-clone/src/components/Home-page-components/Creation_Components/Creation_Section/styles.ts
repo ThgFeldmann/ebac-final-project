@@ -65,6 +65,10 @@ export const PreviewArea = styled.div`
         margin: 6px 0;
         color: ${colors.cinzaClaro};
     }
+
+    p {
+        color: ${colors.cinzaClaro};
+    }
 `
 
 // form

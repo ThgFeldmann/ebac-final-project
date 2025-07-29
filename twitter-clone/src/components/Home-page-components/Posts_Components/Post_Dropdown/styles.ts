@@ -1,0 +1,62 @@
+import styled from "styled-components"
+import { colors } from "../../../../styles"
+
+export const PostDropdownContainer = styled.div`
+    position: absolute;
+    top: 3px;
+    right: 8px;
+
+    z-index: 2;
+
+    display: none;
+
+    &.unhidden {
+        display: block;
+    }
+
+    max-width: 310px;
+    min-height: 50px;
+    height: 85px;
+    max-height: 90px;
+    margin: 0 auto;
+
+    text-align: center;
+
+    border: 1px solid ${colors.cinza};
+    border-radius: 8px;
+
+    background-color: ${colors.azulEscuro};
+
+    h3, h4 {
+        color: ${colors.cinzaClaro};
+    }
+
+    div: first-child {
+        border-bottom: 1px solid ${colors.cinza};
+
+        h3 {
+            font-size: 18px;
+        }
+    }
+
+    h4 {
+        width: 180px;
+        max-height: 40px;
+        margin: 8px 0;
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    button {
+        width: 150px;
+        max-height: 20px;
+        font-weight: bold;
+        border: 2px solid ${colors.preto};
+        border-radius: 6px;
+        background-color: ${colors.verde};
+
+        &: hover {
+            border: 4px inset ${colors.preto};
+        }
+    }
+`

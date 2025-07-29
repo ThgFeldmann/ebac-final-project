@@ -3,13 +3,14 @@ import { useState } from "react"
 import PostComponent from "../../Posts_Components/Post_Item"
 
 import { Button, ButtonContainer, CreationAuthorArea, CreationContentArea, CreationItemContainer, CreationSectionContainer, Headline, PreviewArea } from "./styles"
-import { apiPosts, Post, User } from "../../../../App"
+import { apiPosts, Follow, User } from "../../../../App"
 
 type Props = {
     user: User
+    followingList: Follow[]
 }
 
-export const CreationSection = ({ user }: Props) => {
+export const CreationSection = ({ user, followingList }: Props) => {
     const [emptyFormError, setEmptyFormError] = useState<boolean>(false)
 
     const [formData, setFormData] = useState({
@@ -105,13 +106,21 @@ export const CreationSection = ({ user }: Props) => {
                 :
                 <PreviewArea>
                     <h3>Preview</h3>
-                    <PostComponent post={{
-                        id: 0,
-                        author: user.username,
-                        authorId: user.id,
-                        image: null,
-                        content: formData.content
-                    }} comments={[]} />
+                    <PostComponent 
+                        post={{
+                            id: 0,
+                            author: user.username,
+                            authorId: user.id,
+                            image: null,
+                            content: formData.content
+                        }}
+                        comments={[]}
+                        followingList={followingList} 
+                        userId={user.id}                    
+                    />
+                    <p>
+                        Este post foi criado com sucesso, você pode voltar agora.
+                    </p>
                 </PreviewArea>
             }
             
