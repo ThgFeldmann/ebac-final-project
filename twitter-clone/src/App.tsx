@@ -29,7 +29,7 @@ export type User = {
 
 // Type of Follows
 export type Follow = {
-    caseId: number
+    id: number
     userId: number
     followingId: number,
 }
@@ -46,7 +46,7 @@ export type Post = {
 // Type of Comment
 export type Comment = {
   postId: number,
-  commentId: number,
+  id: number,
   authorId: number,
   author: string,
   content: string

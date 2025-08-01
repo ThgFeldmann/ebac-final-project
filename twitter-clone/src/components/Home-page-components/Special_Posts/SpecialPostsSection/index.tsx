@@ -65,7 +65,6 @@ const SpecialPostsSection = ({ posts, comments }: Props) => {
     useEffect(() => {
         const mapIds = comments.map((comment: Comment) => comment.postId)
         const sortArray: number[] = SortComments(mapIds)
-        console.log("sort: ", sortArray)
         filterPosts(sortArray)
         sleep(2)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -84,7 +83,9 @@ const SpecialPostsSection = ({ posts, comments }: Props) => {
                     {
                         validPosts.map((post: Post) => {
                             return (
-                                <SpecialPost post={post} />
+                                <span key={post.id}>
+                                    <SpecialPost post={post} />
+                                </span>
                             )
                         })
                     }

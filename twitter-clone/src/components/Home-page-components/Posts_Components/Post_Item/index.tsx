@@ -4,7 +4,7 @@ import { Comment, Follow, Post } from "../../../../App"
 
 import CommentComponent from "../Post_Comment"
 
-import { PostContainer, PostContentArea, PostUserNameArea } from "./styles"
+import { DropdownOverlay, PostContainer, PostContentArea, PostUserNameArea } from "./styles"
 import PostDropdown from "../Post_Dropdown"
 
 type Props = {
@@ -38,6 +38,7 @@ const PostComponent = ({ userId, post, comments, followingList }: Props) => {
 
     return (
         <>
+            <DropdownOverlay onClick={e => toggleDropdown()} className={(!dropdown) ? "" : "display"}/>
             <PostContainer>
                 <PostUserNameArea>
                     <h4 onClick={e => toggleDropdown()}>{post.author}</h4>
@@ -45,29 +46,31 @@ const PostComponent = ({ userId, post, comments, followingList }: Props) => {
                         state={dropdown}
                         userId={userId}
                         postAuthorId={post.authorId}
-                        postAuthor={post.author} 
-                        followingList={followingList} 
+                        postAuthor={post.author}
+                        followingList={followingList}
                     />
                 </PostUserNameArea>
                 <PostContentArea>
-                    {(post.image !== null) ?
-                        <img src={post.image} alt={''} />
-                    :
-                        null
+                    {
+                        (post.image !== null) ?
+                            <img src={post.image} alt={''} />
+                        :
+                            null
                     }
                     {/* <img src={(post.image !== null) ? post.image : ''} alt={(post.image !== null) ? "Imagem não encontrada" : ''} /> */}
                     <p>{post.content}</p>
                 </PostContentArea>
-                {(comments === null || undefined) ?
-                    <div>
-                        <h4>Este post ainda não tem comentários</h4>
-                    </div>
-                :
-                    commentList.map((comment: Comment) => (
-                        <div key={comment.commentId}>
-                            <CommentComponent comment={comment} />
+                {
+                    (comments === null || undefined) ?
+                        <div>
+                            <h4>Este post ainda não tem comentários</h4>
                         </div>
-                    ))
+                    :
+                        commentList.map((comment: Comment) => (
+                            <div key={comment.id}>
+                                <CommentComponent comment={comment} />
+                            </div>
+                        ))
                 }
             </PostContainer>
         </>

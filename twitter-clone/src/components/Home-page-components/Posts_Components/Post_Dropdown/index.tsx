@@ -43,29 +43,33 @@ const PostDropdown = ({ state, userId, postAuthorId, postAuthor, followingList }
 
     const RemoveFollow = (userId: number, followingId: number) => {
 
+        // filtering the follow cases where the 'userId' and the 'followingId'
+        // exists together
         const followCases: Follow[] = followingList.filter((item: Follow) => 
             item.userId === userId 
             && 
             item.followingId === followingId
         )
 
-        const followCase = followCases.map((item: Follow) => item.caseId)
+        // mapping the 'id' from the previous cases
+        const followCase = followCases.map((item: Follow) => item.id)
 
-        const caseId = followCase[0]
+        // grabbing the first 'id' from the previous array
+        const id = followCase[0]
 
-        console.log("starting delete...")
-        const followURL = `https://echo-fake-api.vercel.app/follows?caseId=${caseId}`
-        fetch(followURL, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            }
-            // body: JSON.stringify({
-            //     userId,
-            //     followingId
-            // })
-        }).then((response) => response.json())
-            .then((response) => console.log(response))
+        const followURL = `https://echo-fake-api.vercel.app/follows/${id}`
+
+        try { // ATTEMPTING THE DELETE REQUEST
+            console.log("starting delete request, id: ", id)
+            fetch(followURL, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+        } catch (error) { // IN CASE OF ERRORS
+            console.log("error: ", error)
+        }
     }
 
     const HandleClick = () => {

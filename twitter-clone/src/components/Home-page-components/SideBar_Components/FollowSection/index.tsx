@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 
-import { apiUsers, Follow, User } from "../../../../App"
+import { Follow, User } from "../../../../App"
 
 import { FollowedUserItem, FollowInfo, FollowList, FollowSection } from "./styles"
 import { fetchFollowingUsersData } from "../../../../utils"
 
 type Props = {
-    followingList: Follow[],
+    followingList: Follow[]
     followedList: Follow[]
 }
 

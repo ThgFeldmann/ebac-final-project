@@ -11,24 +11,27 @@ import SpecialPostsSection from "../../components/Home-page-components/Special_P
 
 import { HomeContainer } from "../../styles"
 import CreationSection from "../../components/Home-page-components/Creation_Components/Creation_Section"
+import { fetchUserFollowedData, fetchUserFollowingData, sleep } from "../../utils"
 
 const Home = () => {
     const [Create, setCreate] = useState<boolean>(false)
 
     const [PostList, setPostList] = useState<Post[]>([])
     const [CommentList, setCommentList] = useState<Comment[]>([])
-    
+    const [FollowingList, setFollowingList] = useState<Follow[]>([])
+    const [FollowedList, setFollowedList] = useState<Follow[]>([])
+
     const location = useLocation()
 
     const user: User = location.state.user
-    const followingList: Follow[] = location.state.followingList
-    const followedList: Follow[] = location.state.followedList
+    // const followingList: Follow[] = location.state.followingList
+    // const followedList: Follow[] = location.state.followedList
 
     const ChangeCreateStatus = (boolean: boolean) => {
         setCreate(boolean)
     }
 
-    useEffect(() => {
+    const FetchLists = async (user: User) => {
         // GET request for the Posts section of the api
         fetch(apiPosts)
             .then((response) => response.json())
@@ -38,14 +41,25 @@ const Home = () => {
         fetch(apiComments)
             .then((response) => response.json())
             .then((response) => setCommentList(response))
+
+        const followingData = await fetchUserFollowingData(user)
+        setFollowingList(followingData)
+
+        const followedData = await fetchUserFollowedData(user)
+        setFollowedList(followedData)
+    }
+
+    useEffect(() => {
+        FetchLists(user)
+        sleep(2)
     }, [user])
 
     return (
         <HomeContainer>
             <SideBar 
                 user={user}
-                followingList={followingList} 
-                followedList={followedList} 
+                followingList={FollowingList} 
+                followedList={FollowedList} 
                 Create={Create} 
                 changeCreate={ChangeCreateStatus} 
             />
@@ -56,13 +70,13 @@ const Home = () => {
                         Create={Create}
                         user={user} 
                         posts={PostList} 
-                        followingList={followingList} 
+                        followingList={FollowingList} 
                         comments={CommentList}
                     />
                 </>
                 :
                 <>
-                    <CreationSection user={user} followingList={followingList} />
+                    <CreationSection user={user} followingList={FollowingList} />
                 </>
             }
             <SpecialPostsSection

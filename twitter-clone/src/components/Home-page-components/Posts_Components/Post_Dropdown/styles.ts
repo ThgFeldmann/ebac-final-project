@@ -6,7 +6,7 @@ export const PostDropdownContainer = styled.div`
     top: 3px;
     right: 8px;
 
-    z-index: 2;
+    z-index: 3;
 
     display: none;
 
