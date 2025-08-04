@@ -22,11 +22,26 @@ const FollowsSectionComponent = ({ followingList, followedList }: Props) => {
         setFollowingUsers(response)
     }
 
+    //TODO work on this new function
+    // // function that filters the following users
+    // const filterFollows = (array_1: Follow[], array_2: Follow[]) => {
+    //     const concatArray: Follow[] = array_1.concat(array_2)
+
+    //     const idList: number[] = followingList.map(
+    //         (item: Follow) => item.followingId
+    //     )
+
+    //     //TODO work on this
+    //     const result = concatArray
+    // }
+
     // Handles the follows list functions on render
     useEffect(() => {
 
         // list of the id of the users you follow
-        const idList: number[] = followingList.map((item: Follow) => item.followingId)
+        const idList: number[] = followingList.map(
+            (item: Follow) => item.followingId
+        )
 
         // fetching users data from each id on the array
         fetchData(idList)
@@ -35,7 +50,7 @@ const FollowsSectionComponent = ({ followingList, followedList }: Props) => {
         setLoading(false)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [followingList])
+    }, [followingList, followedList])
 
     return (
         <FollowSection>
@@ -45,35 +60,35 @@ const FollowsSectionComponent = ({ followingList, followedList }: Props) => {
             </FollowInfo>
             <FollowList>
                 {
-                (loading) ?
-                    <>
-                        <div>
+                    (loading) ?
+                        <>
+                            <div>
+                                <ul>
+                                    <li>
+                                        Carregando...
+                                    </li>
+                                </ul>
+                            </div>
+                        </>
+                    : (followingUsers.length >= 1) ?
+                        followingUsers.map((followedUser: User) => (
+                            <FollowedUserItem key={followedUser.id}>
+                                <li>{followedUser.username}</li>
+                                <button>&nbsp;&bull;&bull;&bull;</button>
+                            </FollowedUserItem>
+                        ))
+                    : (followingUsers.length === 0) ?
+                        <>
                             <ul>
-                                <li>
-                                    Carregando...
-                                </li>
+                                <li>Você não está seguindo ninguém no momento.</li>
                             </ul>
-                        </div>
-                    </>
-                : (followingUsers.length >= 1) ?
-                    followingUsers.map((followedUser: User) => (
-                        <FollowedUserItem key={followedUser.id}>
-                            <li>{followedUser.username}</li>
-                            <button>&nbsp;&bull;&bull;&bull;</button>
-                        </FollowedUserItem>
-                    ))
-                : (followingUsers.length === 0) ?
-                    <>
-                        <ul>
-                            <li>Você não está seguindo ninguém no momento.</li>
-                        </ul>
-                    </>
-                :
-                    <>
-                        <ul>
-                            <li>Não foi possível encontrar sua lista de seguidores.</li>
-                        </ul>
-                    </>
+                        </>
+                    :
+                        <>
+                            <ul>
+                                <li>Não foi possível encontrar sua lista de seguidores.</li>
+                            </ul>
+                        </>
                 }
             </FollowList>
         </FollowSection>

@@ -40,21 +40,3 @@ export const PostContentArea = styled.div`
         color: ${colors.cinzaClaro};
     }
 `
-
-export const DropdownOverlay = styled.div`
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
-    background-color: ${colors.preto};
-    opacity: 0.4;
-
-    cursor: pointer;
-
-    &.display {
-        display: block;
-    }
-`

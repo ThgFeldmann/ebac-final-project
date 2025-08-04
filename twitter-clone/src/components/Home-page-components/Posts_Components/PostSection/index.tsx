@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-import { apiPosts, Comment, Follow, Post, User } from "../../../../App"
+import { Comment, Follow, Post, User } from "../../../../App"
 
 import PostComponent from "../Post_Item"
 
@@ -99,6 +99,8 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
                         <div key={post.id}>
                             <PostComponent
                                 userId={user.id}
+                                set_posts={setValidPosts}
+                                posts={validPosts}
                                 post={post}
                                 comments={comments}
                                 followingList={followingList}

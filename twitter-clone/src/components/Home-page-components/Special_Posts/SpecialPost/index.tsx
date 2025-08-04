@@ -1,5 +1,9 @@
-import { Post } from "../../../../App"
+import { useState } from "react"
 
+import { Post } from "../../../../App"
+import Dropdown from "../SpecialPost_Dropdown"
+
+import { DropdownOverlay } from "../../../../styles"
 import { SpecialPostContainer, SpecialPostContentArea, SpecialPostUserNameArea } from "./styles"
 
 
@@ -8,15 +12,34 @@ type Props = {
 }
 
 const SpecialPost = ({ post }: Props) => {
+    const [dropdown, setDropdown] = useState<boolean>(false)
+
+    const toggleDropdown = () => {
+        if (!dropdown) {
+            setDropdown(true)
+        } else {
+            setDropdown(false)
+        }
+    }
+
     return (
-        <SpecialPostContainer>
-            <SpecialPostUserNameArea>
-                <h4>{post.author}</h4>
-            </SpecialPostUserNameArea>
-            <SpecialPostContentArea>
-                <p>{post.content}</p>
-            </SpecialPostContentArea>
-        </SpecialPostContainer>
+        <>
+            <DropdownOverlay onClick={e => toggleDropdown()} className={(!dropdown) ? "" : "overlay"} />
+            <SpecialPostContainer>
+                <SpecialPostUserNameArea>
+                    <h4 onClick={e => toggleDropdown()}>
+                        {post.author}
+                    </h4>
+                    <Dropdown 
+                        state={dropdown} 
+                        post={post}
+                    />
+                </SpecialPostUserNameArea>
+                <SpecialPostContentArea>
+                    <p>{post.content}</p>
+                </SpecialPostContentArea>
+            </SpecialPostContainer>
+        </>
     )
 }
 

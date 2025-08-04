@@ -4,17 +4,20 @@ import { Comment, Follow, Post } from "../../../../App"
 
 import CommentComponent from "../Post_Comment"
 
-import { DropdownOverlay, PostContainer, PostContentArea, PostUserNameArea } from "./styles"
+import { PostContainer, PostContentArea, PostUserNameArea } from "./styles"
 import PostDropdown from "../Post_Dropdown"
+import { DropdownOverlay } from "../../../../styles"
 
 type Props = {
     userId: number
+    set_posts?: any
+    posts?: Post[]
     post: Post
     comments: Comment[]
     followingList: Follow[]
 }
 
-const PostComponent = ({ userId, post, comments, followingList }: Props) => {
+const PostComponent = ({ userId, set_posts, posts, post, comments, followingList }: Props) => {
     const [dropdown, setDropdown] = useState<boolean>(false)
     const [commentList, setCommentList] = useState<Comment[]>([])
 
@@ -38,12 +41,14 @@ const PostComponent = ({ userId, post, comments, followingList }: Props) => {
 
     return (
         <>
-            <DropdownOverlay onClick={e => toggleDropdown()} className={(!dropdown) ? "" : "display"}/>
+            <DropdownOverlay onClick={e => toggleDropdown()} className={(!dropdown) ? "" : "overlay"}/>
             <PostContainer>
                 <PostUserNameArea>
                     <h4 onClick={e => toggleDropdown()}>{post.author}</h4>
                     <PostDropdown
                         state={dropdown}
+                        set_posts={set_posts}
+                        posts={posts}
                         userId={userId}
                         postAuthorId={post.authorId}
                         postAuthor={post.author}

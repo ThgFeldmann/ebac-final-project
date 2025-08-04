@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { colors } from "../../../../styles";
 
 export const SpecialPostContainer = styled.div`
+    position: relative;
     width: 270px;
     min-height: 105px;
     max-height: 120px;
@@ -29,6 +30,7 @@ export const SpecialPostUserNameArea = styled.div`
         font-weight: 200;
         line-height: 30px;
         text-align: center;
+        cursor: pointer;
     }
 `
 
