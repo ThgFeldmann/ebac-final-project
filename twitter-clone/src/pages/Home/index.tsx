@@ -81,7 +81,9 @@ const Home = () => {
             }
             <SpecialPostsSection
                 posts={PostList}
-                comments={CommentList} 
+                comments={CommentList}
+                followingList={FollowingList}
+                userId={user.id}
             />
         </HomeContainer>
     )

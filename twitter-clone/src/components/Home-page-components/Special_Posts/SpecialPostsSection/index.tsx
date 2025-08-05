@@ -4,15 +4,17 @@ import SpecialPost from "../SpecialPost"
 
 import { SpecialPostsContainer, SpecialPostsArea } from "./styles"
 
-import { apiPosts, Comment, Post } from "../../../../App"
+import { apiPosts, Comment, Follow, Post } from "../../../../App"
 import { sleep } from "../../../../utils"
 
 type Props = {
     posts: Post[]
     comments: Comment[]
+    followingList: Follow[]
+    userId: number
 }
 
-const SpecialPostsSection = ({ posts, comments }: Props) => {
+const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) => {
     // posts that will be rendered
     const [validPosts, setValidPosts] = useState<Post[]>([])
 
@@ -84,7 +86,11 @@ const SpecialPostsSection = ({ posts, comments }: Props) => {
                         validPosts.map((post: Post) => {
                             return (
                                 <span key={post.id}>
-                                    <SpecialPost post={post} />
+                                    <SpecialPost 
+                                        post={post} 
+                                        followingList={followingList} 
+                                        userId={userId}
+                                    />
                                 </span>
                             )
                         })

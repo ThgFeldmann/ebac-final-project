@@ -5,7 +5,7 @@ import { Comment, Follow, Post } from "../../../../App"
 import CommentComponent from "../Post_Comment"
 
 import { PostContainer, PostContentArea, PostUserNameArea } from "./styles"
-import PostDropdown from "../Post_Dropdown"
+import PostDropdown from "../../../Dropdown_Components/Post_Dropdown"
 import { DropdownOverlay } from "../../../../styles"
 
 type Props = {
@@ -47,6 +47,7 @@ const PostComponent = ({ userId, set_posts, posts, post, comments, followingList
                     <h4 onClick={e => toggleDropdown()}>{post.author}</h4>
                     <PostDropdown
                         state={dropdown}
+                        post_type="normal"
                         set_posts={set_posts}
                         posts={posts}
                         userId={userId}

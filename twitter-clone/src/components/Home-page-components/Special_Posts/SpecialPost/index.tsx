@@ -1,7 +1,8 @@
 import { useState } from "react"
 
-import { Post } from "../../../../App"
-import Dropdown from "../SpecialPost_Dropdown"
+import { Follow, Post } from "../../../../App"
+
+import PostDropdown from "../../../Dropdown_Components/Post_Dropdown"
 
 import { DropdownOverlay } from "../../../../styles"
 import { SpecialPostContainer, SpecialPostContentArea, SpecialPostUserNameArea } from "./styles"
@@ -9,9 +10,11 @@ import { SpecialPostContainer, SpecialPostContentArea, SpecialPostUserNameArea }
 
 type Props = {
     post: Post
+    followingList: Follow[]
+    userId: number
 }
 
-const SpecialPost = ({ post }: Props) => {
+const SpecialPost = ({ post, followingList, userId }: Props) => {
     const [dropdown, setDropdown] = useState<boolean>(false)
 
     const toggleDropdown = () => {
@@ -30,9 +33,13 @@ const SpecialPost = ({ post }: Props) => {
                     <h4 onClick={e => toggleDropdown()}>
                         {post.author}
                     </h4>
-                    <Dropdown 
+                    <PostDropdown 
                         state={dropdown} 
-                        post={post}
+                        post_type="special"
+                        userId={userId} 
+                        postAuthorId={post.authorId} 
+                        postAuthor={post.author} 
+                        followingList={followingList}
                     />
                 </SpecialPostUserNameArea>
                 <SpecialPostContentArea>

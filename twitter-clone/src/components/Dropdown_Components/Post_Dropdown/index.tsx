@@ -1,21 +1,33 @@
 import { useEffect, useState } from "react"
 
-import { apiFollows, Follow, Post } from "../../../../App"
+import { apiFollows, Follow, Post } from "../../../App"
 
 import { PostDropdownContainer } from "./styles"
-import { sleep } from "../../../../utils"
+import { sleep } from "../../../utils"
 
 type Props = {
     state: boolean,
-    set_posts: any,
-    posts: Post[] | undefined,
+    post_type: "normal" | "special"
+    set_posts?: any,
+    posts?: Post[],
     userId: number,
     postAuthorId: number,
     postAuthor: string,
     followingList: Follow[]
 }
 
-const PostDropdown = ({ state, set_posts, posts, userId, postAuthorId, postAuthor, followingList }: Props) => {
+const PostDropdown = (
+    { 
+        state, 
+        set_posts, 
+        posts, 
+        userId, 
+        postAuthorId, 
+        postAuthor, 
+        followingList, 
+        post_type 
+    }: Props
+) => {
     const [followed, setFollowed] = useState<boolean>(false)
 
     // function that checks if the user is following the author
@@ -30,7 +42,8 @@ const PostDropdown = ({ state, set_posts, posts, userId, postAuthorId, postAutho
         }
     }
 
-    const CreateFollow = (userId: number, authorId: number) => {
+    //* Needs a back-end to be fully tested
+    const CreateFollow = (userId: number, followingId: number) => {
         console.log("starting post...")
         fetch(apiFollows, {
             method: "POST",
@@ -39,7 +52,7 @@ const PostDropdown = ({ state, set_posts, posts, userId, postAuthorId, postAutho
             },
             body: JSON.stringify({
                 userId,
-                authorId
+                followingId
             })
         })
     }
@@ -63,8 +76,8 @@ const PostDropdown = ({ state, set_posts, posts, userId, postAuthorId, postAutho
         const followURL = `https://echo-fake-api.vercel.app/follows/${delete_id}`
 
         try { // ATTEMPTING THE DELETE REQUEST
-            console.log("starting delete request, id: ", delete_id)
-
+            //? the delete works only after a few page reloads
+            //? with a back-end it may be fixed
             fetch(followURL, {
                 method: "DELETE",
                 headers: {
@@ -72,19 +85,8 @@ const PostDropdown = ({ state, set_posts, posts, userId, postAuthorId, postAutho
                 }
             })
 
-            if (!posts) {
-                return null
-            } else {
-                //* this needs a functional back-end
-                //? this kinda works, 
-                //? but it removes a single post from 
-                //? the delete follow and doesnt re-render
-                const newPosts: Post[] = 
-                    posts.filter(
-                        (post: Post) => post.id !== delete_id
-                    )
-
-                set_posts(newPosts)
+            if (post_type === "normal") {
+                RemovePosts(delete_id)
             }
 
             sleep(2)
@@ -92,6 +94,21 @@ const PostDropdown = ({ state, set_posts, posts, userId, postAuthorId, postAutho
             window.location.reload()
         } catch (error) { // IN CASE OF ERRORS
             console.log("error: ", error)
+        }
+    }
+
+    //* this needs a functional back-end to be fully tested
+    // function that updates the posts feed when you unfollow someone
+    const RemovePosts = (delete_id: number) => {
+        if (!posts) {
+            return null
+        } else {
+            const newPosts: Post[] = 
+                posts.filter(
+                    (post: Post) => post.id !== delete_id
+                )
+
+            set_posts(newPosts)
         }
     }
 
@@ -106,12 +123,6 @@ const PostDropdown = ({ state, set_posts, posts, userId, postAuthorId, postAutho
     useEffect(() => {
         CheckFollow(followingList, postAuthorId)
     }, [state, userId, postAuthor, postAuthorId, followingList])
-
-    const log = () => {
-        fetch(apiFollows)
-            .then((response) => response.json())
-            .then((response) => console.log(response))
-    }
 
     return (
         <>
@@ -147,12 +158,9 @@ const PostDropdown = ({ state, set_posts, posts, userId, postAuthorId, postAutho
                         </>
                     :
                         <h4>
-                            Você mesmo
+                            Você
                         </h4>
                 }
-                <button onClick={e => log()}>
-                    log follows
-                </button>
             </PostDropdownContainer>
         </>
     )
