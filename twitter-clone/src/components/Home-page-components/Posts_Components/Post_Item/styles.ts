@@ -4,7 +4,7 @@ import { colors } from "../../../../styles";
 export const PostContainer = styled.div`
     max-width: 550px;
     min-height: 160px;
-    margin: 0 auto 36px; 
+    margin: 0 auto 36px;
 
     border: 1px solid ${colors.cinzaClaro};
     border-radius: 10px;
@@ -39,4 +39,39 @@ export const PostContentArea = styled.div`
         padding: 12px;
         color: ${colors.cinzaClaro};
     }
+`
+
+export const PostActionArea = styled.div`
+    display: flex;
+    width: 100%;
+    height: 30px;
+    align-items: center;
+    border-top: 1px solid ${colors.cinzaClaro};
+
+    button {
+        width: 80px;
+        height: 20px;
+        margin: 0 auto;
+        font-size: 14px;
+        font-weight: bold;
+        border: 2px solid ${colors.preto};
+        border-radius: 6px;
+        background-color: ${colors.verdeClaro};
+
+        &: hover {
+            border: 3px inset ${colors.cinza};
+        }
+    }
+`
+
+export const CreationContainer = styled.div`
+    display: none;
+
+    &.unhidden {
+        display: block;
+    }
+
+    z-index: 2;
+
+    background-color: ${colors.azulEscuro};
 `
