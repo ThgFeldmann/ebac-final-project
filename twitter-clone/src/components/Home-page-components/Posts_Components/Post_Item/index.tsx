@@ -3,9 +3,9 @@ import { useEffect, useState } from "react"
 import { apiComments, Comment, Follow, Post, User } from "../../../../App"
 
 import CommentComponent from "../Post_Comment"
-import PostDropdown from "../../../Dropdown_Components/Post_Dropdown"
+import PostModal from "../../../Post_Modal"
 
-import { DropdownOverlay } from "../../../../styles"
+import { ModalOverlay } from "../../../../styles"
 import { CreationContainer, PostActionArea, PostContainer, PostContentArea, PostUserNameArea } from "./styles"
 import { sleep } from "../../../../utils"
 
@@ -20,7 +20,7 @@ type Props = {
 
 const PostComponent = ({ user, set_posts, posts, post, comments, followingList }: Props) => {
     // states for the modals
-    const [dropdown, setDropdown] = useState<boolean>(false)
+    const [modal, setModal] = useState<boolean>(false)
     const [createComment, setCreateComment] = useState<boolean>(false)
 
     const [commentList, setCommentList] = useState<Comment[]>([])
@@ -33,8 +33,8 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
 
     // function that toggles the overlay
     const toggleOverlay = () => {
-        if (dropdown) {
-            setDropdown(false)
+        if (modal) {
+            setModal(false)
         } else if (createComment) {
             setCreateComment(false)
         }
@@ -81,7 +81,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
 
     return (
         <>
-            <DropdownOverlay onClick={e => toggleOverlay()} className={(dropdown || createComment) ? "overlay" : ""}/>
+            <ModalOverlay onClick={e => toggleOverlay()} className={(modal || createComment) ? "overlay" : ""}/>
             <PostContainer>
                 <CreationContainer className={(!createComment) ? "" : "unhidden"}>
                     <label htmlFor="comment">
@@ -104,9 +104,9 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
                     </div>
                 </CreationContainer>
                 <PostUserNameArea>
-                    <h4 onClick={e => setDropdown(true)}>{post.author}</h4>
-                    <PostDropdown
-                        state={dropdown}
+                    <h4 onClick={e => setModal(true)}>{post.author}</h4>
+                    <PostModal
+                        state={modal}
                         post_type="normal"
                         set_posts={set_posts}
                         posts={posts}

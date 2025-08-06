@@ -2,9 +2,9 @@ import { useState } from "react"
 
 import { Follow, Post } from "../../../../App"
 
-import PostDropdown from "../../../Dropdown_Components/Post_Dropdown"
+import PostModal from "../../../Post_Modal"
 
-import { DropdownOverlay } from "../../../../styles"
+import { ModalOverlay } from "../../../../styles"
 import { SpecialPostContainer, SpecialPostContentArea, SpecialPostUserNameArea } from "./styles"
 
 
@@ -15,26 +15,26 @@ type Props = {
 }
 
 const SpecialPost = ({ post, followingList, userId }: Props) => {
-    const [dropdown, setDropdown] = useState<boolean>(false)
+    const [modal, setModal] = useState<boolean>(false)
 
-    const toggleDropdown = () => {
-        if (!dropdown) {
-            setDropdown(true)
+    const toggleModal = () => {
+        if (!modal) {
+            setModal(true)
         } else {
-            setDropdown(false)
+            setModal(false)
         }
     }
 
     return (
         <>
-            <DropdownOverlay onClick={e => toggleDropdown()} className={(!dropdown) ? "" : "overlay"} />
+            <ModalOverlay onClick={e => toggleModal()} className={(!modal) ? "" : "overlay"} />
             <SpecialPostContainer>
                 <SpecialPostUserNameArea>
-                    <h4 onClick={e => toggleDropdown()}>
+                    <h4 onClick={e => toggleModal()}>
                         {post.author}
                     </h4>
-                    <PostDropdown 
-                        state={dropdown} 
+                    <PostModal
+                        state={modal} 
                         post_type="special"
                         userId={userId} 
                         postAuthorId={post.authorId} 

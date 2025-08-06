@@ -57,7 +57,7 @@ export const Overlay = styled.div`
     z-index: 1;
 `
 
-export const DropdownOverlay = styled.div`
+export const ModalOverlay = styled.div`
     display: none;
     position: fixed;
     top: 0;

@@ -1,7 +1,7 @@
 import styled from "styled-components"
-import { colors } from "../../../styles"
+import { colors } from "../../styles"
 
-export const PostDropdownContainer = styled.div`
+export const PostModalContainer = styled.div`
     position: absolute;
     top: 3px;
     right: 8px;

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 
-import { apiFollows, Follow, Post } from "../../../App"
+import { apiFollows, Follow, Post } from "../../App"
 
-import { PostDropdownContainer } from "./styles"
-import { sleep } from "../../../utils"
+import { PostModalContainer } from "./styles"
+import { sleep } from "../../utils"
 
 type Props = {
     state: boolean,
@@ -16,7 +16,7 @@ type Props = {
     followingList: Follow[]
 }
 
-const PostDropdown = (
+const PostModal = (
     { 
         state, 
         set_posts, 
@@ -126,7 +126,7 @@ const PostDropdown = (
 
     return (
         <>
-            <PostDropdownContainer className={(!state) ? "" : "unhidden"}>
+            <PostModalContainer className={(!state) ? "" : "unhidden"}>
                 <div>
                     <h3>{(!postAuthor) ?
                             "não foi encontrado nenhum nome!"
@@ -161,9 +161,9 @@ const PostDropdown = (
                             Você
                         </h4>
                 }
-            </PostDropdownContainer>
+            </PostModalContainer>
         </>
     )
 }
 
-export default PostDropdown
+export default PostModal
