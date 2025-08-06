@@ -16,7 +16,6 @@ export const CreationSection = ({ user, followingList }: Props) => {
     const [formData, setFormData] = useState({
         author: user.username,
         authorId: user.id,
-        image: null,
         content: ""
     })
     // const [imageUrl, setImageUrl] = useState<any>(null)
@@ -56,7 +55,6 @@ export const CreationSection = ({ user, followingList }: Props) => {
         setFormData({
             author: user.username,
             authorId: user.id,
-            image: null,
             content: ""
         })
     }
@@ -111,7 +109,6 @@ export const CreationSection = ({ user, followingList }: Props) => {
                             id: 0,
                             author: user.username,
                             authorId: user.id,
-                            image: null,
                             content: formData.content
                         }}
                         comments={[]}

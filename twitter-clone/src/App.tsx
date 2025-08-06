@@ -39,7 +39,6 @@ export type Post = {
   id: number,
   author: string,
   authorId: number,
-  image?: string | null,
   content?: string
 }
 

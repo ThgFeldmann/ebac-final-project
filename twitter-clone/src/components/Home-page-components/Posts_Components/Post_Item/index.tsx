@@ -117,13 +117,6 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
                     />
                 </PostUserNameArea>
                 <PostContentArea>
-                    {
-                        (post.image !== null) ?
-                            <img src={post.image} alt={''} />
-                        :
-                            null
-                    }
-                    {/* <img src={(post.image !== null) ? post.image : ''} alt={(post.image !== null) ? "Imagem não encontrada" : ''} /> */}
                     <p>{post.content}</p>
                 </PostContentArea>
                 <PostActionArea>
