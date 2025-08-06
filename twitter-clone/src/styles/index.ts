@@ -66,7 +66,7 @@ export const DropdownOverlay = styled.div`
     left: 0;
     z-index: 1;
     background-color: ${colors.preto};
-    opacity: 0.4;
+    opacity: 0.5;
 
     cursor: pointer;
 

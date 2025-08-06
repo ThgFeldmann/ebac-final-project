@@ -98,7 +98,7 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
                     validPosts.map((post: Post) => (
                         <div key={post.id}>
                             <PostComponent
-                                userId={user.id}
+                                user={user}
                                 set_posts={setValidPosts}
                                 posts={validPosts}
                                 post={post}

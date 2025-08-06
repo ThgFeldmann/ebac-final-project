@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react"
 
-import { Comment, Follow, Post } from "../../../../App"
+import { apiComments, Comment, Follow, Post, User } from "../../../../App"
 
 import CommentComponent from "../Post_Comment"
 import PostDropdown from "../../../Dropdown_Components/Post_Dropdown"
 
 import { DropdownOverlay } from "../../../../styles"
 import { CreationContainer, PostActionArea, PostContainer, PostContentArea, PostUserNameArea } from "./styles"
+import { sleep } from "../../../../utils"
 
 type Props = {
-    userId: number
+    user: User
     set_posts?: any
     posts?: Post[]
     post: Post
@@ -17,22 +18,60 @@ type Props = {
     followingList: Follow[]
 }
 
-const PostComponent = ({ userId, set_posts, posts, post, comments, followingList }: Props) => {
+const PostComponent = ({ user, set_posts, posts, post, comments, followingList }: Props) => {
+    // states for the modals
     const [dropdown, setDropdown] = useState<boolean>(false)
     const [createComment, setCreateComment] = useState<boolean>(false)
+
     const [commentList, setCommentList] = useState<Comment[]>([])
+    const [newComment, setNewComment] = useState<string>("")
 
     const filterComments = (commentArray: Comment[]) => {
         const result = commentArray.filter((comment: Comment) => comment.postId === post.id)
         setCommentList(result)
     }
 
+    // function that toggles the overlay
     const toggleOverlay = () => {
         if (dropdown) {
             setDropdown(false)
         } else if (createComment) {
             setCreateComment(false)
         }
+    }
+
+    // function that handles the comment creation
+    const handleSubmit = () => {
+        const commentBody = {
+            postId: post.id,
+            authorId: user.id,
+            author: user.username,
+            content: newComment
+        }
+
+        try {
+            //* fetch returns 500 but the comment is created in the api
+            //* upon a reload, the new comments appear
+            console.log("starting the post request...")
+            fetch(apiComments, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(commentBody)
+            })
+            sleep(3)
+            toggleOverlay()
+            sleep(2)
+            window.location.reload()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleCancel = () => {
+        setNewComment("")
+        toggleOverlay()
     }
 
     useEffect(() => {
@@ -44,12 +83,25 @@ const PostComponent = ({ userId, set_posts, posts, post, comments, followingList
         <>
             <DropdownOverlay onClick={e => toggleOverlay()} className={(dropdown || createComment) ? "overlay" : ""}/>
             <PostContainer>
-                {/*TODO work on this */}
                 <CreationContainer className={(!createComment) ? "" : "unhidden"}>
                     <label htmlFor="comment">
-                        Crie seu comentário
+                        Escreva seu comentário logo abaixo
                     </label>
-                    <textarea name="comment" id="comment" />
+                    <textarea 
+                        name="comment" 
+                        id="comment"
+                        value={newComment}
+                        onChange={e => setNewComment(e.target.value)}
+                        autoComplete="off"
+                    />
+                    <div>
+                        <button onClick={e => handleSubmit()} className="finish">
+                            Concluir
+                        </button>
+                        <button onClick={e => handleCancel()} className="cancel">
+                            Cancelar
+                        </button>
+                    </div>
                 </CreationContainer>
                 <PostUserNameArea>
                     <h4 onClick={e => setDropdown(true)}>{post.author}</h4>
@@ -58,7 +110,7 @@ const PostComponent = ({ userId, set_posts, posts, post, comments, followingList
                         post_type="normal"
                         set_posts={set_posts}
                         posts={posts}
-                        userId={userId}
+                        userId={user.id}
                         postAuthorId={post.authorId}
                         postAuthor={post.author}
                         followingList={followingList}
@@ -75,7 +127,7 @@ const PostComponent = ({ userId, set_posts, posts, post, comments, followingList
                     <p>{post.content}</p>
                 </PostContentArea>
                 <PostActionArea>
-                    <button onClick={e => setCreateComment(true)}>
+                    <button className={(!createComment) ? "" : "clicked"} onClick={e => setCreateComment(true)}>
                         Comentar
                     </button>
                 </PostActionArea>

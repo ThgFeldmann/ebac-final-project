@@ -6,6 +6,8 @@ export const PostContainer = styled.div`
     min-height: 160px;
     margin: 0 auto 36px;
 
+    position: relative;
+
     border: 1px solid ${colors.cinzaClaro};
     border-radius: 10px;
 
@@ -58,7 +60,7 @@ export const PostActionArea = styled.div`
         border-radius: 6px;
         background-color: ${colors.verdeClaro};
 
-        &: hover {
+        &: hover, &.clicked {
             border: 3px inset ${colors.cinza};
         }
     }
@@ -68,10 +70,76 @@ export const CreationContainer = styled.div`
     display: none;
 
     &.unhidden {
-        display: block;
+        display: flex;
+        flex-direction: column;
     }
 
     z-index: 2;
 
+    position: absolute;
+    top: 180px;
+    left: 80px;
+
+    width: 400px;
+    min-height: 110px;
+    max-height: 160px;
+
+    border: 1px solid ${colors.cinzaClaro};
     background-color: ${colors.azulEscuro};
+
+    label {
+        margin: 8px auto;
+
+        font-weight: bold;
+
+        color: ${colors.cinzaClaro};
+    }
+    
+    textarea {
+        width: 320px;
+        min-height: 50px;
+        max-height: 90px;
+        margin: 0 auto;
+        padding: 4px;
+
+        font-size: 16px;
+
+        color: ${colors.cinzaClaro};
+
+        border: 3px dotted ${colors.cinzaClaro};
+
+        background-color: ${colors.azulClaro};
+
+        resize: none;
+    }
+
+    div {
+        width: 160px;
+        margin: 8px auto;
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            width: 70px;
+            height: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            color: ${colors.preto};
+            
+            border: 3px solid ${colors.preto};
+            border-radius: 6px;
+
+            &: hover {
+                border: 4px inset ${colors.preto};
+            }
+
+            &.finish {
+                background-color: ${colors.verdeClaro};
+            }
+
+            &.cancel {
+                background-color: ${colors.vermelho};
+            }
+        }
+    }
 `

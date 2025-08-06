@@ -116,7 +116,7 @@ export const CreationSection = ({ user, followingList }: Props) => {
                         }}
                         comments={[]}
                         followingList={followingList} 
-                        userId={user.id}                    
+                        user={user}                    
                     />
                     <p>
                         Este post foi criado com sucesso, você pode voltar agora.
