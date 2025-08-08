@@ -21,7 +21,6 @@ const LoginContainerComponent = () => {
     // Dictates if there is an error inside the form
     const [formError, setFormError] = useState<boolean>(false)
 
-    // const signIn = useSignIn()
     const navigate = useNavigate()
 
     // resets the states on re-render
@@ -77,13 +76,10 @@ const LoginContainerComponent = () => {
     //* handles the navigation
     const handleNavigate = async (user: User) => {
 
+        // fetch follow datas
         const followingData = await fetchUserFollowingData(user)
         const followedData = await fetchUserFollowedData(user)
 
-        console.log("followingData: ", followingData)
-        console.log("followedData: ", followedData)
-
-        //* removed temporarily for tests
         navigate('/Home', {state: {user: loggedUser, followingList: followingData, followedList: followedData}})
     }
 

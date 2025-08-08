@@ -48,7 +48,7 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
     // function that fetches the posts based on the received array of ids
     const filterPosts = async (array: number[]) => {
         // selects the top five comments and removes the rest
-        const splicedArray = array.splice(0, 5)
+        const splicedArray = array.splice(0, 6)
         
         // executing a fetch promise with every id in 'splicedArray'
         const result = await Promise.all(
@@ -86,7 +86,7 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
                         validPosts.map((post: Post) => {
                             return (
                                 <span key={post.id}>
-                                    <SpecialPost 
+                                    <SpecialPost
                                         post={post} 
                                         followingList={followingList} 
                                         userId={userId}

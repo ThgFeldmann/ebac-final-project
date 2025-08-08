@@ -44,7 +44,6 @@ const PostModal = (
 
     //* Needs a back-end to be fully tested
     const CreateFollow = (userId: number, followingId: number) => {
-        console.log("starting post...")
         fetch(apiFollows, {
             method: "POST",
             headers: {
@@ -128,10 +127,12 @@ const PostModal = (
         <>
             <PostModalContainer className={(!state) ? "" : "unhidden"}>
                 <div>
-                    <h3>{(!postAuthor) ?
-                            "não foi encontrado nenhum nome!"
-                        :
-                            postAuthor
+                    <h3>
+                        {
+                            (!postAuthor) ?
+                                "não foi encontrado nenhum nome!"
+                            :
+                                postAuthor
                         }
                     </h3>
                 </div>

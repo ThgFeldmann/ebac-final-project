@@ -69,7 +69,7 @@ export const Button = styled.button`
     height: 38px;
     margin: 34px auto 0;
     
-    border: 1px outset ${colors.preto};
+    border: 2px solid ${colors.preto};
     border-radius: 12px;
     
     text-align: center;
@@ -92,12 +92,12 @@ export const Button = styled.button`
         background-color: ${colors.vermelho};
 
         &:hover {
-            border: 3px inset ${colors.cinza};
+            border: 4px inset ${colors.cinza};
         }
     }
 
     &:hover {
-        border: 3px inset ${colors.preto};
+        border: 4px inset ${colors.preto};
     }
 `
 

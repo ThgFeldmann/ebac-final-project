@@ -2,11 +2,10 @@ import styled from "styled-components";
 import { colors } from "../../../../styles";
 
 export const PostContainer = styled.div`
+    min-width: 550px;
     max-width: 550px;
-    min-height: 160px;
+    min-height: 100px;
     margin: 0 auto 36px;
-
-    position: relative;
 
     border: 1px solid ${colors.cinzaClaro};
     border-radius: 10px;
@@ -15,7 +14,6 @@ export const PostContainer = styled.div`
 `
 
 export const PostUserNameArea = styled.div`
-    position: relative;
     width: 100%;
     height: 26px;
     border-bottom: 1px solid ${colors.cinzaClaro};
@@ -36,7 +34,6 @@ export const PostUserNameArea = styled.div`
 `
 
 export const PostContentArea = styled.div`
-
     * {
         padding: 12px;
         color: ${colors.cinzaClaro};

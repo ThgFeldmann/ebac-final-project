@@ -37,7 +37,6 @@ export const ButtonsContainer = styled.div`
         font-size: 22px;
         font-weight: bold;
         text-align: center;
-
         
         &:hover {
             border: 3px inset ${colors.cinza};

@@ -1,28 +1,16 @@
-//*Note: The name 'value' refers to the input values in general
-// TODO fix being able to empty values
-// TODO check if value is above it's minimum requirement
+//* Note: The name 'value' refers to the input values in general
+//TODO fix being able to send empty values
+//TODO check if value is above it's minimum requirement
+//TODO fix form button not executing the functions when an error is activated
 
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { apiUsers, FormValues } from "../../../App";
+import { apiUsers, FormValues, User } from "../../../App";
 
 import PageTitle from "../Page_Title";
 
 import { Button, SignUpContainerComponent, SignUpFormContainer, SuccessSection } from "./styles";
-
-type User = {
-    id: number,
-    username: string,
-    password: string,
-    email: string,
-    friends: [
-        {
-            id: number,
-            username: string
-        }
-    ]
-}
 
 const SignUpContainer = () => {
     //*Error states
@@ -44,24 +32,30 @@ const SignUpContainer = () => {
     const navigate = useNavigate()
 
 
-    // TODO
+    // TODO work on this function
     // Checks if an input is empty
     const checkIfEmpty = (data: FormValues) => { //* 'data' refers to 'formData'
         // extracting the values from 'data'
         const values = Object.values(data)
 
-        // mapping the 'values' array and creating a new array | 
-        // the new array holds boolean values, true id string is empty or false if string has content 
-        const valuesMap: boolean[] = values.map(
-            (item: string) => item === ''
-        )
+        // // mapping the 'values' array and creating a new array | 
+        // // the new array holds boolean values, true id string is empty or false if string has content 
+        // const valuesMap: boolean[] = values.map(
+        //     (item: string) => item === ''
+        // )
 
-        // reads each boolean value and sends an error if 'true' is passed
-        valuesMap.forEach((item: boolean) => {
-            if (item === true) { //*IF VALUE IS EMPTY
-                return setEmptyFormError(true)
-            }
-        })
+        const result = values.includes('')
+
+        return result
+
+        // // reads each boolean value and sends an error if 'true' is passed
+        // valuesMap.forEach((item: boolean) => {
+        //     if (item === true) { //* IF VALUE IS EMPTY
+        //         return setEmptyFormError(true)
+        //     } else { //* IF VALUE IS NOT EMPTY
+        //         setFormChecked(true)
+        //     }
+        // })
     }
 
     //? Executed twice, first returned the empty error, then executed as normal
@@ -71,45 +65,50 @@ const SignUpContainer = () => {
 
         checkIfEmpty(formData)
 
-        if (emptyFormError) {
-            return null
+        if (!formChecked) {
+            return setEmptyFormError(true)
         } else {
-            if (formData.password !== confirmationValue) { //*IF PASSWORD ISN'T CONFIRMED
-                console.log('Por favor, confirme sua senha.')
-                setConfirmationError(true)
-            } else if (formData.password === confirmationValue) { //*IF PASSWORD IS CONFIRMED
-                setPasswordConfirmed(true)
-                fetch(apiUsers) // fetches users from api
-                    .then((response) => response.json())
-                    .then((users) => {
-                        const userExists = users.some( // checks if the form values matches an existing user
-                            (user: User) => 
-                                user.email === formData.email && 
-                                user.username === formData.username && 
-                                user.password === formData.password
-                        )
-                        if (userExists) { //*IF USER EXISTS
-                            console.log("User already exists!")
-                            setExistingUserError(true)
-                        } else { //*IF USER DOES NOT EXIST
-                            fetch(apiUsers, { // creating the new user
-                                method: 'POST',
-                                headers: {
-                                    "Content-Type": "application/json",
-                                },
-                                body: JSON.stringify(formData),
-                            })
-                                .then((response) => response.json())
-                                .then((newUser) => {
-                                    console.log("User created: " + newUser)
+            if (emptyFormError) {
+                return null
+            } else {
+                if (formData.password !== confirmationValue) { //* IF PASSWORD ISN'T CONFIRMED
+                    console.log('Por favor, confirme sua senha.')
+                    setConfirmationError(true)
+                } else if (formData.password === confirmationValue) { //* IF PASSWORD IS CONFIRMED
+                    setPasswordConfirmed(true)
+                    fetch(apiUsers) // fetches users from api
+                        .then((response) => response.json())
+                        .then((users) => {
+                            const userExists = users.some( // checks if the form values matches an existing user
+                                (user: User) => 
+                                    user.email === formData.email && 
+                                    user.username === formData.username && 
+                                    user.password === formData.password
+                            )
+                            if (userExists) { //* IF USER EXISTS
+                                console.log("User already exists!")
+                                setExistingUserError(true)
+                            } else { //* IF USER DOES NOT EXIST
+                                fetch(apiUsers, { // creating the new user
+                                    method: 'POST',
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify(formData),
                                 })
-                            
-                                console.log('User created')
-                                setSuccess(true)
-                        }
-                    })
+                                    .then((response) => response.json())
+                                    .then((newUser) => {
+                                        console.log("User created: " + newUser)
+                                    })
+                                
+                                    console.log('User created')
+                                    setSuccess(true)
+                            }
+                        })
+                }
             }
         }
+
 
     }
 

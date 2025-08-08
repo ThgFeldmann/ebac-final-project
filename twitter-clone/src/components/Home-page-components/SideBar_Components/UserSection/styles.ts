@@ -50,7 +50,7 @@ export const Modal = styled.div`
     top: 45%;
     transform: translate(-50%, -50%);
 
-    z-index: 2;
+    z-index: 4;
 
     overflow: none;
 

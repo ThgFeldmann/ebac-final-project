@@ -2,11 +2,9 @@ import styled from "styled-components"
 import { colors } from "../../styles"
 
 export const PostModalContainer = styled.div`
-    position: absolute;
-    top: 3px;
-    right: 8px;
+    position: relative;
 
-    z-index: 3;
+    z-index: 4;
 
     display: none;
 

@@ -101,7 +101,7 @@ export const Button = styled.button`
 `
 
 export const SuccessSection = styled.div`
-    text-align: start;
+    text-align: center;
     padding: 30px;
 
     h2 {
@@ -110,19 +110,21 @@ export const SuccessSection = styled.div`
 
     p {
         font-size: 20px;
+        text-wrap: balance;
         margin: 20px 0;
     }
 
     button {
         width: 160px;
+        height: 25px;
+
+        font-size: 18px;
+        font-weight: bold;
+
         background-color: ${colors.azul};
 
-        border: 1px solid ${colors.preto};
-        border-radius: 6px;
-
-        a {
-            font-size: 18px;
-        }
+        border: 2px solid ${colors.preto};
+        border-radius: 8px;
 
         &:hover {
             border: 3px inset ${colors.preto};

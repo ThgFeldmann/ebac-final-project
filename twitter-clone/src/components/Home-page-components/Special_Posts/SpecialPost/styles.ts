@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { colors } from "../../../../styles";
 
 export const SpecialPostContainer = styled.div`
-    position: relative;
-    width: 270px;
-    min-height: 105px;
+    width: 250px;
+    max-width: 250px;
+    min-height: 85px;
     max-height: 120px;
     margin: 8px auto 0;
 

@@ -2,12 +2,14 @@ import styled from "styled-components";
 import { colors } from "../../../../styles";
 
 export const SpecialPostsContainer = styled.div`
-    width: 350px;
+    width: 300px;
     height: 650px;
 
     position: sticky;
     top: 35px;
     right: 50px;
+
+    z-index: 0;
 
     text-align: center;
 
@@ -23,12 +25,12 @@ export const SpecialPostsContainer = styled.div`
         text-align: center;
         border: 1px solid ${colors.cinzaClaro};
         border-radius: 10px;
-        background-color: ${colors.verdeClaro};
 
         h2 {
             margin-top: 5px;
             font-size: 14px;
             font-weight: bold;
+            color: ${colors.cinzaClaro};
         }
     }
 `

@@ -4,6 +4,7 @@ import { Follow, User } from "../../../../App"
 
 import { FollowedUserItem, FollowInfo, FollowList, FollowSection } from "./styles"
 import { fetchFollowingUsersData } from "../../../../utils"
+import FollowModal from "../Follow_Modal"
 
 type Props = {
     followingList: Follow[]
@@ -16,10 +17,34 @@ const FollowsSectionComponent = ({ followingList, followedList }: Props) => {
     // List of informations on who the user follows
     const [followingUsers, setFollowingUsers] = useState<User[]>([])
 
+    const [modal, setModal] = useState<boolean>(false)
+    const [followedUser, setFollowedUser] = useState<User>({
+        id: 0,
+        username: "",
+        password: "",
+        email: ""
+    })
+
     // Fetches various users from the api with an array of id's
     const fetchData = async (idArray: number[]) => {
         const response = await fetchFollowingUsersData(idArray)
         setFollowingUsers(response)
+    }
+
+    const toggleModal = (followed_User: User) => {
+        if (!modal) { //* SHOWING THE MODAL
+            setFollowedUser(followed_User)
+            setModal(true)
+        } else { //* CLOSING THE MODAL
+            // reseting the states
+            setFollowedUser({
+                id: 0,
+                username: "",
+                password: "",
+                email: ""
+            })
+            setModal(false)
+        }
     }
 
     //TODO work on this new function
@@ -74,7 +99,9 @@ const FollowsSectionComponent = ({ followingList, followedList }: Props) => {
                         followingUsers.map((followedUser: User) => (
                             <FollowedUserItem key={followedUser.id}>
                                 <li>{followedUser.username}</li>
-                                <button>&nbsp;&bull;&bull;&bull;</button>
+                                <button onClick={e => toggleModal(followedUser)}>
+                                    &nbsp;&bull;&bull;&bull;
+                                </button>
                             </FollowedUserItem>
                         ))
                     : (followingUsers.length === 0) ?
@@ -90,6 +117,10 @@ const FollowsSectionComponent = ({ followingList, followedList }: Props) => {
                             </ul>
                         </>
                 }
+                <FollowModal
+                    state={modal}
+                    follow_user={followedUser}
+                />
             </FollowList>
         </FollowSection>
     )

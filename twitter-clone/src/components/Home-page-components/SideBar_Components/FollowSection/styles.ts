@@ -7,6 +7,7 @@ export const FollowSection = styled.div`
 `
 
 export const FollowList = styled.ul`
+    position: relative;
     width: 192px;
     max-height: 172px;
     height: 100%;
@@ -24,10 +25,6 @@ export const FollowList = styled.ul`
         margin-top: 8px;
         margin-left: 4px;
         color: ${colors.branco};
-
-        &: hover {
-            text-decoration: underline;
-        }
     }
 
     &: :-webkit-scrollbar {
@@ -58,14 +55,8 @@ export const FollowedUserItem = styled.div`
 
     text-align: center;
 
-    &: hover {
-        button {
-            display: block;
-        }
-    }
-
     button {
-        display: none;
+        display: block;
 
         height: 25px;
     
@@ -77,7 +68,7 @@ export const FollowedUserItem = styled.div`
         color: ${colors.cinzaClaro};
 
         &: hover {
-            color: ${colors.verde}
+            color: ${colors.verde};
         }
     }
 `
