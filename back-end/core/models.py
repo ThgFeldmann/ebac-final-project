@@ -8,17 +8,19 @@ class User(models.Model):
     password = models.CharField(max_length=40)
     email = models.EmailField(max_length=254)
 
+class Author(models.Model):
+    author_id = models.AutoField(primary_key=True)
+    author = models.CharField(max_length=200)
+
 class Post(models.Model):
     id = models.AutoField(primary_key=True)
-    author = User.username
-    author_id = User.id
+    author = Author
     content = models.TextField(max_length=2000)
 
 class Comment(models.Model):
     id = models.AutoField(primary_key=True)
     post_id = Post.id
-    author = User.username
-    author_id = User.id
+    author = Author
     content = Post.content
 
 class Follow(models.Model):

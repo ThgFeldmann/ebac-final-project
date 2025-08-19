@@ -7,7 +7,7 @@ from .serializers import *
 # GET requests for data
 
 @api_view(['GET'])
-def GetUsersData(request):
+def get_users_data(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True, read_only=True)
     return Response(serializer.data)
@@ -19,7 +19,8 @@ class GetUserDataById(RetrieveAPIView):
     lookup_field = 'pk'
 
 @api_view(['GET'])
-def GetPostsData(request):
+def get_posts_data(request):
+    # error in this function
     posts = Post.objects.all()
     serializer = PostSerializer(posts, many=True, read_only=True)
     return Response(serializer.data)
@@ -31,13 +32,13 @@ class GetPostDataById(RetrieveAPIView):
     lookup_field = 'pk'
 
 @api_view(['GET'])
-def GetCommentsData(request):
+def get_comments_data(request):
     comments = Post.objects.all()
     serializer = CommentSerializer(comments, many=True, read_only=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
-def GetFollowsData(request):
+def get_follows_data(request):
     follows = Post.objects.all()
     serializer = FollowSerializer(follows, many=True, read_only=True)
     return Response(serializer.data)
@@ -45,28 +46,28 @@ def GetFollowsData(request):
 # POST requests for data creation
 
 @api_view(['POST'])
-def CreateUser(request):
+def create_user(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
 
 @api_view(['POST'])
-def CreatePost(request):
+def create_post(request):
     serializer = PostSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
 
 @api_view(['POST'])
-def CreateComment(request):
+def create_comment(request):
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
 
 @api_view(['POST'])
-def CreateFollow(request):
+def create_follow(request):
     serializer = FollowSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()

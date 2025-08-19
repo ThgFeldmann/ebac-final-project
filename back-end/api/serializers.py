@@ -8,22 +8,32 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'password', 'email']
 
+class AuthorSerializer(serializers.ModelSerializer):
+    # 'author' serializer for 'post' use
+    class Meta:
+        model = Author
+        fields = ['author_id', 'author']
+
 class PostSerializer(serializers.ModelSerializer):
-    author = UserSerializer(fields=['id', 'username'])
+    author_data = AuthorSerializer(read_only=True)
     class Meta:
         model = Post
-        fields = ['id', 'author', 'content']
+        fields = ['id', 'author_data', 'content']
+
+class PostIDSerializer(serializers.ModelSerializer):
+    # 'post id' serializer for 'comment' use
+    class Meta:
+        model = Post
+        fields = ['id']
 
 class CommentSerializer(serializers.ModelSerializer):
-    author = UserSerializer(fields=['id', 'username'])
-    post_id = PostSerializer(fields=['id'])
+    author = AuthorSerializer()
+    post_id = PostIDSerializer()
     class Meta:
         model = Comment
         fields = ['id', 'post_id', 'author', 'content']
 
 class FollowSerializer(serializers.ModelSerializer):
-    user_id = UserSerializer(fields=['id'])
-    following_id = UserSerializer(fields=['id'])
     class Meta:
         model = Follow
         fields = ['id', 'user_id', 'following_id']
