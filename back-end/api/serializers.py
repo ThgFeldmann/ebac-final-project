@@ -8,17 +8,10 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'password', 'email']
 
-class AuthorSerializer(serializers.ModelSerializer):
-    # 'author' serializer for 'post' use
-    class Meta:
-        model = Author
-        fields = ['author_id', 'author']
-
 class PostSerializer(serializers.ModelSerializer):
-    author_data = AuthorSerializer(read_only=True)
     class Meta:
         model = Post
-        fields = ['id', 'author_data', 'content']
+        fields = ['id', 'author_id', 'author', 'content']
 
 class PostIDSerializer(serializers.ModelSerializer):
     # 'post id' serializer for 'comment' use
@@ -27,11 +20,9 @@ class PostIDSerializer(serializers.ModelSerializer):
         fields = ['id']
 
 class CommentSerializer(serializers.ModelSerializer):
-    author = AuthorSerializer()
-    post_id = PostIDSerializer()
     class Meta:
         model = Comment
-        fields = ['id', 'post_id', 'author', 'content']
+        fields = ['id', 'post_id', 'author_id', 'author', 'content']
 
 class FollowSerializer(serializers.ModelSerializer):
     class Meta:
