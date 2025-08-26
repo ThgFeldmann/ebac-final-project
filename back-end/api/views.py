@@ -83,33 +83,8 @@ class RemoveUser(DestroyAPIView):
     serializer_class = UserSerializer
     lookup_field = 'pk'
 
-## Creating the delete requests for posts
-class RemovePost(DestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    lookup_field = 'pk'
-
-class PostDelete(APIView):
-    def delete(self, request, post_id):
-        try:
-            # Retrieve Post by ID
-            post = Post.objects.get(id=post_id)
-
-        except Post.DoesNotExist:
-
-            return Response(
-                {"error": "Post not found"},
-                status=status.HTTP_404_NOT_FOUND
-            )
-
-        # Delete the post from the database
-        post.delete()
-
-        # Return a 204 response
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
 @api_view(['DELETE', 'GET'])
-def delete_post(self, request, pk=None):
+def delete_post(request, pk=None):
     queryset = Post.objects.all().filter(pk=pk)
     post = queryset[0]
     post.delete()
