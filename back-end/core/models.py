@@ -8,16 +8,16 @@ class User(models.Model):
     email = models.EmailField(max_length=254)
 
 class Post(models.Model):
-    author_id = models.IntegerField(null=False, blank=False, unique=True)
-    author = models.CharField(max_length=40)
-    content = models.TextField(max_length=2000)
+    author_id = models.IntegerField(null=False, blank=False)
+    author = models.CharField(max_length=50, null=False, blank=False)
+    content = models.TextField(max_length=2000, null=False, blank=False)
 
 class Comment(models.Model):
-    post_id = Post.id
-    author_id = User.id
-    author = User.username
-    content = Post.content
+    post_id = models.ForeignKey(Post, on_delete=models.CASCADE, null=False, blank=False)
+    author_id = models.IntegerField(null=False, blank=False)
+    author = models.CharField(max_length=50, null=False, blank=False)
+    content = models.TextField(max_length=1500, null=False, blank=False)
 
 class Follow(models.Model):
-    user_id = User.id
-    following_id = User.id
+    user_id = models.IntegerField(null=False, blank=False)
+    following_id = models.IntegerField(null=False, blank=False)

@@ -6,25 +6,19 @@ from core.models import *
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'password', 'email']
+        fields = "__all__"
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['id', 'author_id', 'author', 'content']
-
-class PostIDSerializer(serializers.ModelSerializer):
-    # 'post id' serializer for 'comment' use
-    class Meta:
-        model = Post
-        fields = ['id']
+        fields = "__all__"
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ['id', 'post_id', 'author_id', 'author', 'content']
+        fields = "__all__"
 
 class FollowSerializer(serializers.ModelSerializer):
     class Meta:
         model = Follow
-        fields = ['id', 'user_id', 'following_id']
+        fields = "__all__"

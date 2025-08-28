@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # GET requests for datas
+    # GET requests for data gathering
     path('users/get', views.get_users_data),
     path('users/get/<int:pk>/', views.GetUserDataById.as_view()),
     path('posts/get', views.get_posts_data),
@@ -18,6 +18,8 @@ urlpatterns = [
     path('follows/create/', views.create_follow),
 
     # DELETE requests for specific data
-    path('users/delete/<int:pk>/', views.RemoveUser.as_view()),
+    path('users/delete/<int:pk>/', views.delete_user),
     path('posts/delete/<int:pk>/', views.delete_post),
+    path('comments/delete/<int:pk>/', views.delete_comment),
+    path('follows/delete/<int:pk>/', views.delete_follow),
 ]
