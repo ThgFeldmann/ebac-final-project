@@ -39,7 +39,7 @@ const LoginContainerComponent = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
-        fetch(apiUsers)
+        fetch(apiUsers.Get)
             .then((response) => response.json())
             .then((users) => {
                 const user = users.find(
@@ -48,7 +48,7 @@ const LoginContainerComponent = () => {
                         &&
                         u.password === formData.password
                 )
-                if (user) { //? add extra checks
+                if (user) { //TODO add extra checks
                     console.log("Login successful!")
                     setLoggedUser(user)
                     setSuccess(true)
@@ -61,7 +61,7 @@ const LoginContainerComponent = () => {
         // SWITCH TO THIS FUNCTION WHEN BACK-END IS DONE
         // const token = 'byG9wZuXK0my1AhXHI88PEYAToR6DgKBwkDwa3X01IbL91VmCVgWavmiP64COuYz'
 
-        // fetch(apiUsers, {
+        // fetch(apiUsers.Create, {
         //     method: 'POST',
         //     headers: {
         //         'Authorization': `Bearer ${token}`,
@@ -83,8 +83,20 @@ const LoginContainerComponent = () => {
         navigate('/Home', {state: {user: loggedUser, followingList: followingData, followedList: followedData}})
     }
 
+    const test = () => {
+        setFormData({
+            email: "fulano@email.com",
+            password: "fulano"
+        })
+
+        fetch(apiUsers.Get)
+            .then((response) => response.json())
+            .then((response) => console.log(response))
+    }
+
     return (
         <LoginContainer className={success ? 'successContainer' : ''}>
+        <button onClick={e => test()}>test fetch</button>
             {(success === true) ?
                 <SuccessSection>
                     <h2>Bem vindo {loggedUser.username}!</h2>

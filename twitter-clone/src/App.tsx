@@ -10,14 +10,34 @@ import SignUp from "./pages/SignUp";
 import { GlobalStyle } from "./styles";
 
 // Saving the api URLs for simplicity
+
 // this is the URL for 'Users' section
-export const apiUsers = "https://echo-fake-api.vercel.app/users"
+export const apiUsers = {
+  Get: "http://127.0.0.1:8000/api/users/get",
+  Create: "http://127.0.0.1:8000/api/users/create/",
+  Delete: "http://127.0.0.1:8000/api/users/delete/"
+}
+
 // this is the URL for 'Posts' section
-export const apiPosts = "https://echo-fake-api.vercel.app/posts"
+export const apiPosts = {
+  Get: "http://127.0.0.1:8000/api/posts/get",
+  Create: "http://127.0.0.1:8000/api/posts/create",
+  Delete: "http://127.0.0.1:8000/api/posts/delete"
+}
+
 //this is the URL for 'Comment' section
-export const apiComments = "https://echo-fake-api.vercel.app/comments"
+export const apiComments = {
+  Get: "http://127.0.0.1:8000/api/comments/get",
+  Create: "http://127.0.0.1:8000/api/comments/create",
+  Delete: "http://127.0.0.1:8000/api/comments/delete/"
+}
+
 // this is the URL for 'Follows' section
-export const apiFollows = "https://echo-fake-api.vercel.app/follows"
+export const apiFollows = {
+  Get: "http://127.0.0.1:8000/api/follows/get",
+  Create: "http://127.0.0.1:8000/api/follows/create",
+  Delete: "http://127.0.0.1:8000/api/follows/delete/"
+}
 
 // Type of User
 export type User = {

@@ -33,7 +33,7 @@ const UserSectionComponent = ({ username, id }: Props) => {
         resetErrors()
         // checks if the 'newUsername' exists
         const checkUserName = () => {
-            fetch(apiUsers)
+            fetch(apiUsers.Get)
                 .then((response) => response.json())
                 .then((users) => {
                     const result: User = users.find(

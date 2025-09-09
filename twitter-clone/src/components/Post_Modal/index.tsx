@@ -44,7 +44,7 @@ const PostModal = (
 
     //* Needs a back-end to be fully tested
     const CreateFollow = (userId: number, followingId: number) => {
-        fetch(apiFollows, {
+        fetch(apiFollows.Create, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

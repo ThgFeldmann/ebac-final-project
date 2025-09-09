@@ -17,7 +17,7 @@ export const showMessage = (message: string) => {
 
 // Function that fetches every post from the api
 export const fetchPostList = async () => {
-    const response = await fetch(apiPosts).then((response) => response.json())
+    const response = await fetch(apiPosts.Get).then((response) => response.json())
     return response
 }
 
@@ -42,7 +42,7 @@ export const fetchUserFollowingData = async (user: User) => {
     let followingData
 
     const filteredArray = await
-        fetch(apiFollows)
+        fetch(apiFollows.Get)
             .then((response) => response.json())
             .then((response: Follow[]) => {
                 const result: Follow[] = response.filter((item: Follow) => item.userId === user.id)
@@ -59,7 +59,7 @@ export const fetchUserFollowedData = async (user: User) => {
     let followedData
 
     const filteredArray = await
-        fetch(apiFollows)
+        fetch(apiFollows.Get)
             .then((response) => response.json())
             .then((response: Follow[]) => {
                 const result: Follow[] = response.filter((item: Follow) => item.followingId === user.id)

@@ -33,12 +33,12 @@ const Home = () => {
 
     const FetchLists = async (user: User) => {
         // GET request for the Posts section of the api
-        fetch(apiPosts)
+        fetch(apiPosts.Get)
             .then((response) => response.json())
             .then((response) => setPostList(response))
 
         // GET request for the Comments section of the api
-        fetch(apiComments)
+        fetch(apiComments.Get)
             .then((response) => response.json())
             .then((response) => setCommentList(response))
 

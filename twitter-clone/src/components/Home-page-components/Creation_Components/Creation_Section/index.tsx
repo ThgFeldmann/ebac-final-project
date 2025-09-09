@@ -36,7 +36,7 @@ export const CreationSection = ({ user, followingList }: Props) => {
             setEmptyFormError(true)
         } else {
             console.log("starting post")
-            fetch(apiPosts, {
+            fetch(apiPosts.Create, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",

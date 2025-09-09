@@ -76,7 +76,7 @@ const SignUpContainer = () => {
                     setConfirmationError(true)
                 } else if (formData.password === confirmationValue) { //* IF PASSWORD IS CONFIRMED
                     setPasswordConfirmed(true)
-                    fetch(apiUsers) // fetches users from api
+                    fetch(apiUsers.Get) // fetches users from api
                         .then((response) => response.json())
                         .then((users) => {
                             const userExists = users.some( // checks if the form values matches an existing user
@@ -89,7 +89,7 @@ const SignUpContainer = () => {
                                 console.log("User already exists!")
                                 setExistingUserError(true)
                             } else { //* IF USER DOES NOT EXIST
-                                fetch(apiUsers, { // creating the new user
+                                fetch(apiUsers + "create/", { // creating the new user
                                     method: 'POST',
                                     headers: {
                                         "Content-Type": "application/json",

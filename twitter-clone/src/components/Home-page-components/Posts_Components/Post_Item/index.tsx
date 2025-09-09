@@ -53,7 +53,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
             //* fetch returns 500 but the comment is created in the api
             //* upon a reload, the new comments appear
             console.log("starting the post request...")
-            fetch(apiComments, {
+            fetch(apiComments.Create, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
