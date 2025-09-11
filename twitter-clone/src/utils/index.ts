@@ -45,7 +45,7 @@ export const fetchUserFollowingData = async (user: User) => {
         fetch(apiFollows.Get)
             .then((response) => response.json())
             .then((response: Follow[]) => {
-                const result: Follow[] = response.filter((item: Follow) => item.userId === user.id)
+                const result: Follow[] = response.filter((item: Follow) => item.user_id === user.id)
                 return result
             })
 
@@ -62,7 +62,7 @@ export const fetchUserFollowedData = async (user: User) => {
         fetch(apiFollows.Get)
             .then((response) => response.json())
             .then((response: Follow[]) => {
-                const result: Follow[] = response.filter((item: Follow) => item.followingId === user.id)
+                const result: Follow[] = response.filter((item: Follow) => item.following_id === user.id)
                 return result
             })
 
@@ -76,7 +76,7 @@ export const fetchUserFollowedData = async (user: User) => {
 export const fetchFollowingUsersData = (idArray: number[]) => {
     const result = Promise.all(
             idArray.map((id: number) => 
-                fetch(apiUsers + '/' + id)
+                fetch(apiUsers.Get + id)
                     .then((response) => response.json())
             )
         ).then((responses: User[]) => {

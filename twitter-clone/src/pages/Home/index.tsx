@@ -1,4 +1,5 @@
 //TODO fix the posts not appearing when going back from post creation
+//TODO fix the follow requests not returning the data
 
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"

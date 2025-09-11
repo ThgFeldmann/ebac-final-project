@@ -83,20 +83,8 @@ const LoginContainerComponent = () => {
         navigate('/Home', {state: {user: loggedUser, followingList: followingData, followedList: followedData}})
     }
 
-    const test = () => {
-        setFormData({
-            email: "fulano@email.com",
-            password: "fulano"
-        })
-
-        fetch(apiUsers.Get)
-            .then((response) => response.json())
-            .then((response) => console.log(response))
-    }
-
     return (
         <LoginContainer className={success ? 'successContainer' : ''}>
-        <button onClick={e => test()}>test fetch</button>
             {(success === true) ?
                 <SuccessSection>
                     <h2>Bem vindo {loggedUser.username}!</h2>

@@ -37,7 +37,7 @@ const SpecialPost = ({ post, followingList, userId }: Props) => {
                         state={modal} 
                         post_type="special"
                         userId={userId} 
-                        postAuthorId={post.authorId} 
+                        postAuthorId={post.author_id} 
                         postAuthor={post.author} 
                         followingList={followingList}
                     />

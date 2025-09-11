@@ -47,13 +47,13 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
 
     // function that fetches the posts based on the received array of ids
     const filterPosts = async (array: number[]) => {
-        // selects the top five comments and removes the rest
+        // selects the top six comments and removes the rest
         const splicedArray = array.splice(0, 6)
-        
+
         // executing a fetch promise with every id in 'splicedArray'
         const result = await Promise.all(
             splicedArray.map((id: number) => 
-                fetch(apiPosts + '/' + id)
+                fetch(apiPosts.Get + id)
                     .then((response) => response.json())
             )
         ).then((responses: Post[]) => { // returning the collected posts in a 'Post[]' type
@@ -65,12 +65,13 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
     }
 
     useEffect(() => {
-        const mapIds = comments.map((comment: Comment) => comment.postId)
+        const mapIds = comments.map((comment: Comment) => comment.post_id)
         const sortArray: number[] = SortComments(mapIds)
         filterPosts(sortArray)
         sleep(2)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [posts])
+
 
     return (
         <SpecialPostsContainer>

@@ -27,7 +27,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
     const [newComment, setNewComment] = useState<string>("")
 
     const filterComments = (commentArray: Comment[]) => {
-        const result = commentArray.filter((comment: Comment) => comment.postId === post.id)
+        const result = commentArray.filter((comment: Comment) => comment.post_id === post.id)
         setCommentList(result)
     }
 
@@ -111,7 +111,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
                         set_posts={set_posts}
                         posts={posts}
                         userId={user.id}
-                        postAuthorId={post.authorId}
+                        postAuthorId={post.author_id}
                         postAuthor={post.author}
                         followingList={followingList}
                     />

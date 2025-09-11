@@ -33,7 +33,7 @@ const PostModal = (
     // function that checks if the user is following the author
     // of this post
     const CheckFollow = (followingList: Follow[], id: number) => {
-        const exists: boolean = followingList.some((item: Follow) => item.followingId === id)
+        const exists: boolean = followingList.some((item: Follow) => item.following_id === id)
 
         if (!exists) {
             setFollowed(false)
@@ -61,9 +61,9 @@ const PostModal = (
         // filtering the follow cases where the 'userId' and the 'followingId'
         // exists together
         const followCases: Follow[] = followingList.filter((item: Follow) => 
-            item.userId === userId 
+            item.user_id === userId 
             && 
-            item.followingId === followingId
+            item.following_id === followingId
         )
 
         // mapping the 'id' from the previous cases

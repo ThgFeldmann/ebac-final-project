@@ -22,14 +22,14 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
 
     // Filtering the posts list for the logged user
     const filterLoggedUserPosts = (postArray: Post[]) => {
-        const result: Post[] = postArray.filter((post: Post) => post.authorId === user.id)
+        const result: Post[] = postArray.filter((post: Post) => post.author_id === user.id)
         return result
     }
 
     // Fetches the following posts from the api
     const fetchFollowingPosts = async (followArray: Follow[]) => {
         // maps the followingIds received from props
-        const idList: number[] = followArray.map((item: Follow) => item.followingId)
+        const idList: number[] = followArray.map((item: Follow) => item.following_id)
 
         const result = await Promise.all(
             idList.map((id: number) => {

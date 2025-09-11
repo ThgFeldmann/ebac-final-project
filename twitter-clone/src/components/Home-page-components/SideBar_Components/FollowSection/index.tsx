@@ -65,7 +65,7 @@ const FollowsSectionComponent = ({ followingList, followedList }: Props) => {
 
         // list of the id of the users you follow
         const idList: number[] = followingList.map(
-            (item: Follow) => item.followingId
+            (item: Follow) => item.following_id
         )
 
         // fetching users data from each id on the array

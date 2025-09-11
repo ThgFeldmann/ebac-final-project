@@ -13,29 +13,29 @@ import { GlobalStyle } from "./styles";
 
 // this is the URL for 'Users' section
 export const apiUsers = {
-  Get: "http://127.0.0.1:8000/api/users/get",
+  Get: "http://127.0.0.1:8000/api/users/get/",
   Create: "http://127.0.0.1:8000/api/users/create/",
   Delete: "http://127.0.0.1:8000/api/users/delete/"
 }
 
 // this is the URL for 'Posts' section
 export const apiPosts = {
-  Get: "http://127.0.0.1:8000/api/posts/get",
-  Create: "http://127.0.0.1:8000/api/posts/create",
-  Delete: "http://127.0.0.1:8000/api/posts/delete"
+  Get: "http://127.0.0.1:8000/api/posts/get/",
+  Create: "http://127.0.0.1:8000/api/posts/create/",
+  Delete: "http://127.0.0.1:8000/api/posts/delete/"
 }
 
 //this is the URL for 'Comment' section
 export const apiComments = {
-  Get: "http://127.0.0.1:8000/api/comments/get",
-  Create: "http://127.0.0.1:8000/api/comments/create",
+  Get: "http://127.0.0.1:8000/api/comments/get/",
+  Create: "http://127.0.0.1:8000/api/comments/create/",
   Delete: "http://127.0.0.1:8000/api/comments/delete/"
 }
 
 // this is the URL for 'Follows' section
 export const apiFollows = {
-  Get: "http://127.0.0.1:8000/api/follows/get",
-  Create: "http://127.0.0.1:8000/api/follows/create",
+  Get: "http://127.0.0.1:8000/api/follows/get/",
+  Create: "http://127.0.0.1:8000/api/follows/create/",
   Delete: "http://127.0.0.1:8000/api/follows/delete/"
 }
 
@@ -50,23 +50,23 @@ export type User = {
 // Type of Follows
 export type Follow = {
     id: number
-    userId: number
-    followingId: number,
+    user_id: number
+    following_id: number,
 }
 
 // Type of Post
 export type Post = {
   id: number,
   author: string,
-  authorId: number,
+  author_id: number,
   content?: string
 }
 
 // Type of Comment
 export type Comment = {
-  postId: number,
+  post_id: number,
   id: number,
-  authorId: number,
+  author_id: number,
   author: string,
   content: string
 }
