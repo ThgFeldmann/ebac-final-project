@@ -122,9 +122,9 @@ const LoginContainerComponent = () => {
                     </div>
                     <ButtonContainer>
                         <Button className="LoginButton" type="submit">Entrar</Button>
-                        <p>Não tem uma conta?</p>
+                        <p>Não é um usuário?</p>
                         <Button className="SignUpButton" type="button">
-                            <Link to='/SignUp'>Crie uma conta</Link>
+                            <Link to='/SignUp'>Seja um usuário</Link>
                         </Button>
                     </ButtonContainer>
                 </InputContainer>
