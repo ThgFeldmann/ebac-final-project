@@ -77,7 +77,7 @@ const Home = () => {
                 </>
                 :
                 <>
-                    <CreationSection user={user} followingList={FollowingList} />
+                    <CreationSection changeCreate={ChangeCreateStatus} user={user} followingList={FollowingList} />
                 </>
             }
             <SpecialPostsSection

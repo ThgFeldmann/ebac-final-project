@@ -71,6 +71,23 @@ export const PreviewArea = styled.div`
     }
 `
 
+export const GoBackButton = styled.button`
+    width: 125px;
+    height: 35px;
+    margin: 35px auto 0;
+    background-color: ${colors.cinza};
+    border: 2px solid ${colors.cinzaClaro};
+    border-radius: 16px;
+    color: ${colors.preto};
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+
+    &:hover {
+        border: 3px inset ${colors.preto};
+    }
+`
+
 // form
 export const CreationItemContainer = styled.form`
     max-width: 550px;

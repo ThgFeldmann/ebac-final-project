@@ -2,15 +2,16 @@ import { useState } from "react"
 
 import PostComponent from "../../Posts_Components/Post_Item"
 
-import { Button, ButtonContainer, CreationAuthorArea, CreationContentArea, CreationItemContainer, CreationSectionContainer, Headline, PreviewArea } from "./styles"
+import { Button, ButtonContainer, CreationAuthorArea, CreationContentArea, CreationItemContainer, CreationSectionContainer, GoBackButton, Headline, PreviewArea } from "./styles"
 import { apiPosts, Follow, User } from "../../../../App"
 
 type Props = {
+    changeCreate: any
     user: User
     followingList: Follow[]
 }
 
-export const CreationSection = ({ user, followingList }: Props) => {
+export const CreationSection = ({ changeCreate, user, followingList }: Props) => {
     const [emptyFormError, setEmptyFormError] = useState<boolean>(false)
 
     const [formData, setFormData] = useState({
@@ -44,11 +45,16 @@ export const CreationSection = ({ user, followingList }: Props) => {
                 body: JSON.stringify(formData)
             })
                 .then(() => {
-                    console.log("made a post")
+                    console.log("post successful")
                 })
         }
 
         setSuccess(true)
+    }
+
+    const handleGoBack = () => {
+        changeCreate(false)
+        window.location.reload()
     }
 
     const handleReset = () => {
@@ -118,6 +124,9 @@ export const CreationSection = ({ user, followingList }: Props) => {
                     <p>
                         Este post foi criado com sucesso, você pode voltar agora.
                     </p>
+                    <GoBackButton onClick={e => handleGoBack()}>
+                        Voltar
+                    </GoBackButton>
                 </PreviewArea>
             }
             

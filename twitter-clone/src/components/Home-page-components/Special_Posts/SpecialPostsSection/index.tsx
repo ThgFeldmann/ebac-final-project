@@ -17,6 +17,7 @@ type Props = {
 const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) => {
     // posts that will be rendered
     const [validPosts, setValidPosts] = useState<Post[]>([])
+    const [loading, setLoading] = useState<boolean>(true)
 
     // function that sorts the 'postId's (from the comments) based on frequency
     const SortComments = (array: number[]) => {
@@ -60,18 +61,24 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
             return responses
         })
 
-        // setting the result of the promise into the state
         setValidPosts(result)
     }
 
+    const handleLoading = () => {
+        sleep(4)
+        setLoading(false)
+    }
+
     useEffect(() => {
+        // mapping the the 'post_id's in every comment
         const mapIds = comments.map((comment: Comment) => comment.post_id)
+        // sorting the mapped id's
         const sortArray: number[] = SortComments(mapIds)
+        // filtering the posts based on the sorted array
         filterPosts(sortArray)
-        sleep(2)
+        handleLoading()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [posts])
-
 
     return (
         <SpecialPostsContainer>
@@ -81,7 +88,9 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
                 </h2>
             </div>
             {
-                (validPosts.length > 0) ? //* IF THERE ARE VALID POSTS
+                (loading === true) ? //* IF LOADING
+                <h4>Carregando...</h4>
+                : (loading === false) ? //* IF THERE ARE VALID POSTS
                 <SpecialPostsArea>
                     {
                         validPosts.map((post: Post) => {

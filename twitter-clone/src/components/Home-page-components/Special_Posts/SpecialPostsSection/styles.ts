@@ -18,6 +18,10 @@ export const SpecialPostsContainer = styled.div`
 
     background-color: ${colors.azulEscuro};
 
+    h4 {
+        color: ${colors.cinzaClaro};
+    }
+
     .headliner {
         width: 240px;
         height: 30px;

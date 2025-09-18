@@ -31,6 +31,10 @@ export const SpecialPostUserNameArea = styled.div`
         line-height: 30px;
         text-align: center;
         cursor: pointer;
+
+        &: hover {
+            text-decoration: underline;
+        }
     }
 `
 
