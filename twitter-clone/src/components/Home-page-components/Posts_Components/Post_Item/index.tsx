@@ -31,7 +31,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
         setCommentList(result)
     }
 
-    // function that toggles the overlay
+    // function that removes the overlay
     const toggleOverlay = () => {
         if (modal) {
             setModal(false)
@@ -43,15 +43,16 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
     // function that handles the comment creation
     const handleSubmit = () => {
         const commentBody = {
-            postId: post.id,
-            authorId: user.id,
+            author_id: user.id,
             author: user.username,
-            content: newComment
+            content: newComment,
+            post_id: post.id,
         }
 
         try {
-            //* fetch returns 500 but the comment is created in the api
-            //* upon a reload, the new comments appear
+            // creating the new comment
+            // upon a reload, the new comments appear
+            // the reload happens at the end of this function
             console.log("starting the post request...")
             fetch(apiComments.Create, {
                 method: "POST",
@@ -60,6 +61,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
                 },
                 body: JSON.stringify(commentBody)
             })
+
             sleep(3)
             toggleOverlay()
             sleep(2)
@@ -110,10 +112,12 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
                         post_type="normal"
                         set_posts={set_posts}
                         posts={posts}
-                        userId={user.id}
-                        postAuthorId={post.author_id}
-                        postAuthor={post.author}
+                        logged_user_id={user.id}
                         followingList={followingList}
+                        data={{
+                            user_id: post.author_id,
+                            username: post.author
+                        }}
                     />
                 </PostUserNameArea>
                 <PostContentArea>
@@ -132,7 +136,11 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
                     :
                         commentList.map((comment: Comment) => (
                             <div key={comment.id}>
-                                <CommentComponent comment={comment} />
+                                <CommentComponent 
+                                    comment={comment}
+                                    post={post} 
+                                    user={user} 
+                                    followingList={followingList}                                />
                             </div>
                         ))
                 }

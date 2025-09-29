@@ -15,7 +15,6 @@ type Props = {
     followingList: Follow[]
 }
 
-//TODO fix the user posts not appearing on top of the section
 const PostSection = ({ user, posts, comments, followingList, Create }: Props) => {
     const [loading, setLoading] = useState<boolean>(true)
     const [validPosts, setValidPosts] = useState<Post[]>([])
@@ -26,7 +25,7 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
         return result
     }
 
-    // Fetches the following posts from the api
+    // Fetches the 'following posts' from the api
     const fetchFollowingPosts = async (followArray: Follow[]) => {
         // maps the followingIds received from props
         const idList: number[] = followArray.map((item: Follow) => item.following_id)

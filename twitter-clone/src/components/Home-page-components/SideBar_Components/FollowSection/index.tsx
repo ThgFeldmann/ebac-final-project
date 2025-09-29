@@ -7,11 +7,12 @@ import { fetchFollowingUsersData } from "../../../../utils"
 import FollowModal from "../Follow_Modal"
 
 type Props = {
+    user: User
     followingList: Follow[]
     followedList: Follow[]
 }
 
-const FollowsSectionComponent = ({ followingList, followedList }: Props) => {
+const FollowsSectionComponent = ({ user, followingList, followedList }: Props) => {
     // Dictates if the page is loading
     const [loading, setLoading] = useState<boolean>(true)
     // List of informations on who the user follows
@@ -119,6 +120,7 @@ const FollowsSectionComponent = ({ followingList, followedList }: Props) => {
                 }
                 <FollowModal
                     state={modal}
+                    user={user}
                     follow_user={followedUser}
                 />
             </FollowList>

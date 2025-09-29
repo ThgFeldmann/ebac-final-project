@@ -36,10 +36,12 @@ const SpecialPost = ({ post, followingList, userId }: Props) => {
                     <PostModal
                         state={modal} 
                         post_type="special"
-                        userId={userId} 
-                        postAuthorId={post.author_id} 
-                        postAuthor={post.author} 
+                        logged_user_id={userId}
                         followingList={followingList}
+                        data={{
+                            user_id: post.author_id,
+                            username: post.author
+                        }}
                     />
                 </SpecialPostUserNameArea>
                 <SpecialPostContentArea>

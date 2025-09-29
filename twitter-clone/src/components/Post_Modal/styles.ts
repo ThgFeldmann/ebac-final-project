@@ -13,9 +13,7 @@ export const PostModalContainer = styled.div`
     }
 
     width: 180px;
-    min-height: 50px;
-    height: 90px;
-    max-height: 100px;
+    height: 115px;
     margin: 0 auto;
 
     text-align: center;
@@ -25,6 +23,10 @@ export const PostModalContainer = styled.div`
 
     background-color: ${colors.azulEscuro};
 
+    &.logged_user {
+        height: 70px;
+    }
+
     h3, h4 {
         color: ${colors.cinzaClaro};
     }
@@ -33,29 +35,41 @@ export const PostModalContainer = styled.div`
         border-bottom: 1px solid ${colors.cinza};
 
         h3 {
-            font-size: 16px;
+            font-size: 18px;
         }
     }
 
     h4 {
-        width: 140px;
-        max-height: 32px;
+        width: 110px;
+        max-height: 50px;
         margin: 4px auto;
-        font-size: 12px;
-        line-height: 16px;
+        font-size: 16px;
+        line-height: 18px;
+
+        &.logged_user {
+            margin-top: 7%;
+
+            font-size: 18px;
+        }
     }
 
-    button {
-        width: 150px;
-        max-height: 20px;
-        font-weight: bold;
-        border: 2px solid ${colors.preto};
-        border-radius: 6px;
-        background-color: ${colors.verde};
-        color: ${colors.preto};
+    div.buttonContainer {
+        button {
+            width: 150px;
+            max-height: 20px;
+            margin-top: 4px;
 
-        &: hover {
-            border: 4px inset ${colors.preto};
+            font-weight: bold;
+
+            border: 2px solid ${colors.preto};
+            border-radius: 6px;
+
+            background-color: ${colors.verde};
+            color: ${colors.preto};
+
+            &: hover {
+                border: 4px inset ${colors.preto};
+            }
         }
     }
 `

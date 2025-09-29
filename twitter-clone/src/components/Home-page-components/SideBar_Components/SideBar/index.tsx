@@ -36,7 +36,7 @@ const SideBar = ({user, followingList, followedList, Create, changeCreate}: Prop
                 :
                     <>
                         <UserSectionComponent username={user.username} id={user.id} />
-                        <FollowsSectionComponent followingList={followingList} followedList={followedList} />
+                        <FollowsSectionComponent user={user} followingList={followingList} followedList={followedList} />
                         <ButtonsContainer>
                             {
                                 (!Create) ?

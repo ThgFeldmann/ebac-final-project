@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { colors } from "../../../../styles";
 
 export const CommentUserArea = styled.div`
+    width: 100%;
+    height: 26px;
     border-top: 2px solid ${colors.cinzaClaro};
     border-bottom: 2px solid ${colors.cinzaClaro};
 
@@ -12,7 +14,13 @@ export const CommentUserArea = styled.div`
         text-align: center;
         font-size: 16px;
         font-weight: 400;
-        color: ${colors.cinzaClaro}
+        color: ${colors.cinzaClaro};
+
+        cursor: pointer;
+
+        &: hover {
+            text-decoration: underline;
+        }
     }
 `
 
