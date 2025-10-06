@@ -5,23 +5,34 @@ import { Follow, User } from "../../../../App"
 import UserSectionComponent from "../UserSection"
 import FollowsSectionComponent from "../FollowSection"
 
-import { ButtonsContainer, PostButton, SidebarArea, SideBarContainer } from "./styles"
+import { ButtonsContainer, FollowButton, PostButton, SidebarArea, SideBarContainer } from "./styles"
 
 type Props = {
     Create: boolean
     changeCreate: any
+    Search: boolean
+    changeSearch: any
     user: User
     followingList: Follow[]
     followedList: Follow[]
 }
 
-const SideBar = ({user, followingList, followedList, Create, changeCreate}: Props) => {
+const SideBar = ({user, followingList, followedList, Create, changeCreate, Search, changeSearch}: Props) => {
 
-    const handleClick = () => {
+    const CreatePostButton = () => {
         if (!Create) {
             changeCreate(true)
         } else {
             changeCreate(false)
+            window.location.reload()
+        }
+    }
+
+    const SearchUserButton = () => {
+        if (!Search) {
+            changeSearch(true)
+        } else {
+            changeSearch(false)
             window.location.reload()
         }
     }
@@ -40,14 +51,17 @@ const SideBar = ({user, followingList, followedList, Create, changeCreate}: Prop
                         <ButtonsContainer>
                             {
                                 (!Create) ?
-                                    <PostButton onClick={e => handleClick()}>
+                                    <PostButton onClick={e => CreatePostButton()}>
                                         Criar uma postagem
                                     </PostButton>
                                 :
-                                    <PostButton onClick={e => handleClick()} className={(!Create) ? "" : "goBack"}>
+                                    <PostButton onClick={e => CreatePostButton()} className={(!Create) ? "" : "goBack"}>
                                         Voltar
                                     </PostButton>
                             }
+                            <FollowButton onClick={e => SearchUserButton()}>
+                                Seguir usuário
+                            </FollowButton>
                             <Link to='/' reloadDocument >Sair</Link>
                         </ButtonsContainer>
                     </>

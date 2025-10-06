@@ -96,8 +96,8 @@ const UserSectionComponent = ({ username, id }: Props) => {
                     null
             }
             <UserSection>
-                <h3>{(!success) ? username : newUsername}</h3>
-                <p>- {id} -</p>
+                <h3>{username}</h3>
+                <p>— {id} —</p>
                 <button onClick={e => setEditUsername(true)}>Editar nome</button>
             </UserSection>
             { //* Edit username modal

@@ -28,8 +28,8 @@ export const ButtonsContainer = styled.div`
     a:last-child {
         width: 145px;
         height: 35px;
-        padding: 2px;
-        margin: 145px auto 0;
+        padding-top: 3px;
+        margin: 80px auto 0;
         background-color: ${colors.vermelho};
         border: 1px solid ${colors.cinzaClaro};
         border-radius: 16px;
@@ -64,4 +64,9 @@ export const PostButton = styled.button`
     &:hover {
         border: 4px inset ${colors.cinza};
     }
+`
+
+export const FollowButton = styled(PostButton)`
+    margin: 16px auto 0;
+    background-color: ${colors.verde};
 `

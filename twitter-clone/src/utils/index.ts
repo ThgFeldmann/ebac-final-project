@@ -9,32 +9,24 @@ export const sleep = (s: number) => {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-// Function that display's a custom message | both in console and in return
-export const showMessage = (message: string) => {
-    console.log(message)
-    return message
-}
-
 // Function that fetches every post from the api
 export const fetchPostList = async () => {
     const response = await fetch(apiPosts.Get).then((response) => response.json())
     return response
 }
 
-// Function that fetches an user based on the passed id and returns said user
-export const fetchUserData = async (id: number) => {
-    let user
+// Function that returns an user id, based on the received username
+// this function receives a 'username'(type: string) and returns an 'id'(type: number)
+export const fetchUserIdWithUsername = async (username: string) => {
+    const users = await fetch(apiUsers.Get)
+        .then((response) => response.json())
+        .then((response) => {
+            return response
+        })
 
-    const foundUser = await
-        fetch(apiUsers + '/' + id) // GET request for the 'following' user
-            .then((response) => response.json())
-            .then((user: User) => {
-                return user
-            })
+    const targetUser: User = users.filter((user: User) => user.username === username)
 
-    user = foundUser
-
-    return user
+    return targetUser.id
 }
 
 // Function that fetches who the logged user follows and returns an array
