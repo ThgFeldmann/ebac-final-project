@@ -1,6 +1,3 @@
-//TODO fix the posts not appearing when going back from post creation
-//TODO fix the follow requests not returning the data
-
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 
@@ -9,7 +6,7 @@ import { apiComments, apiPosts, Comment, Follow, Post, User } from "../../App"
 import SideBar from "../../components/Home-page-components/SideBar_Components/SideBar"
 import PostSection from "../../components/Home-page-components/Posts_Components/PostSection"
 import SpecialPostsSection from "../../components/Home-page-components/Special_Posts/SpecialPostsSection"
-import FollowUserModal from "../../components/Home-page-components/Follow-User_Modal"
+import FollowUserModal from "../../components/Home-page-components/Search_User_Modal"
 import CreationSection from "../../components/Home-page-components/Creation_Components/Creation_Section"
 import { fetchUserFollowedData, fetchUserFollowingData, sleep } from "../../utils"
 
@@ -100,7 +97,7 @@ const Home = () => {
                 {
                     (Search) ?
                     <>
-                        <FollowUserModal Search={Search} user={user} />
+                        <FollowUserModal Search={Search} user={user} changeSearch={ChangeSearchStatus} />
                     </>
                     :
                     null

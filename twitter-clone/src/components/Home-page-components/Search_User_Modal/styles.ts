@@ -4,7 +4,8 @@ import { colors } from "../../../styles"
 export const Modal = styled.div`
     display: none;
     width: 500px;
-    height: 150px;
+    min-height: 150px;
+    max-height: 220px;
 
     &.unhidden {
         display: block;
@@ -56,10 +57,12 @@ export const Modal = styled.div`
             height: 30px;
             font-size: 16px;
             font-weight: bold;
+            border-radius: 10px;
 
             border: 3px solid ${colors.preto};
 
             &.submit {
+                font-size: 14px;
                 background-color: ${colors.verdeClaro};
             }
 
@@ -69,6 +72,50 @@ export const Modal = styled.div`
 
             &:hover {
                 border: 4px inset ${colors.preto};
+            }
+        }
+    }
+
+    div.loggedUser {
+        height: 40px;
+        border: 1px solid ${colors.cinzaClaro};
+
+        h4 {
+            margin: auto;
+            font-size: 18px;
+            color: ${colors.cinzaClaro};
+        }
+    }
+
+    div.followSection {
+        display: flex;
+        width: 255px;
+        height: 70px;
+        padding: 12px;
+        text-align: center;
+        border: 1px solid ${colors.cinzaClaro};
+
+        h4 {
+            padding: 8px 2px;
+            margin-top: 1px;
+            font-size: 18px;
+            color: ${colors.cinzaClaro};
+
+            &.notFollowed {
+                width: 90px;
+                padding: 2px 0;
+                margin-bottom: 2px;
+            }
+        }
+
+        button {
+            height: 45px;
+            width: 95px;
+            background-color: ${colors.azul};
+            border-radius: 10px;
+
+            &.notFollowed {
+                font-size: 18px;
             }
         }
     }

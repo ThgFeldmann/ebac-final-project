@@ -81,9 +81,9 @@ const PostModal = (
         const followCase = followCases.map((item: Follow) => item.id)
 
         // grabbing the first 'id' from the previous array
-        const delete_id = followCase[0]
+        const id = followCase[0]
 
-        fetch(apiFollows.Delete + delete_id + "/", {
+        fetch(apiFollows.Delete + id + "/", {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const PostModal = (
         })
 
         if (post_type === "normal") {
-            RemovePosts(delete_id)
+            RemovePosts(id)
         }
 
         sleep(2)

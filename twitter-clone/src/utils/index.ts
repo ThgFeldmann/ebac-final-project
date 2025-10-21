@@ -24,9 +24,15 @@ export const fetchUserIdWithUsername = async (username: string) => {
             return response
         })
 
-    const targetUser: User = users.filter((user: User) => user.username === username)
+    const targetUser: User | undefined = (users.filter((user: User) => user.username === username))[0]
 
-    return targetUser.id
+    if (targetUser === undefined) {
+        console.log("Target user is undefined")
+        //* "TargetUser" is being returned as undefined at this point
+        return targetUser
+    } else {
+        return targetUser.id
+    }
 }
 
 // Function that fetches who the logged user follows and returns an array

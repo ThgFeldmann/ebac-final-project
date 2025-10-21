@@ -1,0 +1,142 @@
+//TODO create search function
+//TODO test search functions
+import { useEffect, useState } from "react"
+
+import { apiFollows, Follow, User } from "../../../App"
+
+import { Modal } from "./styles"
+import { fetchUserIdWithUsername } from "../../../utils"
+
+type Props = {
+    Search: boolean
+    user: User
+    changeSearch: any
+}
+
+const SearchUserModal = ({Search, user, changeSearch}: Props) => {
+    // Main states
+    const [searchUsername, setSearchUsername] = useState<string>("")
+    const [isLoggedUser, setIsLoggedUser] = useState<boolean>(false)
+    const [isFollowing, setIsFollowing] = useState<boolean>(false)
+    const [success, setSuccess] = useState<boolean>(false)
+
+    const CloseSearch = () => {
+        changeSearch(false)
+        setSuccess(false)
+        setIsFollowing(false)
+        setIsLoggedUser(false)
+        setSearchUsername("")
+    }
+
+    const CheckFollow = async (user: User, target_id: number) => {
+        const response = await fetch(apiFollows.Get)
+            .then((response) => response.json())
+            .then((response: Follow[]) => {return response})
+
+        const filteredArray = response.filter((item: Follow) => 
+            item.user_id === user.id
+            &&
+            item.following_id === target_id
+        )
+
+        if (filteredArray.length > 0) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    const handleSubmit = async () => {
+        setSuccess(false)
+        setIsFollowing(false)
+        setIsLoggedUser(false)
+
+        const id: number | undefined = await fetchUserIdWithUsername(searchUsername)
+
+        if (id === undefined) {
+            console.log("Id não existe", id)
+        } else {
+            if (id === user.id) {
+                console.log("Você!")
+                setIsLoggedUser(true)
+            } else {
+                const is_id_following_user: boolean = await CheckFollow(user, id)
+
+                if (is_id_following_user === true) {
+                    console.log("You are following this user")
+                    setIsFollowing(true)
+                } else {
+                    console.log("You are NOT following this user")
+                    setIsFollowing(false)
+                }
+
+                setSuccess(true)
+            }
+        }
+    }
+
+    return (
+        <>
+            <Modal className={(Search) ? "unhidden" : ""}>
+                <h2>Procure por um usuário:</h2>
+                <input
+                    min={2}
+                    type="text"
+                    required
+                    value={searchUsername}
+                    onChange={e => setSearchUsername(e.target.value)}
+                />
+                <div>
+                    <button 
+                        className="submit"
+                        onClick={e => handleSubmit()}
+                        type="submit"
+                    >
+                            Pesquisar
+                        </button>
+                    <button 
+                        className="exit"
+                        type="button"
+                        onClick={e => CloseSearch()}
+                    >
+                        Cancelar
+                    </button>
+                </div>
+                {/*TODO
+                    create a div for the follow/unfollow of the target id
+                */}
+                {
+                    (isLoggedUser) ?
+                        <div className="loggedUser">
+                            <h4>Você</h4>
+                        </div>
+                    :
+                        null
+                }
+
+                {
+                    (success) ?
+                        <div className={(success) ? "followSection" : ""}>
+
+                            {
+                                (isFollowing) ?
+                                    <>
+                                        <h4>Seguindo</h4>
+                                        <button>Parar de seguir</button>
+                                    </>
+                                :
+                                    <>
+                                        <h4 className="notFollowed">Não está seguindo</h4>
+                                        <button className="notFollowed">Seguir</button>
+                                    </>
+                            }
+                        </div>
+                    :
+                        null
+                }
+            </Modal>
+        </>
+    )
+}
+
+export default SearchUserModal

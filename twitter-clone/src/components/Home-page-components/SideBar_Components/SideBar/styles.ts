@@ -66,7 +66,8 @@ export const PostButton = styled.button`
     }
 `
 
-export const FollowButton = styled(PostButton)`
+export const SearchButton = styled(PostButton)`
+    padding: 0 12px;
     margin: 16px auto 0;
     background-color: ${colors.verde};
 `

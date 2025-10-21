@@ -5,7 +5,7 @@ import { Follow, User } from "../../../../App"
 import UserSectionComponent from "../UserSection"
 import FollowsSectionComponent from "../FollowSection"
 
-import { ButtonsContainer, FollowButton, PostButton, SidebarArea, SideBarContainer } from "./styles"
+import { ButtonsContainer, PostButton, SearchButton, SidebarArea, SideBarContainer } from "./styles"
 
 type Props = {
     Create: boolean
@@ -59,9 +59,9 @@ const SideBar = ({user, followingList, followedList, Create, changeCreate, Searc
                                         Voltar
                                     </PostButton>
                             }
-                            <FollowButton onClick={e => SearchUserButton()}>
-                                Seguir usuário
-                            </FollowButton>
+                            <SearchButton onClick={e => SearchUserButton()}>
+                                Procurar usuário
+                            </SearchButton>
                             <Link to='/' reloadDocument >Sair</Link>
                         </ButtonsContainer>
                     </>
