@@ -44,7 +44,10 @@ export const PostModalContainer = styled.div`
         max-height: 50px;
         margin: 4px auto;
         font-size: 16px;
-        line-height: 18px;
+
+        &.line_height {
+            line-height: 18px;
+        }
 
         &.logged_user {
             margin-top: 7%;

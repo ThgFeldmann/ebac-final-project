@@ -1,11 +1,9 @@
-//TODO create search function
-//TODO test search functions
 import { useEffect, useState } from "react"
 
 import { apiFollows, Follow, User } from "../../../App"
 
 import { Modal } from "./styles"
-import { fetchUserIdWithUsername } from "../../../utils"
+import { createFollow, deleteFollow, fetchUserIdWithUsername, filterFollow, sleep } from "../../../utils"
 
 type Props = {
     Search: boolean
@@ -18,6 +16,8 @@ const SearchUserModal = ({Search, user, changeSearch}: Props) => {
     const [searchUsername, setSearchUsername] = useState<string>("")
     const [isLoggedUser, setIsLoggedUser] = useState<boolean>(false)
     const [isFollowing, setIsFollowing] = useState<boolean>(false)
+    const [targetFollow, setTargetFollow] = useState<Follow>()
+    const [followingId, setFollowingId] = useState<number>()
     const [success, setSuccess] = useState<boolean>(false)
 
     const CloseSearch = () => {
@@ -33,13 +33,10 @@ const SearchUserModal = ({Search, user, changeSearch}: Props) => {
             .then((response) => response.json())
             .then((response: Follow[]) => {return response})
 
-        const filteredArray = response.filter((item: Follow) => 
-            item.user_id === user.id
-            &&
-            item.following_id === target_id
-        )
+        const filteredArray = filterFollow(response, user.id, target_id)
 
-        if (filteredArray.length > 0) {
+        if (filteredArray) {
+            setTargetFollow(filteredArray)
             return true
         } else {
             return false
@@ -56,13 +53,16 @@ const SearchUserModal = ({Search, user, changeSearch}: Props) => {
         if (id === undefined) {
             console.log("Id não existe", id)
         } else {
+
+            setFollowingId(id)
+
             if (id === user.id) {
                 console.log("Você!")
                 setIsLoggedUser(true)
             } else {
-                const is_id_following_user: boolean = await CheckFollow(user, id)
+                const is_user_following_id: boolean = await CheckFollow(user, id)
 
-                if (is_id_following_user === true) {
+                if (is_user_following_id === true) {
                     console.log("You are following this user")
                     setIsFollowing(true)
                 } else {
@@ -72,6 +72,36 @@ const SearchUserModal = ({Search, user, changeSearch}: Props) => {
 
                 setSuccess(true)
             }
+        }
+    }
+
+    const handleDeleteButton = (target_id: number | undefined) => {
+        try {
+            if (target_id !== undefined) {
+                if (target_id > 0) {
+                    deleteFollow(target_id)
+                } else {
+                    console.log("Erro, este 'id' não existe.")
+                }
+            }
+        } catch {
+            console.log("Não foi possível continuar com esta operação.")
+        }
+    }
+
+    const handleCreateButton = (user_id: number, following_id: number | undefined) => {
+        try {
+            if (following_id !== undefined) {
+                createFollow(user_id, following_id)
+
+                sleep(2)
+
+                window.location.reload()
+            } else {
+                console.log("Este 'id' não existe")
+            }
+        } catch {
+            console.log("Ocorreu algum erro inesperado.")
         }
     }
 
@@ -122,12 +152,12 @@ const SearchUserModal = ({Search, user, changeSearch}: Props) => {
                                 (isFollowing) ?
                                     <>
                                         <h4>Seguindo</h4>
-                                        <button>Parar de seguir</button>
+                                        <button onClick={e => handleDeleteButton(targetFollow?.id)}>Parar de seguir</button>
                                     </>
                                 :
                                     <>
                                         <h4 className="notFollowed">Não está seguindo</h4>
-                                        <button className="notFollowed">Seguir</button>
+                                        <button className="notFollowed" onClick={e => handleCreateButton(user.id, followingId)}>Seguir</button>
                                     </>
                             }
                         </div>

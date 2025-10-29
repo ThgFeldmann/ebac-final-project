@@ -1,4 +1,6 @@
+import { useState } from "react"
 import { apiFollows, Follow, User } from "../../../../App"
+import { deleteFollow, filterFollow } from "../../../../utils"
 
 import { FollowModalContainer } from "./styles"
 
@@ -9,69 +11,43 @@ type Props = {
 }
 
 const FollowModal = ({ state, user, follow_user }: Props) => {
+    const [followList, setFollowList] = useState<Follow[]>()
+
     // Runs a GET request for the follow cases and filters then based on user and follow_user.
     const getFollow = () => {
-        console.log("Starting the GET Follow request...")
-        /*
-            Running a GET request for all follow cases and filtering them 
-            based on user/follow_user data. 
 
-            The fetch return is stored in a const named 'result' that is returned from this function
-            'getFollow'.
-
-        */
-        const response = fetch(apiFollows.Get)
+        fetch(apiFollows.Get)
             .then((response) => response.json())
-            .then((response) => {
-                const result: Follow[] = response.filter((item: Follow) => 
-                    item.user_id === user.id
-                    &&
-                    item.following_id === follow_user.id
-                )
-
-                if (result.length > 0) {
-                    return result
-                }
-            })
-        return response
+            .then((response) => setFollowList(response))
     }
 
-    /*
-        Receives a 'target' param, and uses it's 'id' to perform a DELETE request on the
-        specific follow case.
-    */
-    const deleteFollow = (id: number) => {
-        console.log("Starting the DELETE request...")
-        fetch(apiFollows.Delete + id + "/", {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-
-        window.location.reload()
-    }
-
-    const handleClick = async () => {
-        console.log("handleClick function start")
+    const handleClick = () => {
 
         /*
             Function that handles the 'onClick' effect, executing the functions: 
-            'getFollow' and 'deleteFollow', in order.
+            'getFollow', 'filterFollow' and 'deleteFollow', in order.
         */
 
-        // executing 'getFollow' function and storing it's return in 'target' const
-        let target: any = await getFollow()
+        // executing 'getFollow' function
+        getFollow()
 
-        if (target !== undefined) {
-            target = target[0]
-            if (target.id > 0) { // checking if 'target' has any content
-                // executing the delete function with 'target.id' as its param
-                deleteFollow(target.id)
-            } else {
-                console.log("error in target: ", target)
+        if (followList === undefined) {
+            console.log("error, followList is undefined")
+        } else {
+            const target = filterFollow(followList, user.id, follow_user.id)
+            
+            if (target !== undefined) {
+                if (target.id > 0) { // checking if 'target' has any content
+                    // executing the delete function with 'target.id' as its param
+                    deleteFollow(target.id)
+                } else {
+                    console.log("error in target: ", target)
+                }
             }
         }
+        
+
+        
     }
 
     return (

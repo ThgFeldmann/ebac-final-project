@@ -83,3 +83,47 @@ export const fetchFollowingUsersData = (idArray: number[]) => {
 
     return result
 }
+
+// Function that filters the follow list for a specific follow where the 'user' follows 'target_user'
+// this function receives a 'follow list', the 'user_id' and the 'target_id'
+// this function returns a single follow case
+export const filterFollow = (followList: Follow[], user_id: number, target_id: number) => {
+    const filteredArray: Follow[] = followList.filter((item: Follow) => 
+        item.user_id === user_id
+        &&
+        item.following_id === target_id
+    )
+
+    const target_follow = filteredArray[0]
+    return target_follow
+}
+
+// Function that deletes a specific follow case
+// this function receives a number id
+export const deleteFollow = (target_id: number) => {
+    fetch(apiFollows.Delete + target_id + '/', {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+
+    sleep(2)
+
+    window.location.reload()
+}
+
+// Function that handles the creation of a follow case
+// this function receives a 'user_id' type number and an 'follow_user_id' type number
+export const createFollow = (user_id: number, following_id: number) => {
+    fetch(apiFollows.Create, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user_id,
+                following_id
+            })
+        })
+}

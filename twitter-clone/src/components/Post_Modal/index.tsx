@@ -1,10 +1,10 @@
-//TODO test the follow creation/delete
+//TODO fix post section not displying as 'followed'
 import { useEffect, useState } from "react"
 
-import { apiFollows, Follow, Post } from "../../App"
+import { Follow, Post } from "../../App"
 
 import { PostModalContainer } from "./styles"
-import { sleep } from "../../utils"
+import { createFollow, deleteFollow, filterFollow, sleep } from "../../utils"
 
 type Props = {
     state: boolean,
@@ -46,57 +46,25 @@ const PostModal = (
         }
     }
 
-    //* Needs a back-end to be fully tested
-    const CreateFollow = (user_id: number, following_id: number) => {
-        fetch(apiFollows.Create, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                user_id,
-                following_id
-            })
-        }).then((response) => response.json())
-        .then((response) => {
-            if (response) {
-                setIsFollowed(true)
-            }
-        })
-
-        window.location.reload()
-    }
-
     // function that handles the 'unfollow'
     const RemoveFollow = (user_id: number, following_id: number) => {
+        const target_follow = filterFollow(followingList, user_id, following_id)
 
-        // filtering the follow cases where the 'user_id' and the 'following_id' exists together
-        const followCases: Follow[] = followingList.filter((item: Follow) => 
-            item.user_id === user_id 
-            && 
-            item.following_id === following_id
-        )
+        if (target_follow === undefined) {
+            console.log("Error")
+        } else {
 
-        // mapping the 'id' from the previous cases
-        const followCase = followCases.map((item: Follow) => item.id)
+            deleteFollow(target_follow.id)
 
-        // grabbing the first 'id' from the previous array
-        const id = followCase[0]
-
-        fetch(apiFollows.Delete + id + "/", {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
+            if (post_type === "normal") {
+                RemovePosts(target_follow.id)
             }
-        })
-
-        if (post_type === "normal") {
-            RemovePosts(id)
+    
+            sleep(2)
+    
+            window.location.reload()
         }
 
-        sleep(2)
-
-        window.location.reload()
     }
 
     // function that updates the posts feed when you unfollow someone
@@ -118,7 +86,12 @@ const PostModal = (
         const followed: boolean = CheckFollow(followingList, data.user_id)
 
         if (!followed) {
-            CreateFollow(logged_user_id, data.user_id)
+            createFollow(logged_user_id, data.user_id)
+            setIsFollowed(true)
+            
+            sleep(2)
+
+            window.location.reload()
         } else {
             RemoveFollow(logged_user_id, data.user_id)
         }
@@ -161,13 +134,16 @@ const PostModal = (
                 {
                     (!isLoggedUser) ?
                         <>
-                            <h4>
-                                {(!isFollowed) ?
-                                    "Você não está seguindo este usuário."
+                            {
+                                (!isFollowed) ?
+                                    <h4 className="line_height">
+                                        Você não está seguindo este usuário
+                                    </h4>
                                 :
-                                    "Seguindo."
-                                }
-                            </h4>
+                                    <h4 className="line_height">
+                                        Você está seguindo este usuário
+                                    </h4>
+                            }
                             <div className="buttonContainer">
                                 <button onClick={e => HandleClick()}>
                                     {
