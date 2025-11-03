@@ -14,6 +14,12 @@ export const colors = {
     vermelho: '#9C0505',
 }
 
+// breakpoints for different devices
+export const breakpoints = {
+    desktop: '1024px',
+    tablet: '768px'
+}
+
 export const GlobalStyle = createGlobalStyle`
     * {
         margin: 0;

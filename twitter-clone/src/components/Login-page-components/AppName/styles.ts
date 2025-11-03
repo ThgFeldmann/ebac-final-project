@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../../styles";
+import { breakpoints, colors } from "../../../styles";
 
 export const AppName = styled.h1`
     margin-top: 30px;
@@ -10,4 +10,12 @@ export const AppName = styled.h1`
     font-family: Roboto;
     
     color: ${colors.branco};
+
+    @media (min-width: 769px) and (max-width: ${breakpoints.desktop}) {
+        font-size: 88px;
+    }
+
+    @media (max-width: ${breakpoints.tablet}) {
+        margin: 30px auto 0;
+    }
 `

@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { colors } from "../../../styles";
+import { breakpoints, colors } from "../../../styles";
 
 export const LoginContainer = styled.div`
-    max-width: 470px;
+    width: 470px;
     height: 340px;
     margin: 44px auto 0;
 
@@ -16,6 +16,15 @@ export const LoginContainer = styled.div`
 
     &.successContainer {
         height: 300px;
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        width: 700px;
+        height: 600px;
+    }
+
+    @media (max-width: 767px) {
+        width: 330px;
     }
 `
 
@@ -31,7 +40,7 @@ export const InputContainer = styled.form `
     }
 
     div {
-        max-width: 400px;
+        width: 400px;
         margin: 0 auto;
         position: static;
 
@@ -56,11 +65,42 @@ export const InputContainer = styled.form `
                 border: solid 2px #ff0000cc;
             }
         }
+        
+        @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+            width: 520px;
+
+            label {
+                width: auto;
+                font-size: 45px;
+            }
+
+            input {
+                height: 60px;
+                font-size: 40px;
+
+                p {
+                    font-size: 35px;
+                }
+            }
+        }
+
+        @media (max-width: 767px) {
+            width: 300px;
+
+            label {
+                width: auto;
+                font-size: 25px;
+            }
+
+            input {
+                font-size: 22px;
+            }
+        }
     }
 `
 
 export const ButtonContainer = styled.div`
-    height: 75px;
+    min-height: 75px;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -71,6 +111,22 @@ export const ButtonContainer = styled.div`
         font-size: 18px;
         font-weight: bold;
         color: ${colors.preto};
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        padding-top: 50px;
+
+        p {
+            font-size: 32px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        padding-top: 15px;
+    
+        p {
+            font-size: 20px;
+        }
     }
 `
 
@@ -97,6 +153,16 @@ export const Button = styled.button`
 
     &:hover {
         border: 3px inset ${colors.preto};
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        height: 60px;
+        font-size: 38px;
+    }
+
+    @media (max-width: 767px) {
+        height: 35px;
+        font-size: 24px;
     }
 `
 
@@ -128,6 +194,38 @@ export const SuccessSection = styled.div`
 
         &:hover {
             border: 3px inset ${colors.preto};
+        }
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        h2 {
+            font-size: 48px;
+        }
+
+        p {
+            font-size: 40px;
+        }
+
+        button {
+            width: 260px;
+            height: 50px;
+            font-size: 28px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        h2 {
+            font-size: 31px;
+        }
+
+        p {
+            font-size: 26px;
+        }
+
+        button {
+            width: 200px;
+            height: 40px;
+            font-size: 22px;
         }
     }
 `
