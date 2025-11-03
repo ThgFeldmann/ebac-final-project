@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { colors } from "../../../styles";
+import { breakpoints, colors } from "../../../styles";
 
 
 export const SignUpContainerComponent = styled.div`
     display: block;
-    max-width: 540px;
+    width: 540px;
     height: 500px;
     margin: 80px auto;
     text-align: center;
@@ -17,11 +17,21 @@ export const SignUpContainerComponent = styled.div`
     &.success {
         height: 400px;
     }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        margin-top: 140px;
+        width: 700px;
+        height: 700px;
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
 export const SignUpFormContainer = styled.div`
     display: block;
-    max-width: 380px;
+    width: 380px;
     height: 280px;
     margin: 17px auto;
     justify-content: center;
@@ -61,6 +71,27 @@ export const SignUpFormContainer = styled.div`
             }
         }
     }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        width: 500px;
+        height: 460px;
+
+        div {
+            label {
+                width: auto;
+                font-size: 38px;
+            }
+
+            input {
+                height: 60px;
+                font-size: 36px;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
 export const Button = styled.button`
@@ -98,6 +129,20 @@ export const Button = styled.button`
 
     &:hover {
         border: 4px inset ${colors.preto};
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        
+
+        &.goBack {
+            width: 270px;
+            height: 60px;
+            font-size: 28px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        
     }
 `
 
