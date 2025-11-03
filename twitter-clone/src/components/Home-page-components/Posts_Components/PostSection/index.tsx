@@ -30,21 +30,12 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
         // maps the followingIds received from props
         const idList: number[] = followArray.map((item: Follow) => item.following_id)
 
-        const result = await Promise.all(
-            idList.map((id: number) => {
-                const authorIdUrl = `https://echo-fake-api.vercel.app/posts?authorId=${id}`
-                const res = fetch(authorIdUrl)
-                    .then((response) => response.json())
-                    .then((response) => {
-                        return response
-                    })
-                return res
-            })
-        ).then((responses: Post[][]) => {
-                return responses
-            })
+        const postArray = idList.map((id: number) => {
+            const followingPosts: Post[] = posts.filter((item: Post) => item.author_id === id)
+            return followingPosts
+        })
 
-        const flattenedArray = result.flat()
+        const flattenedArray = postArray.flat()
 
         return flattenedArray
     }

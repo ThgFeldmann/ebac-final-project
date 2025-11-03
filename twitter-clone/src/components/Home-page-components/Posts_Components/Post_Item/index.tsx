@@ -51,9 +51,8 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
 
         try {
             // creating the new comment
-            // upon a reload, the new comments appear
+            // upon page reload, the new comments appear
             // the reload happens at the end of this function
-            console.log("starting the post request...")
             fetch(apiComments.Create, {
                 method: "POST",
                 headers: {
@@ -81,6 +80,13 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [post, comments])
 
+    const test = () => {
+        console.log("posts data: ", posts)
+        console.log("post data: ", post)
+        console.log("post author id: ", post.author_id)
+        setModal(true)
+    }
+
     return (
         <>
             <ModalOverlay onClick={e => toggleOverlay()} className={(modal || createComment) ? "overlay" : ""}/>
@@ -106,7 +112,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
                     </div>
                 </CreationContainer>
                 <PostUserNameArea>
-                    <h4 onClick={e => setModal(true)}>{post.author}</h4>
+                    <h4 onClick={e => test()}>{post.author}</h4>
                     <PostModal
                         state={modal}
                         post_type="normal"

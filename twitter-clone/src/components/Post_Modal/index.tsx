@@ -1,4 +1,6 @@
-//TODO fix post section not displying as 'followed'
+//TODO fix modal on post section
+//TODO handleClick is always running the create follow function
+//TODO the 'posts' list has old items in it, specificaly from user 'Siclano', that is causing errors
 import { useEffect, useState } from "react"
 
 import { Follow, Post } from "../../App"
@@ -83,6 +85,9 @@ const PostModal = (
 
     // function that handles the button click
     const HandleClick = () => {
+
+        console.log(data.user_id)
+
         const followed: boolean = CheckFollow(followingList, data.user_id)
 
         if (!followed) {
@@ -90,7 +95,7 @@ const PostModal = (
             setIsFollowed(true)
             
             sleep(2)
-
+            
             window.location.reload()
         } else {
             RemoveFollow(logged_user_id, data.user_id)
@@ -110,13 +115,17 @@ const PostModal = (
     }
 
     useEffect(() => {
-        CheckFollow(followingList, data.user_id)
+
         if (logged_user_id === data.user_id) {
             setIsLoggedUser(true)
         } else {
+            if (post_type === "normal") {
+                setIsFollowed(true)
+            }
+
             setIsLoggedUser(false)
         }
-    }, [state, logged_user_id, data.username, data.user_id, followingList])
+    }, [state, logged_user_id, data.username, data.user_id, followingList, post_type])
 
     return (
         <>

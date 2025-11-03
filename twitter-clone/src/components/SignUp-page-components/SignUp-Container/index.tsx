@@ -101,7 +101,7 @@ const SignUpContainer = () => {
             {success ?
                 <SuccessSection>
                     <h2>Bem vindo {formData.username}!</h2>
-                    <h4>Você criou um usuário com successo!</h4>
+                    <h4>Você se tornou um usuário com successo!</h4>
                     <p>
                         Ao clicar no botão abaixo você será direcionado para a página de login.
                     </p>
