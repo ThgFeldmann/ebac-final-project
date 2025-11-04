@@ -21,11 +21,20 @@ export const SignUpContainerComponent = styled.div`
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
         margin-top: 140px;
         width: 700px;
-        height: 700px;
+        height: 800px;
+
+        &.success {
+            height: 600px;
+        }
     }
 
     @media (max-width: 767px) {
-        
+        width: 340px;
+        height: 550px;
+
+        &.success {
+            height: 410px;
+        }
     }
 `
 
@@ -74,7 +83,11 @@ export const SignUpFormContainer = styled.div`
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
         width: 500px;
-        height: 460px;
+        height: 560px;
+
+        p.error {
+            font-size: 32px;
+        }
 
         div {
             label {
@@ -90,7 +103,23 @@ export const SignUpFormContainer = styled.div`
     }
 
     @media (max-width: 767px) {
-        
+        width: 90%;
+        height: 300px;
+
+        p.error {
+            font-size: 18px;
+        }
+
+        div {
+            label {
+                width: auto;
+                font-size: 22px;
+            }
+
+            input {
+                font-size: 20px;
+            }
+        }
     }
 `
 
@@ -132,7 +161,9 @@ export const Button = styled.button`
     }
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
-        
+        height: 60px;
+        font-size: 36px;
+        margin-top: 20px;
 
         &.goBack {
             width: 270px;
@@ -142,13 +173,22 @@ export const Button = styled.button`
     }
 
     @media (max-width: 767px) {
+
+        margin-top: 70px;
+        width: 85%;
+        height: 40px;
         
+        &.goBack {
+            width: 200px;
+            height: 40px;
+            font-size: 22px;
+        }
     }
 `
 
 export const SuccessSection = styled.div`
     position: relative;
-    max-width: 370px;
+    width: 370px;
     height: 300px;
     margin: 0 auto;
     padding: 16px;
@@ -187,6 +227,45 @@ export const SuccessSection = styled.div`
 
         &:hover {
             border: 3px inset ${colors.preto};
+        }
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        height: 530px;
+
+        h2 {
+            font-size: 50px;
+        }
+
+        h4 {
+            font-size: 40px;
+        }
+
+        p {
+            font-size: 30px;
+        }
+
+        button {
+            width: 80%;
+            height: 45px;
+            font-size: 25px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        width: 90%;
+        height: 380px;
+
+        h2 {
+            font-size: 32px;
+        }
+
+        h4 {
+            font-size: 28px;
+        }
+
+        p {
+            font-size: 24px;
         }
     }
 `
