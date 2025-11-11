@@ -1,9 +1,9 @@
 import { useState } from "react"
 
-import PostComponent from "../../Posts_Components/Post_Item"
+import PostComponent from "../Posts_Components/Post_Item"
 
 import { Button, ButtonContainer, CreationAuthorArea, CreationContentArea, CreationItemContainer, CreationSectionContainer, GoBackButton, Headline, PreviewArea } from "./styles"
-import { apiPosts, Follow, User } from "../../../../App"
+import { apiPosts, Follow, User } from "../../../App"
 
 type Props = {
     changeCreate: any
@@ -73,12 +73,8 @@ export const CreationSection = ({ changeCreate, user, followingList }: Props) =>
                     <h4>{user.username}</h4>
                 </CreationAuthorArea>
                 <CreationContentArea>
-                    {/* <label htmlFor="image">
-                        Caso queira postar uma foto, clique no botão abaixo para escolher uma.
-                    </label>
-                    <input id="image" name="image" type="file" accept="image/png, image/jpeg" /> */}
                     <label htmlFor="content">
-                        Caso queira escrever algo, escreva logo abaixo
+                        Escreva sua postagem aqui:
                     </label>
                     <textarea 
                         id="content" 

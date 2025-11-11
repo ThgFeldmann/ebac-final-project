@@ -1,9 +1,17 @@
 import styled from "styled-components"
-import { colors } from "../../../../styles"
+import { breakpoints, colors } from "../../../../styles"
 
 export const FollowSection = styled.div`
     height: 221px;
     border-bottom: 2px solid ${colors.cinzaClaro};
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        height: 283px;
+    }
+
+    @media (max-width: 767px) {
+        height: 241px;
+    }
 `
 
 export const FollowList = styled.ul`
@@ -46,6 +54,18 @@ export const FollowList = styled.ul`
     &:hover {
         overflow-y: auto;
     }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        margin-left: 10px;
+
+        li {
+            font-size: 34px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        margin-left: 3px;
+    }
 `
 
 export const FollowedUserItem = styled.div`
@@ -71,10 +91,42 @@ export const FollowedUserItem = styled.div`
             color: ${colors.verde};
         }
     }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        justify-content: flex-start;
+
+        button {
+            font-size: 50px;
+            padding-top: 1px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        justify-content: flex-start;
+
+        button {
+            font-size: 30px;
+            padding-top: 1px;
+        }
+    }
 `
 
 export const FollowInfo = styled.div`
     h3, h4 {
         color: ${colors.cinzaClaro};
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        h3 {
+            font-size: 30px;
+        }
+
+        h4 {
+            font-size: 28px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        
     }
 `

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../../../styles";
+import { breakpoints, colors } from "../../../../styles";
 
 export const PostSectionContainer = styled.div`
     width: 650px;
@@ -13,4 +13,12 @@ export const PostSectionContainer = styled.div`
 
     border-left: 2px solid ${colors.cinzaClaro};
     border-right: 2px solid ${colors.cinzaClaro};
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        width: 600px;
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `

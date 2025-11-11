@@ -7,7 +7,7 @@ import SideBar from "../../components/Home-page-components/SideBar_Components/Si
 import PostSection from "../../components/Home-page-components/Posts_Components/PostSection"
 import SpecialPostsSection from "../../components/Home-page-components/Special_Posts/SpecialPostsSection"
 import FollowUserModal from "../../components/Home-page-components/Search_User_Modal"
-import CreationSection from "../../components/Home-page-components/Creation_Components/Creation_Section"
+import CreationSection from "../../components/Home-page-components/Creation_Section"
 import { fetchUserFollowedData, fetchUserFollowingData, sleep } from "../../utils"
 
 import { HomeContainer, ModalOverlay } from "../../styles"

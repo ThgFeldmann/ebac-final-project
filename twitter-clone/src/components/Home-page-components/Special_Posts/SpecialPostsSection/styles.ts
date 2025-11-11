@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../../../styles";
+import { breakpoints, colors } from "../../../../styles";
 
 export const SpecialPostsContainer = styled.div`
     width: 300px;
@@ -36,6 +36,14 @@ export const SpecialPostsContainer = styled.div`
             font-weight: bold;
             color: ${colors.cinzaClaro};
         }
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        display: none;
+    }
+
+    @media (max-width: 767px) {
+        
     }
 `
 

@@ -1,11 +1,10 @@
 import styled from "styled-components"
-import { colors } from "../../../styles"
+import { breakpoints, colors } from "../../../styles"
 
 export const Modal = styled.div`
     display: none;
     width: 500px;
     min-height: 150px;
-    max-height: 220px;
 
     &.unhidden {
         display: block;
@@ -118,5 +117,42 @@ export const Modal = styled.div`
                 font-size: 18px;
             }
         }
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        width: 600px;
+        height: 230px;
+
+        top: 42%;
+
+        h2 {
+            width: 60%;
+            font-size: 30px;
+        }
+
+        input {
+            width: 60%;
+            height: 60px;
+            font-size: 28px;
+        }
+
+        div {
+            width: 60%;
+            margin-top: 40px;
+
+            button {
+                width: 120px;
+                height: 50px;
+                font-size: 24px;
+
+                &.submit {
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        
     }
 `

@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { colors } from "../../../../styles"
+import { breakpoints, colors } from "../../../styles"
 
 export const CreationSectionContainer = styled.div`
     width: 650px;
@@ -18,6 +18,14 @@ export const CreationSectionContainer = styled.div`
 export const Headline = styled.h1`
     margin: 0 auto;
     color: ${colors.cinzaClaro};
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        font-size: 40px;
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
 export const ButtonContainer = styled.div`
@@ -30,6 +38,15 @@ export const ButtonContainer = styled.div`
     border: 1px solid ${colors.cinzaClaro};
     border-radius: 4px;
     background-color: ${colors.azulClaro};
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        width: 70%;
+        height: 70px;
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
 export const Button = styled.button`
@@ -54,6 +71,17 @@ export const Button = styled.button`
             border-color: ${colors.preto};
         }
     }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        width: 35%;
+        height: 55px;
+
+        font-size: 25px;
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
 export const PreviewArea = styled.div`
@@ -68,6 +96,20 @@ export const PreviewArea = styled.div`
 
     p {
         color: ${colors.cinzaClaro};
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        h3 {
+            font-size: 32px;
+        }
+
+        p {
+            font-size: 28px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        
     }
 `
 
@@ -86,6 +128,16 @@ export const GoBackButton = styled.button`
     &:hover {
         border: 3px inset ${colors.preto};
     }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        width: 40%;
+        height: 60px;
+        font-size: 38px;
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
 // form
@@ -98,6 +150,15 @@ export const CreationItemContainer = styled.form`
     border-radius: 10px;
 
     background-color: ${colors.azulClaro};
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        width: 430px;
+        min-height: 260px;
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
 export const CreationAuthorArea = styled.div`
@@ -113,6 +174,19 @@ export const CreationAuthorArea = styled.div`
         line-height: 30px;
         text-align: center;
     }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        height: 40px;
+
+        h4 {
+            padding: 7px;
+            font-size: 36px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
 export const CreationContentArea = styled.div`
@@ -125,10 +199,6 @@ export const CreationContentArea = styled.div`
         color: ${colors.cinzaClaro};
     }
 
-    input {
-        margin: 6px 0;
-    }
-
     textarea {
         min-height: 100px;
         font-size: 16px;
@@ -136,5 +206,20 @@ export const CreationContentArea = styled.div`
         border: 3px dotted ${colors.cinzaClaro};
         background-color: ${colors.azulClaro};
         resize: none;
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        label {
+            font-size: 30px;
+        }
+
+        textarea {
+            font-size: 28px;
+            min-height: 155px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        
     }
 `

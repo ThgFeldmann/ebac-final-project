@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../../../styles";
+import { breakpoints, colors } from "../../../../styles";
 
 export const CommentUserArea = styled.div`
     width: 100%;
@@ -22,11 +22,31 @@ export const CommentUserArea = styled.div`
             text-decoration: underline;
         }
     }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        height: 40px;
+        
+        h4 {
+            font-size: 28px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
 export const CommentContentArea = styled.div`
     * {
         padding: 12px;
         color: ${colors.cinzaClaro};
+
+        @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+            font-size: 26px;
+        }
+
+        @media (max-width: 767px) {
+            
+        }
     }
 `

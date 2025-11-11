@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { colors } from "../../../../styles"
+import { breakpoints, colors } from "../../../../styles"
 
 export const FollowModalContainer = styled.div`
     position: absolute;
@@ -36,6 +36,38 @@ export const FollowModalContainer = styled.div`
 
             &: hover {
                 border: 4px inset ${colors.preto};
+            }
+        }
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        width: 170px;
+        height: 110px;
+        left: 7px;
+
+        h3 {
+            font-size: 28px;
+        }
+
+        div {
+            button {
+                width: 95%;
+                height: 65px;
+                font-size: 27px;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        width: 90px;
+        height: 70px;
+        left: 5px;
+
+        div {
+            button {
+                width: 95%;
+                height: 60%;
+                font-size: 14px;
             }
         }
     }

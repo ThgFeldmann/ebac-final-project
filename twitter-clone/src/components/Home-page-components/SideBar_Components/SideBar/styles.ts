@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../../../styles";
+import { breakpoints, colors } from "../../../../styles";
 
 export const SideBarContainer = styled.div`
     width: 260px;
@@ -8,6 +8,16 @@ export const SideBarContainer = styled.div`
     position: sticky;
     top: 35px;
     left: 89px;
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        width: 200px;
+        left: 25px;
+    }
+
+    @media (max-width: 767px) {
+        width: 110px;
+        left: 10px;
+    }
 `
 
 export const SidebarArea = styled.div`
@@ -19,6 +29,14 @@ export const SidebarArea = styled.div`
     border-radius: 10px;
 
     background-color: ${colors.azulEscuro};
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        height: 700px;
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
 export const ButtonsContainer = styled.div`
@@ -42,6 +60,21 @@ export const ButtonsContainer = styled.div`
             border: 3px inset ${colors.cinza};
         }
     }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        a:last-child {
+            width: 110px;
+            height: 50px;
+            font-size: 34px;
+            margin-top: 45px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        a:last-child {
+            width: 95px;
+        }
+    }
 `
 
 export const PostButton = styled.button`
@@ -63,6 +96,16 @@ export const PostButton = styled.button`
 
     &:hover {
         border: 4px inset ${colors.cinza};
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        width: 140px;
+        height: 65px;
+        font-size: 26px;
+    }
+
+    @media (max-width: 767px) {
+        width: 95px;
     }
 `
 

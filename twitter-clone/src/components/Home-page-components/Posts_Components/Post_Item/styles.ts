@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { colors } from "../../../../styles";
+import { breakpoints, colors } from "../../../../styles";
 
 export const PostContainer = styled.div`
-    min-width: 550px;
-    max-width: 550px;
+    width: 550px;
     min-height: 100px;
     margin: 0 auto 36px;
 
@@ -11,6 +10,14 @@ export const PostContainer = styled.div`
     border-radius: 10px;
 
     background-color: ${colors.azulClaro};
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        width: 95%;
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
 export const PostUserNameArea = styled.div`
@@ -31,12 +38,34 @@ export const PostUserNameArea = styled.div`
             text-decoration: underline;
         }
     }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        height: 40px;
+    
+        h4: first-child {
+            padding: 4px;
+            font-size: 38px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
 export const PostContentArea = styled.div`
     * {
         padding: 12px;
         color: ${colors.cinzaClaro};
+
+        @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+            font-size: 32px;
+            min-height: 140px;
+        }
+
+        @media (max-width: 767px) {
+            
+        }
     }
 `
 
@@ -61,6 +90,20 @@ export const PostActionArea = styled.div`
             border: 3px inset ${colors.cinza};
         }
     }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        height: 60px;
+
+        button {
+            width: 150px;
+            height: 45px;
+            font-size: 28px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
 export const CreationContainer = styled.div`
@@ -79,7 +122,6 @@ export const CreationContainer = styled.div`
 
     width: 400px;
     min-height: 110px;
-    max-height: 160px;
 
     border: 1px solid ${colors.cinzaClaro};
     background-color: ${colors.azulEscuro};
@@ -95,7 +137,6 @@ export const CreationContainer = styled.div`
     textarea {
         width: 320px;
         min-height: 50px;
-        max-height: 90px;
         margin: 0 auto;
         padding: 4px;
 
@@ -138,5 +179,36 @@ export const CreationContainer = styled.div`
                 background-color: ${colors.vermelho};
             }
         }
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        width: 700px;
+        height: 380px;
+
+        label {
+            font-size: 36px;
+        }
+
+        textarea {
+            width: 500px;
+            height: 200px;
+            font-size: 32px;
+            padding: 12px;
+        }
+
+        div {
+            margin-top: 30px;
+            width: 50%;
+
+            button {
+                width: 160px;
+                height: 60px;
+                font-size: 34px;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        
     }
 `
