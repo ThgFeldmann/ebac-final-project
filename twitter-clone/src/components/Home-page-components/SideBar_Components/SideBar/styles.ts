@@ -31,7 +31,7 @@ export const SidebarArea = styled.div`
     background-color: ${colors.azulEscuro};
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
-        height: 700px;
+        height: 70vh;
     }
 
     @media (max-width: 767px) {

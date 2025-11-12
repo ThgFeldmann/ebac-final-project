@@ -6,7 +6,7 @@ export const FollowSection = styled.div`
     border-bottom: 2px solid ${colors.cinzaClaro};
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
-        height: 283px;
+        height: 450px;
     }
 
     @media (max-width: 767px) {
@@ -17,8 +17,7 @@ export const FollowSection = styled.div`
 export const FollowList = styled.ul`
     position: relative;
     width: 192px;
-    max-height: 172px;
-    height: 100%;
+    height: 172px;
     margin-top: 8px;
     margin-left: 32px;
     
@@ -57,6 +56,7 @@ export const FollowList = styled.ul`
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
         margin-left: 10px;
+        height: 339px;
 
         li {
             font-size: 34px;

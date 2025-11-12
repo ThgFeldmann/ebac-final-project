@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import { colors } from "../../../../styles";
+import { breakpoints, colors } from "../../../../styles";
 
 export const SpecialPostContainer = styled.div`
-    width: 250px;
-    max-width: 250px;
+    width: 95%;
     min-height: 85px;
-    max-height: 120px;
     margin: 8px auto 0;
 
     border: 1px solid ${colors.cinzaClaro};
@@ -15,6 +13,15 @@ export const SpecialPostContainer = styled.div`
 
     * {
         color: ${colors.cinzaClaro};
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        min-height: 140px;
+        margin-top: 16px;
+    }
+
+    @media (max-width: 767px) {
+        
     }
 `
 
@@ -36,9 +43,21 @@ export const SpecialPostUserNameArea = styled.div`
             text-decoration: underline;
         }
     }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        height: 30px;
+
+        h4 {
+            font-size: 28px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        
+    }
 `
 
-// Rules for everything inside the content area
+// Styles for everything inside the content area
 export const SpecialPostContentArea = styled.div`
     * {
         width: 90%;
@@ -58,5 +77,15 @@ export const SpecialPostContentArea = styled.div`
         overflow: hidden;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: var(--max-lines);
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        p {
+            font-size: 24px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        
     }
 `

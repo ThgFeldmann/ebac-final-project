@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { colors } from "../../styles"
+import { breakpoints, colors } from "../../styles"
 
 export const PostModalContainer = styled.div`
     position: relative;
@@ -13,7 +13,7 @@ export const PostModalContainer = styled.div`
     }
 
     width: 180px;
-    height: 115px;
+    min-height: 115px;
     margin: 0 auto;
 
     text-align: center;
@@ -41,7 +41,6 @@ export const PostModalContainer = styled.div`
 
     h4 {
         width: 110px;
-        max-height: 50px;
         margin: 4px auto;
         font-size: 16px;
 
@@ -59,7 +58,7 @@ export const PostModalContainer = styled.div`
     div.buttonContainer {
         button {
             width: 150px;
-            max-height: 20px;
+            height: 20px;
             margin-top: 4px;
 
             font-weight: bold;
@@ -74,5 +73,38 @@ export const PostModalContainer = styled.div`
                 border: 4px inset ${colors.preto};
             }
         }
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        height: 240px;
+
+        div: first-child {
+            h3 {
+                font-size: 40px;
+            }
+        }
+
+        h4 {
+            font-size: 26px;
+
+            &.line_height {
+                line-height: 22px;
+            }
+
+            &.logged_user {
+                font-size: 28px;
+            }
+        }
+
+        div.buttonContainer {
+            button {
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        
     }
 `

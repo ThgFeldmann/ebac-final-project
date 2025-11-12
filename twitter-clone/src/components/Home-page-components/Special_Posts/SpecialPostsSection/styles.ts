@@ -23,7 +23,7 @@ export const SpecialPostsContainer = styled.div`
     }
 
     .headliner {
-        width: 240px;
+        width: 95%;
         height: 30px;
         margin: 8px auto;
         text-align: center;
@@ -39,7 +39,15 @@ export const SpecialPostsContainer = styled.div`
     }
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
-        display: none;
+        height: 70vh;
+
+        .headliner {
+            height: 80px;
+
+            h2 {
+                font-size: 28px;
+            }
+        }
     }
 
     @media (max-width: 767px) {
@@ -73,5 +81,13 @@ export const SpecialPostsArea = styled.div`
         background-color: ${colors.azulClaro};
         border: 2px solid rgba(218, 255, 251, 0.656);
         border-radius: 10px;
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        
+    }
+
+    @media (max-width: 767px) {
+        
     }
 `
