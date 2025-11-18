@@ -59,7 +59,7 @@ export const FollowModalContainer = styled.div`
     }
 
     @media (max-width: 767px) {
-        width: 90px;
+        width: 70px;
         height: 70px;
         left: 5px;
 

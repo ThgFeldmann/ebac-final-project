@@ -15,7 +15,7 @@ export const SideBarContainer = styled.div`
     }
 
     @media (max-width: 767px) {
-        width: 110px;
+        width: 90px;
         left: 10px;
     }
 `
@@ -35,7 +35,6 @@ export const SidebarArea = styled.div`
     }
 
     @media (max-width: 767px) {
-        
     }
 `
 
@@ -72,7 +71,8 @@ export const ButtonsContainer = styled.div`
 
     @media (max-width: 767px) {
         a:last-child {
-            width: 95px;
+            margin-top: 35px;
+            width: 80px;
         }
     }
 `
@@ -105,7 +105,8 @@ export const PostButton = styled.button`
     }
 
     @media (max-width: 767px) {
-        width: 95px;
+        width: 80px;
+        padding: 2px;
     }
 `
 
@@ -113,4 +114,8 @@ export const SearchButton = styled(PostButton)`
     padding: 0 12px;
     margin: 16px auto 0;
     background-color: ${colors.verde};
+
+    @media (max-width: 767px) {
+        padding: 8px;
+    }
 `

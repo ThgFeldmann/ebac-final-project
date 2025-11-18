@@ -10,7 +10,7 @@ export const FollowSection = styled.div`
     }
 
     @media (max-width: 767px) {
-        height: 241px;
+        height: 282px;
     }
 `
 
@@ -64,7 +64,12 @@ export const FollowList = styled.ul`
     }
 
     @media (max-width: 767px) {
+        width: 98px;
         margin-left: 3px;
+
+        li {
+            font-size: 15px;
+        }
     }
 `
 
@@ -105,8 +110,8 @@ export const FollowedUserItem = styled.div`
         justify-content: flex-start;
 
         button {
-            font-size: 30px;
-            padding-top: 1px;
+            font-size: 22px;
+            padding-top: 4px;
         }
     }
 `

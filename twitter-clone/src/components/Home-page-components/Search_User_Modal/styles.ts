@@ -153,6 +153,10 @@ export const Modal = styled.div`
     }
 
     @media (max-width: 767px) {
-        
+        width: 90vw;
+
+        div {
+            width: 60%;
+        }
     }
 `

@@ -19,6 +19,7 @@ export const PostSectionContainer = styled.div`
     }
 
     @media (max-width: 767px) {
-        
+        width: 600px;
+        margin-left: 30px;
     }
 `

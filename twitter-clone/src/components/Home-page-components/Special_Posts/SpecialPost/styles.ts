@@ -19,10 +19,6 @@ export const SpecialPostContainer = styled.div`
         min-height: 140px;
         margin-top: 16px;
     }
-
-    @media (max-width: 767px) {
-        
-    }
 `
 
 export const SpecialPostUserNameArea = styled.div`
@@ -86,6 +82,8 @@ export const SpecialPostContentArea = styled.div`
     }
 
     @media (max-width: 767px) {
-        
+        p {
+            font-size: 11px;
+        }
     }
 `

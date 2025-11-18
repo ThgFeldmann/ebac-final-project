@@ -105,6 +105,13 @@ export const PostModalContainer = styled.div`
     }
 
     @media (max-width: 767px) {
-        
+        width: 130px;
+        height: 125px;
+
+        div.buttonContainer {
+            button {
+                width: 90%;
+            }
+        }
     }
 `

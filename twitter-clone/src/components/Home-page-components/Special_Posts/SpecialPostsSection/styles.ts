@@ -51,7 +51,14 @@ export const SpecialPostsContainer = styled.div`
     }
 
     @media (max-width: 767px) {
-        
+        .headliner {
+            height: 60px;
+            
+            h2 {
+                font-size: 12px;
+                padding: 2px;
+            }
+        }
     }
 `
 

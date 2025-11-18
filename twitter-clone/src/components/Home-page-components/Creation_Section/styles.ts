@@ -13,6 +13,11 @@ export const CreationSectionContainer = styled.div`
 
     border-left: 2px solid ${colors.cinzaClaro};
     border-right: 2px solid ${colors.cinzaClaro};
+
+    @media (max-width: 767px) {
+        width: 145px;
+        margin-left: 30px;
+    }
 `
 
 export const Headline = styled.h1`
@@ -24,7 +29,8 @@ export const Headline = styled.h1`
     }
 
     @media (max-width: 767px) {
-        
+        text-align: center;
+        font-size: 25px;
     }
 `
 
@@ -45,7 +51,9 @@ export const ButtonContainer = styled.div`
     }
 
     @media (max-width: 767px) {
-        
+        width: 70%;
+        height: 15%;
+        flex-direction: column;
     }
 `
 
@@ -157,7 +165,7 @@ export const CreationItemContainer = styled.form`
     }
 
     @media (max-width: 767px) {
-        
+        width: 90%;
     }
 `
 
@@ -186,6 +194,9 @@ export const CreationAuthorArea = styled.div`
 
     @media (max-width: 767px) {
         
+        h4 {
+            font-size: 20px;
+        }
     }
 `
 
@@ -220,6 +231,12 @@ export const CreationContentArea = styled.div`
     }
 
     @media (max-width: 767px) {
-        
+        label {
+            font-size: 19px;
+        }
+
+        textarea {
+            font-size: 18px;
+        }
     }
 `

@@ -16,7 +16,7 @@ export const PostContainer = styled.div`
     }
 
     @media (max-width: 767px) {
-        
+        width: 135px;
     }
 `
 
@@ -209,6 +209,26 @@ export const CreationContainer = styled.div`
     }
 
     @media (max-width: 767px) {
-        
+        width: 60vw;
+
+        label {
+            font-size: 18px;
+            padding: 4px;
+        }
+
+        textarea {
+            width: 90%;
+            font-size: 18px;
+            min-height: 70px;
+        }
+
+        div {
+            width: 80%;
+
+            button {
+                height: 30px;
+                font-size: 15px;
+            }
+        }
     }
 `
