@@ -1,0 +1,136 @@
+import { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom";
+
+import { apiUsers, FormValues, User } from "../../../App";
+
+import { ButtonContainer, InputContainer, Button, LoginContainer, SuccessSection } from "./styles" 
+import { fetchUserFollowedData, fetchUserFollowingData } from "../../../utils";
+
+const LoginContainerComponent = () => {
+    // Dictates if login is a success or not
+    const [success, setSuccess] = useState<boolean>(false) 
+    // Holds informations typed on the form
+    const [formData, setFormData] = useState<FormValues>({email: '', password: ''}) 
+    // Stores user information in case login is a success
+    const [loggedUser, setLoggedUser] = useState<User>({
+        id: 0,
+        username: '',
+        password: '',
+        email: ''
+    })
+    // Dictates if there is an error inside the form
+    const [formError, setFormError] = useState<boolean>(false)
+
+    const navigate = useNavigate()
+
+    // resets the states on re-render
+    useEffect(() => {
+        setSuccess(false)
+        setFormData({email: '', password: ''})
+        setLoggedUser({
+            id: 0,
+            username: '',
+            password: '',
+            email: ''
+        })
+    }, [setSuccess, setFormData, setLoggedUser])
+
+    // executes all submit functions and checks if successful
+    const handleSubmit = (e: any) => {
+        e.preventDefault()
+
+        fetch(apiUsers.Get)
+            .then((response) => response.json())
+            .then((users) => {
+                const user = users.find(
+                    (u: User) =>
+                        u.email === formData.email 
+                        &&
+                        u.password === formData.password
+                )
+                if (user) { //TODO add extra checks
+                    console.log("Login successful!")
+                    setLoggedUser(user)
+                    setSuccess(true)
+                } else {
+                    console.log("Invalid Credentials")
+                    setFormError(true)
+                }
+            })
+
+        // SWITCH TO THIS FUNCTION WHEN BACK-END IS DONE
+        // const token = 'byG9wZuXK0my1AhXHI88PEYAToR6DgKBwkDwa3X01IbL91VmCVgWavmiP64COuYz'
+
+        // fetch(apiUsers.Create, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Authorization': `Bearer ${token}`,
+        //         'Content-Type': 'application/json',
+        //     }
+        // })
+        //     .then((response) => response.json())
+        //     .then(data => console.log(data))
+        //     .catch(error => console.error('Error: ', error))
+    }
+
+    //* handles the navigation
+    const handleNavigate = async (user: User) => {
+
+        // fetch follow datas
+        const followingData = await fetchUserFollowingData(user)
+        const followedData = await fetchUserFollowedData(user)
+
+        navigate('/Home', {state: {user: loggedUser, followingList: followingData, followedList: followedData}})
+    }
+
+    return (
+        <LoginContainer className={success ? 'successContainer' : ''}>
+            {(success === true) ?
+                <SuccessSection>
+                    <h2>Bem vindo {loggedUser.username}!</h2>
+                    <p>Para ir até a página principal, aperte o botão abaixo.</p>
+                    <button onClick={event => handleNavigate(loggedUser)}>Clique aqui!</button>
+                </SuccessSection>
+            :
+                <InputContainer onSubmit={e => handleSubmit(e)}>
+                    {formError ? <p className="error">Algum dos campos abaixo está com informações erradas.</p> : null}
+                    <div>
+                        <label htmlFor="email">Email do Usuário:</label>
+                        <input 
+                            min={2}
+                            required 
+                            id="email" 
+                            type="email" 
+                            value={formData.email}
+                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            autoComplete="off"
+                            className={formError ? 'error' : ''}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Senha do Usuário:</label>
+                        <input 
+                            min={8} 
+                            required 
+                            id="password" 
+                            type="password" 
+                            value={formData.password}
+                            onChange={(e) => setFormData({...formData, password: e.target.value})} 
+                            autoComplete="off"
+                            className={formError ? 'error' : ''}
+                        />
+                    </div>
+                    <ButtonContainer>
+                        <Button className="LoginButton" type="submit">Entrar</Button>
+                        <p>Não é um usuário?</p>
+                        <Button className="SignUpButton" type="button">
+                            <Link to='/SignUp'>Seja um usuário</Link>
+                        </Button>
+                    </ButtonContainer>
+                </InputContainer>
+            }
+        </LoginContainer>
+    )
+}
+
+export default LoginContainerComponent
