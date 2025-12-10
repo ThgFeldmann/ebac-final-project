@@ -13,30 +13,30 @@ import { GlobalStyle } from "./styles";
 
 // this is the URL for 'Users' section
 export const apiUsers = {
-  Get: "https://echo-back-end.vercel.app//api/users/get/",
-  Create: "https://echo-back-end.vercel.app//api/users/create/",
-  Delete: "https://echo-back-end.vercel.app//api/users/delete/"
+  Get: "https://echobackend-production.up.railway.app//api/users/get/",
+  Create: "https://echobackend-production.up.railway.app//api/users/create/",
+  Delete: "https://echobackend-production.up.railway.app//api/users/delete/"
 }
 
 // this is the URL for 'Posts' section
 export const apiPosts = {
-  Get: "https://echo-back-end.vercel.app//api/posts/get/",
-  Create: "https://echo-back-end.vercel.app//api/posts/create/",
-  Delete: "https://echo-back-end.vercel.app//api/posts/delete/"
+  Get: "https://echobackend-production.up.railway.app//api/posts/get/",
+  Create: "https://echobackend-production.up.railway.app//api/posts/create/",
+  Delete: "https://echobackend-production.up.railway.app//api/posts/delete/"
 }
 
 //this is the URL for 'Comment' section
 export const apiComments = {
-  Get: "https://echo-back-end.vercel.app//api/comments/get/",
-  Create: "https://echo-back-end.vercel.app//api/comments/create/",
-  Delete: "https://echo-back-end.vercel.app//api/comments/delete/"
+  Get: "https://echobackend-production.up.railway.app//api/comments/get/",
+  Create: "https://echobackend-production.up.railway.app//api/comments/create/",
+  Delete: "https://echobackend-production.up.railway.app//api/comments/delete/"
 }
 
 // this is the URL for 'Follows' section
 export const apiFollows = {
-  Get: "https://echo-back-end.vercel.app//api/follows/get/",
-  Create: "https://echo-back-end.vercel.app//api/follows/create/",
-  Delete: "https://echo-back-end.vercel.app//api/follows/delete/"
+  Get: "https://echobackend-production.up.railway.app//api/follows/get/",
+  Create: "https://echobackend-production.up.railway.app//api/follows/create/",
+  Delete: "https://echobackend-production.up.railway.app//api/follows/delete/"
 }
 
 // Type of User
