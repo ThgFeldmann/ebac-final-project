@@ -63,7 +63,9 @@ const Home = () => {
     useEffect(() => {
         FetchLists(user)
         sleep(2)
+    }, [user])
 
+    useEffect(() => {
         const firstRender = sessionStorage.getItem('firstRender')
 
         if (!firstRender) {
