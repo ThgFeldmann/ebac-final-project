@@ -62,6 +62,9 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
 
         //sleep(2)
 
+        console.log("array_2: ")
+        console.log(array_2)
+
         concatArrays(array_1, array_2)
     }
 
