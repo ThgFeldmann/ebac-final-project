@@ -60,7 +60,7 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
 
         const array_2 = await fetchFollowingPosts(followingList)
 
-        sleep(2)
+        //sleep(2)
 
         concatArrays(array_1, array_2)
     }
@@ -70,7 +70,7 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
 
         HandlePostsFunctions()
 
-        sleep(3)
+        //sleep(3)
 
         setLoading(false)
 
