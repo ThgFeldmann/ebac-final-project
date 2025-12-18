@@ -165,7 +165,7 @@ const SignUpContainer = () => {
                                 min={8}
                                 required 
                                 id="password-confirm" 
-                                type="text"
+                                type="password"
                                 value={confirmationValue}
                                 autoComplete="off"
                                 onChange={(e) => setConfirmationValue(e.target.value)}

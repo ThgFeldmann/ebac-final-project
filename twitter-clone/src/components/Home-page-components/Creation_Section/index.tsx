@@ -36,7 +36,7 @@ export const CreationSection = ({ changeCreate, user, followingList }: Props) =>
             console.log("Por favor complete os campos.")
             setEmptyFormError(true)
         } else {
-            console.log("starting post")
+            console.log("creating post")
             fetch(apiPosts.Create, {
                 method: 'POST',
                 headers: {

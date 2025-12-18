@@ -19,6 +19,8 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
     const [loading, setLoading] = useState<boolean>(true)
     const [validPosts, setValidPosts] = useState<Post[]>([])
 
+    const [postSeg, setPostSeg] = useState<Post[]>([])
+
     // Filtering the posts list for the logged user
     const filterLoggedUserPosts = (postArray: Post[]) => {
         const result: Post[] = postArray.filter((post: Post) => post.author_id === user.id)
@@ -36,6 +38,8 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
         })
 
         const flattenedArray = postArray.flat()
+
+        setPostSeg(flattenedArray)
 
         return flattenedArray
     }
@@ -73,8 +77,14 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, posts, Create])
 
+    const test = () => {
+        console.log("Post seguidos: ")
+        console.log(postSeg)
+    }
+
     return (
         <PostSectionContainer>
+            <button onClick={e => test()}>test</button>
             <div>
                 {(loading) ?
                     <div>
