@@ -69,6 +69,8 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
         setLoading(true)
 
         HandlePostsFunctions()
+        console.log("Following list: ")
+        console.log(followingList)
 
         //sleep(3)
 
