@@ -78,6 +78,9 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
     }, [user, posts, Create])
 
     const test = () => {
+        console.log("Following list: ")
+        console.log(followingList)
+
         console.log("Post seguidos: ")
         console.log(postSeg)
     }
