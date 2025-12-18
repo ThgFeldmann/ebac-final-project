@@ -27,6 +27,8 @@ const Home = () => {
     // const followingList: Follow[] = location.state.followingList
     // const followedList: Follow[] = location.state.followedList
 
+    const firstRender = sessionStorage.getItem('firstRender')
+
     const ChangeCreateStatus = (boolean: boolean) => {
         setCreate(boolean)
     }
@@ -63,7 +65,14 @@ const Home = () => {
     useEffect(() => {
         FetchLists(user)
         sleep(2)
-    }, [user])
+
+        if (!firstRender) {
+            sessionStorage.setItem('firstRender', 'true')
+            window.location.reload()
+        }
+
+        return sessionStorage.removeItem('firstRender')
+    })
 
     return (
         <>
