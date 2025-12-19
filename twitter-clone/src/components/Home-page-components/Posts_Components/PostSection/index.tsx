@@ -18,8 +18,6 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
     const [loading, setLoading] = useState<boolean>(true)
     const [validPosts, setValidPosts] = useState<Post[]>([])
 
-    const [postSeg, setPostSeg] = useState<Post[]>([])
-
     // Filtering the posts list for the logged user
     const filterLoggedUserPosts = (postArray: Post[]) => {
         const result: Post[] = postArray.filter((post: Post) => post.author_id === user.id)
@@ -37,8 +35,6 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
         })
 
         const flattenedArray = postArray.flat()
-
-        setPostSeg(flattenedArray)
 
         return flattenedArray
     }
@@ -59,14 +55,10 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
 
         const array_2 = await fetchFollowingPosts(followingList)
 
-        if (array_2.length <= 0) {
-            window.location.reload()
-        } else {
-            console.log("array_2: ")
-            console.log(array_2)
+        console.log("array_2: ")
+        console.log(array_2)
 
-            concatArrays(array_1, array_2)
-        }
+        concatArrays(array_1, array_2)
     }
 
     useEffect(() => {
@@ -84,9 +76,6 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
     const test = () => {
         console.log("Following list: ")
         console.log(followingList)
-
-        console.log("Post seguidos: ")
-        console.log(postSeg)
     }
 
     return (
