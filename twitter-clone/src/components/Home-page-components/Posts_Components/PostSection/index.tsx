@@ -79,7 +79,7 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
         setLoading(false)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user, posts, Create])
+    }, [])
 
     const test = () => {
         console.log("Following list: ")
