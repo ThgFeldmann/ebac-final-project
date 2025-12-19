@@ -5,7 +5,6 @@ import { Comment, Follow, Post, User } from "../../../../App"
 import PostComponent from "../Post_Item"
 
 import { PostSectionContainer } from "./styles"
-import { sleep } from "../../../../utils"
 
 type Props = {
     Create: boolean,
@@ -60,12 +59,14 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
 
         const array_2 = await fetchFollowingPosts(followingList)
 
-        //sleep(2)
+        if (array_2.length <= 0) {
+            window.location.reload()
+        } else {
+            console.log("array_2: ")
+            console.log(array_2)
 
-        console.log("array_2: ")
-        console.log(array_2)
-
-        concatArrays(array_1, array_2)
+            concatArrays(array_1, array_2)
+        }
     }
 
     useEffect(() => {
@@ -74,8 +75,6 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
         HandlePostsFunctions()
         console.log("Following list: ")
         console.log(followingList)
-
-        //sleep(3)
 
         setLoading(false)
 

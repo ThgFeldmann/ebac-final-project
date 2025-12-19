@@ -8,7 +8,7 @@ import PostSection from "../../components/Home-page-components/Posts_Components/
 import SpecialPostsSection from "../../components/Home-page-components/Special_Posts/SpecialPostsSection"
 import FollowUserModal from "../../components/Home-page-components/Search_User_Modal"
 import CreationSection from "../../components/Home-page-components/Creation_Section"
-import { fetchUserFollowedData, fetchUserFollowingData, sleep } from "../../utils"
+import { sleep } from "../../utils"
 
 import { HomeContainer, ModalOverlay } from "../../styles"
 
@@ -18,14 +18,15 @@ const Home = () => {
 
     const [PostList, setPostList] = useState<Post[]>([])
     const [CommentList, setCommentList] = useState<Comment[]>([])
-    const [FollowingList, setFollowingList] = useState<Follow[]>([])
-    const [FollowedList, setFollowedList] = useState<Follow[]>([])
+
+    // const [FollowingList, setFollowingList] = useState<Follow[]>([])
+    // const [FollowedList, setFollowedList] = useState<Follow[]>([])
 
     const location = useLocation()
 
     const user: User = location.state.user
-    // const followingList: Follow[] = location.state.followingList
-    // const followedList: Follow[] = location.state.followedList
+    const followingList: Follow[] = location.state.followingList
+    const followedList: Follow[] = location.state.followedList
 
     const ChangeCreateStatus = (boolean: boolean) => {
         setCreate(boolean)
@@ -46,11 +47,11 @@ const Home = () => {
             .then((response) => response.json())
             .then((response) => setCommentList(response))
 
-        const followingData = await fetchUserFollowingData(user)
-        setFollowingList(followingData)
+        // const followingData = await fetchUserFollowingData(user)
+        // setFollowingList(followingData)
 
-        const followedData = await fetchUserFollowedData(user)
-        setFollowedList(followedData)
+        // const followedData = await fetchUserFollowedData(user)
+        // setFollowedList(followedData)
     }
 
     // function that removes the overlay
@@ -71,8 +72,8 @@ const Home = () => {
             <HomeContainer>
                 <SideBar 
                     user={user}
-                    followingList={FollowingList} 
-                    followedList={FollowedList} 
+                    followingList={followingList} 
+                    followedList={followedList} 
                     Create={Create} 
                     changeCreate={ChangeCreateStatus} 
                     Search={Search}
@@ -85,13 +86,13 @@ const Home = () => {
                             Create={Create}
                             user={user} 
                             posts={PostList} 
-                            followingList={FollowingList} 
+                            followingList={followingList} 
                             comments={CommentList}
                         />
                     </>
                     :
                     <>
-                        <CreationSection changeCreate={ChangeCreateStatus} user={user} followingList={FollowingList} />
+                        <CreationSection changeCreate={ChangeCreateStatus} user={user} followingList={followingList} />
                     </>
                 }
                 {
@@ -105,7 +106,7 @@ const Home = () => {
                 <SpecialPostsSection
                     posts={PostList}
                     comments={CommentList}
-                    followingList={FollowingList}
+                    followingList={followingList}
                     userId={user.id}
                 />
             </HomeContainer>
