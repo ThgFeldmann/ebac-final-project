@@ -65,17 +65,6 @@ const Home = () => {
         sleep(2)
     }, [user])
 
-    useEffect(() => {
-        const firstRender = sessionStorage.getItem('firstRender')
-
-        if (!firstRender) {
-            sessionStorage.setItem('firstRender', 'true')
-            window.location.reload()
-        }
-
-        return sessionStorage.removeItem('firstRender')
-    })
-
     return (
         <>
             <ModalOverlay onClick={e => removeOverlay()} className={(Search) ? "overlay" : ""} />
