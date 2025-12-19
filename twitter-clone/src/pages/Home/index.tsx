@@ -64,7 +64,7 @@ const Home = () => {
     useEffect(() => {
         FetchLists(user)
         sleep(2)
-    })
+    }, [user])
 
     return (
         <>
