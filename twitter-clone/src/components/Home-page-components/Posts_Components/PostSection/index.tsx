@@ -55,6 +55,8 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
 
         const array_2 = await fetchFollowingPosts(followingList)
 
+        //sleep(2)
+
         console.log("array_2: ")
         console.log(array_2)
 

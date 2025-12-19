@@ -8,7 +8,7 @@ import PostSection from "../../components/Home-page-components/Posts_Components/
 import SpecialPostsSection from "../../components/Home-page-components/Special_Posts/SpecialPostsSection"
 import FollowUserModal from "../../components/Home-page-components/Search_User_Modal"
 import CreationSection from "../../components/Home-page-components/Creation_Section"
-import { sleep } from "../../utils"
+import { fetchUserFollowedData, fetchUserFollowingData, sleep } from "../../utils"
 
 import { HomeContainer, ModalOverlay } from "../../styles"
 
@@ -19,14 +19,14 @@ const Home = () => {
     const [PostList, setPostList] = useState<Post[]>([])
     const [CommentList, setCommentList] = useState<Comment[]>([])
 
-    // const [FollowingList, setFollowingList] = useState<Follow[]>([])
-    // const [FollowedList, setFollowedList] = useState<Follow[]>([])
+    const [FollowingList, setFollowingList] = useState<Follow[]>([])
+    const [FollowedList, setFollowedList] = useState<Follow[]>([])
 
     const location = useLocation()
 
     const user: User = location.state.user
-    const followingList: Follow[] = location.state.followingList
-    const followedList: Follow[] = location.state.followedList
+    // const followingList: Follow[] = location.state.followingList
+    // const followedList: Follow[] = location.state.followedList
 
     const ChangeCreateStatus = (boolean: boolean) => {
         setCreate(boolean)
@@ -47,11 +47,11 @@ const Home = () => {
             .then((response) => response.json())
             .then((response) => setCommentList(response))
 
-        // const followingData = await fetchUserFollowingData(user)
-        // setFollowingList(followingData)
+        const followingData = await fetchUserFollowingData(user)
+        setFollowingList(followingData)
 
-        // const followedData = await fetchUserFollowedData(user)
-        // setFollowedList(followedData)
+        const followedData = await fetchUserFollowedData(user)
+        setFollowedList(followedData)
     }
 
     // function that removes the overlay
@@ -72,8 +72,8 @@ const Home = () => {
             <HomeContainer>
                 <SideBar 
                     user={user}
-                    followingList={followingList} 
-                    followedList={followedList} 
+                    followingList={FollowingList} 
+                    followedList={FollowedList} 
                     Create={Create} 
                     changeCreate={ChangeCreateStatus} 
                     Search={Search}
@@ -86,13 +86,13 @@ const Home = () => {
                             Create={Create}
                             user={user} 
                             posts={PostList} 
-                            followingList={followingList} 
+                            followingList={FollowingList} 
                             comments={CommentList}
                         />
                     </>
                     :
                     <>
-                        <CreationSection changeCreate={ChangeCreateStatus} user={user} followingList={followingList} />
+                        <CreationSection changeCreate={ChangeCreateStatus} user={user} followingList={FollowingList} />
                     </>
                 }
                 {
@@ -106,7 +106,7 @@ const Home = () => {
                 <SpecialPostsSection
                     posts={PostList}
                     comments={CommentList}
-                    followingList={followingList}
+                    followingList={FollowingList}
                     userId={user.id}
                 />
             </HomeContainer>
@@ -115,3 +115,12 @@ const Home = () => {
 }
 
 export default Home
+
+function setFollowingList(followingData: Follow[]) {
+    throw new Error("Function not implemented.")
+}
+
+
+function setFollowedList(followedData: Follow[]) {
+    throw new Error("Function not implemented.")
+}
