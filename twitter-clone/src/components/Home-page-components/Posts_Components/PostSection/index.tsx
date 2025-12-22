@@ -65,13 +65,24 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
     }
 
     useEffect(() => {
+        // set 'Loading' to 'True'
         setLoading(true)
 
-        HandlePostsFunctions()
-        console.log("Following list: ")
-        console.log(followingList)
+        // initiates the timeout
+        setTimeout(() => {
+            
+            // executes the posts functions
+            HandlePostsFunctions()
 
-        setLoading(false)
+            // logs for test purposes
+            //* will be removed later
+            console.log("Following list: ")
+            console.log(followingList)
+    
+            // set 'Loading' to 'False' at the end of the timeout
+            setLoading(false)
+        }, 2000)
+
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, posts, Create])

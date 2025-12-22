@@ -4,8 +4,10 @@ import { apiFollows, apiPosts, apiUsers, Follow, User } from "../App"
 
 // Function that executes a timeout after a set number of seconds
 export const sleep = (s: number) => {
-    // converting the seconds to milliseconds
+    // converting the parameter to milliseconds
     const ms = s * 1000
+
+    // passing the 'ms' variable to the 'timeout' function
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
