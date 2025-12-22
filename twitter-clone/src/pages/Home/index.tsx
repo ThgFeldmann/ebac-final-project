@@ -120,12 +120,3 @@ const Home = () => {
 }
 
 export default Home
-
-function setFollowingList(followingData: Follow[]) {
-    throw new Error("Function not implemented.")
-}
-
-
-function setFollowedList(followedData: Follow[]) {
-    throw new Error("Function not implemented.")
-}
