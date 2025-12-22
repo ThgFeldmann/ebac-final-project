@@ -85,7 +85,7 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
             setLoading(false)
         
         // Timeout milliseconds
-        }, 2000)
+        }, 1000)
 
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
