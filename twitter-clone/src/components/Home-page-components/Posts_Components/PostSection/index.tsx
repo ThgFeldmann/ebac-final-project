@@ -27,16 +27,27 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
 
     // Fetches the 'following posts' from the api
     const fetchFollowingPosts = async (followArray: Follow[]) => {
+        console.log("Function start...")
+        console.log("Param, FollowArray: ", followArray)
+
+        console.log("Mapping follow array for the 'authorId' and creating the 'idList' const")
         // maps the followingIds received from props
         const idList: number[] = followArray.map((item: Follow) => item.following_id)
 
+        console.log("idList: ", idList)
+
+        console.log("Mapping the idList")
         const postArray = idList.map((id: number) => {
+            console.log("Filtering posts based on follow")
             const followingPosts: Post[] = posts.filter((item: Post) => item.author_id === id)
             return followingPosts
         })
 
+        console.log("Flattening the follow post array")
         const flattenedArray = postArray.flat()
 
+        console.log("Returning the follow post array")
+        console.log(flattenedArray)
         return flattenedArray
     }
 
@@ -74,13 +85,10 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
             // executes the posts functions
             HandlePostsFunctions()
 
-            // logs for test purposes
-            //* will be removed later
-            console.log("Following list: ")
-            console.log(followingList)
-    
             // set 'Loading' to 'False' at the end of the timeout
             setLoading(false)
+        
+        // Timeout milliseconds
         }, 2000)
 
 
