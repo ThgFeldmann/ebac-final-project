@@ -5,7 +5,6 @@ import { Comment, Follow, Post, User } from "../../../../App"
 import PostComponent from "../Post_Item"
 
 import { PostSectionContainer } from "./styles"
-import { sleep } from "../../../../utils"
 
 type Props = {
     Create: boolean,
@@ -66,11 +65,6 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
         const array_1 = filterLoggedUserPosts(posts)
 
         const array_2 = await fetchFollowingPosts(followingList)
-
-        sleep(2)
-
-        console.log("array_2: ")
-        console.log(array_2)
 
         concatArrays(array_1, array_2)
     }

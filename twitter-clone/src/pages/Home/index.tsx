@@ -50,6 +50,8 @@ const Home = () => {
         const followingData = await fetchUserFollowingData(user)
         setFollowingList(followingData)
 
+        console.log("HOME | Following Data: ", followingData)
+
         const followedData = await fetchUserFollowedData(user)
         setFollowedList(followedData)
     }
