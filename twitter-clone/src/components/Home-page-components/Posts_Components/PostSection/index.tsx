@@ -75,21 +75,11 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
         // set 'Loading' to 'True'
         setLoading(true)
 
-        if (followingList.length === 0) {
-            window.location.reload()
-        }
+        // executes the posts functions
+        HandlePostsFunctions()
 
-        // initiates the timeout
-        setTimeout(() => {
-            
-            // executes the posts functions
-            HandlePostsFunctions()
-
-            // set 'Loading' to 'False' at the end of the timeout
-            setLoading(false)
-        
-        // Timeout milliseconds
-        }, 1000)
+        // set 'Loading' to 'False' at the end of the timeout
+        setLoading(false)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, posts, Create])

@@ -64,8 +64,11 @@ const Home = () => {
     }
 
     useEffect(() => {
-        FetchLists(user)
-        sleep(2)
+        setTimeout(() => {
+            FetchLists(user)
+
+        // Timeout milliseconds
+        }, 1000)
     }, [user])
 
     return (
