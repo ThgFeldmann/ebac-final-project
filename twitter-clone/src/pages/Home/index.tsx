@@ -19,8 +19,9 @@ const Home = () => {
     const [PostList, setPostList] = useState<Post[]>([])
     const [CommentList, setCommentList] = useState<Comment[]>([])
 
-    const [FollowingList, setFollowingList] = useState<Follow[]>([])
-    const [FollowedList, setFollowedList] = useState<Follow[]>([])
+    // remove
+    // const [FollowingList, setFollowingList] = useState<Follow[]>([])
+    // const [FollowedList, setFollowedList] = useState<Follow[]>([])
 
     const location = useLocation()
 
@@ -67,14 +68,14 @@ const Home = () => {
     useEffect(() => {
         setTimeout(() => {
             FetchLists(user)
-            console.log("HOME | Following Data: ", FollowingList)
+            // console.log("HOME | Following Data: ", FollowingList)
             console.log("HOME | following list from LOGIN: ", followingList)
             console.log("HOME | followed list from LOGIN: ", followedList)
 
 
         // Timeout milliseconds
         }, 1000)
-    }, [FollowingList, followedList, followingList, user])
+    }, [followedList, followingList, user])
 
     return (
         <>
@@ -82,8 +83,8 @@ const Home = () => {
             <HomeContainer>
                 <SideBar 
                     user={user}
-                    followingList={FollowingList} 
-                    followedList={FollowedList} 
+                    followingList={followingList} 
+                    followedList={followedList} 
                     Create={Create} 
                     changeCreate={ChangeCreateStatus} 
                     Search={Search}
@@ -96,13 +97,17 @@ const Home = () => {
                             Create={Create}
                             user={user} 
                             posts={PostList} 
-                            followingList={FollowingList} 
+                            followingList={followingList} 
                             comments={CommentList}
                         />
                     </>
                     :
                     <>
-                        <CreationSection changeCreate={ChangeCreateStatus} user={user} followingList={FollowingList} />
+                        <CreationSection 
+                            changeCreate={ChangeCreateStatus} 
+                            user={user} 
+                            followingList={followingList}
+                        />
                     </>
                 }
                 {
@@ -116,7 +121,7 @@ const Home = () => {
                 <SpecialPostsSection
                     posts={PostList}
                     comments={CommentList}
-                    followingList={FollowingList}
+                    followingList={followingList}
                     userId={user.id}
                 />
             </HomeContainer>
