@@ -36,7 +36,6 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
 
         const flattenedArray = postArray.flat()
 
-        console.log(flattenedArray)
         return flattenedArray
     }
 

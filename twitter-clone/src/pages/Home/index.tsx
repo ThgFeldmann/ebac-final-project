@@ -8,7 +8,7 @@ import PostSection from "../../components/Home-page-components/Posts_Components/
 import SpecialPostsSection from "../../components/Home-page-components/Special_Posts/SpecialPostsSection"
 import FollowUserModal from "../../components/Home-page-components/Search_User_Modal"
 import CreationSection from "../../components/Home-page-components/Creation_Section"
-import { fetchUserFollowedData, fetchUserFollowingData, sleep } from "../../utils"
+import { fetchUserFollowedData, fetchUserFollowingData } from "../../utils"
 
 import { HomeContainer, ModalOverlay } from "../../styles"
 
@@ -25,8 +25,10 @@ const Home = () => {
     const location = useLocation()
 
     const user: User = location.state.user
-    // const followingList: Follow[] = location.state.followingList
-    // const followedList: Follow[] = location.state.followedList
+
+    // new
+    const followingList: Follow[] = location.state.followingList
+    const followedList: Follow[] = location.state.followedList
 
     const ChangeCreateStatus = (boolean: boolean) => {
         setCreate(boolean)
@@ -47,13 +49,12 @@ const Home = () => {
             .then((response) => response.json())
             .then((response) => setCommentList(response))
 
-        const followingData = await fetchUserFollowingData(user)
-        setFollowingList(followingData)
+        // new
+        // const followingData = await fetchUserFollowingData(user)
+        // setFollowingList(followingData)
 
-        console.log("HOME | Following Data: ", followingData)
-
-        const followedData = await fetchUserFollowedData(user)
-        setFollowedList(followedData)
+        // const followedData = await fetchUserFollowedData(user)
+        // setFollowedList(followedData)
     }
 
     // function that removes the overlay
@@ -66,6 +67,10 @@ const Home = () => {
     useEffect(() => {
         setTimeout(() => {
             FetchLists(user)
+            console.log("HOME | Following Data: ", FollowingList)
+            console.log("HOME | following list from LOGIN: ", followingList)
+            console.log("HOME | followed list from LOGIN: ", followedList)
+
 
         // Timeout milliseconds
         }, 1000)
