@@ -8,7 +8,6 @@ import PostSection from "../../components/Home-page-components/Posts_Components/
 import SpecialPostsSection from "../../components/Home-page-components/Special_Posts/SpecialPostsSection"
 import FollowUserModal from "../../components/Home-page-components/Search_User_Modal"
 import CreationSection from "../../components/Home-page-components/Creation_Section"
-import { fetchUserFollowedData, fetchUserFollowingData } from "../../utils"
 
 import { HomeContainer, ModalOverlay } from "../../styles"
 
@@ -19,15 +18,9 @@ const Home = () => {
     const [PostList, setPostList] = useState<Post[]>([])
     const [CommentList, setCommentList] = useState<Comment[]>([])
 
-    // remove
-    // const [FollowingList, setFollowingList] = useState<Follow[]>([])
-    // const [FollowedList, setFollowedList] = useState<Follow[]>([])
-
     const location = useLocation()
 
     const user: User = location.state.user
-
-    // new
     const followingList: Follow[] = location.state.followingList
     const followedList: Follow[] = location.state.followedList
 
@@ -49,13 +42,6 @@ const Home = () => {
         fetch(apiComments.Get)
             .then((response) => response.json())
             .then((response) => setCommentList(response))
-
-        // new
-        // const followingData = await fetchUserFollowingData(user)
-        // setFollowingList(followingData)
-
-        // const followedData = await fetchUserFollowedData(user)
-        // setFollowedList(followedData)
     }
 
     // function that removes the overlay
@@ -68,11 +54,6 @@ const Home = () => {
     useEffect(() => {
         setTimeout(() => {
             FetchLists(user)
-            // console.log("HOME | Following Data: ", FollowingList)
-            console.log("HOME | following list from LOGIN: ", followingList)
-            console.log("HOME | followed list from LOGIN: ", followedList)
-
-
         // Timeout milliseconds
         }, 1000)
     }, [followedList, followingList, user])

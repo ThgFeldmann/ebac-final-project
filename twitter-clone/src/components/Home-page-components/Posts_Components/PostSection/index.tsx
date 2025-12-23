@@ -59,8 +59,6 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
     }
 
     useEffect(() => {
-        console.log("Following list received directly from HOME page: ", followingList)
-
         // set 'Loading' to 'True'
         setLoading(true)
 
@@ -73,14 +71,8 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, posts, Create])
 
-    const test = () => {
-        console.log("Following list: ")
-        console.log(followingList)
-    }
-
     return (
         <PostSectionContainer>
-            <button onClick={e => test()}>test</button>
             <div>
                 {(loading) ?
                     <div>
