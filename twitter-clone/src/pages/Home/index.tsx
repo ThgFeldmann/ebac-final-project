@@ -74,7 +74,7 @@ const Home = () => {
 
         // Timeout milliseconds
         }, 1000)
-    }, [user])
+    }, [FollowingList, followedList, followingList, user])
 
     return (
         <>
