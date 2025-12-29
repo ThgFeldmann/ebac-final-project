@@ -44,6 +44,7 @@ import { GlobalStyle } from "./styles";
 // this is the URL for 'Users' section
 export const apiUsers = {
   Get: "http://127.0.0.1:8000/api/users/get/",
+  Update: "http://127.0.0.1:8000/api/users/patch/password/",
   Create: "http://127.0.0.1:8000/api/users/create/",
   Delete: "http://127.0.0.1:8000/api/users/delete/"
 }

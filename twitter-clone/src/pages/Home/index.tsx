@@ -10,10 +10,12 @@ import FollowUserModal from "../../components/Home-page-components/Search_User_M
 import CreationSection from "../../components/Home-page-components/Creation_Section"
 
 import { HomeContainer, ModalOverlay } from "../../styles"
+import EditPasswordModal from "../../components/Home-page-components/SideBar_Components/Edit_Password_Modal"
 
 const Home = () => {
     const [Create, setCreate] = useState<boolean>(false)
     const [Search, setSearch] = useState<boolean>(false)
+    const [Edit, setEdit] = useState<boolean>(false)
 
     const [PostList, setPostList] = useState<Post[]>([])
     const [CommentList, setCommentList] = useState<Comment[]>([])
@@ -32,6 +34,10 @@ const Home = () => {
         setSearch(boolean)
     }
 
+    const ChangeEditStatus = (boolean: boolean) => {
+        setEdit(boolean)
+    }
+
     const FetchLists = async (user: User) => {
         // GET request for the Posts section of the api
         fetch(apiPosts.Get)
@@ -48,6 +54,8 @@ const Home = () => {
     const removeOverlay = () => {
         if (Search) {
             setSearch(false)
+        } else if (Edit) {
+            setEdit(false)
         }
     }
 
@@ -60,42 +68,56 @@ const Home = () => {
 
     return (
         <>
-            <ModalOverlay onClick={e => removeOverlay()} className={(Search) ? "overlay" : ""} />
+            <ModalOverlay onClick={e => removeOverlay()} className={(Search || Edit) ? "overlay" : ""} />
             <HomeContainer>
                 <SideBar 
                     user={user}
-                    followingList={followingList} 
-                    followedList={followedList} 
-                    Create={Create} 
-                    changeCreate={ChangeCreateStatus} 
+                    followingList={followingList}
+                    followedList={followedList}
+                    Create={Create}
+                    changeCreate={ChangeCreateStatus}
                     Search={Search}
-                    changeSearch={ChangeSearchStatus}
+                    changeSearch={ChangeSearchStatus} 
+                    Edit={Edit} 
+                    changeEdit={ChangeEditStatus}
                 />
                 {
                     (!Create) ?
-                    <>
-                        <PostSection 
-                            Create={Create}
-                            user={user} 
-                            posts={PostList} 
-                            followingList={followingList} 
-                            comments={CommentList}
-                        />
-                    </>
+                        <>
+                            <PostSection 
+                                Create={Create}
+                                user={user} 
+                                posts={PostList} 
+                                followingList={followingList} 
+                                comments={CommentList}
+                            />
+                        </>
                     :
-                    <>
-                        <CreationSection 
-                            changeCreate={ChangeCreateStatus} 
-                            user={user} 
-                            followingList={followingList}
-                        />
-                    </>
+                        <>
+                            <CreationSection 
+                                changeCreate={ChangeCreateStatus} 
+                                user={user} 
+                                followingList={followingList}
+                            />
+                        </>
                 }
                 {
                     (Search) ?
-                    <>
-                        <FollowUserModal Search={Search} user={user} changeSearch={ChangeSearchStatus} />
-                    </>
+                        <>
+                            <FollowUserModal Search={Search} user={user} changeSearch={ChangeSearchStatus} />
+                        </>
+                    :
+                    null
+                }
+                {
+                    (Edit) ?
+                        <>
+                            <EditPasswordModal 
+                                Edit={Edit} 
+                                changeEdit={ChangeEditStatus} 
+                                user={user} 
+                            />
+                        </>
                     :
                     null
                 }

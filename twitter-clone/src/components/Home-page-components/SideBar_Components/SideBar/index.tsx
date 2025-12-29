@@ -5,19 +5,34 @@ import { Follow, User } from "../../../../App"
 import UserSectionComponent from "../UserSection"
 import FollowsSectionComponent from "../FollowSection"
 
-import { ButtonsContainer, PostButton, SearchButton, SidebarArea, SideBarContainer } from "./styles"
+import { ButtonsContainer, PasswordButton, PostButton, SearchButton, SidebarArea, SideBarContainer } from "./styles"
 
 type Props = {
     Create: boolean
-    changeCreate: any
     Search: boolean
-    changeSearch: any
+    Edit: boolean
+
     user: User
     followingList: Follow[]
     followedList: Follow[]
+
+    changeCreate: any
+    changeSearch: any
+    changeEdit: any
 }
 
-const SideBar = ({user, followingList, followedList, Create, changeCreate, Search, changeSearch}: Props) => {
+const SideBar = (
+    {
+        user, 
+        followingList, 
+        followedList, 
+        Create, 
+        changeCreate, 
+        Search, 
+        changeSearch, 
+        changeEdit,
+        Edit
+    }: Props) => {
 
     const CreatePostButton = () => {
         if (!Create) {
@@ -37,6 +52,15 @@ const SideBar = ({user, followingList, followedList, Create, changeCreate, Searc
         }
     }
 
+    const EditPasswordButton = () => {
+        if (!Edit) {
+            changeEdit(true)
+        } else {
+            changeEdit(false)
+            window.location.reload()
+        }
+    }
+
     return (
         <SideBarContainer>
             <SidebarArea>
@@ -46,7 +70,13 @@ const SideBar = ({user, followingList, followedList, Create, changeCreate, Searc
                     </div>
                 :
                     <>
-                        <UserSectionComponent username={user.username} id={user.id} />
+                        <UserSectionComponent 
+                            username={user.username} 
+                            id={user.id}
+                        />
+                        <PasswordButton onClick={e => EditPasswordButton()}>
+                            Editar Senha
+                        </PasswordButton>
                         <FollowsSectionComponent user={user} followingList={followingList} followedList={followedList} />
                         <ButtonsContainer>
                             {

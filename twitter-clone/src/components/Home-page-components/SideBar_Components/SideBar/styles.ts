@@ -119,3 +119,22 @@ export const SearchButton = styled(PostButton)`
         padding: 8px;
     }
 `
+
+export const PasswordButton = styled.button`
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 3px;
+
+    width: 110px;
+    height: 30px;
+
+    font-size: 16px;
+    font-weight: bold;
+    background-color: ${colors.verde};
+    border: 2px solid ${colors.cinzaClaro};
+    border-radius: 8px;
+
+    &:hover {
+        border: 4px inset ${colors.cinza};
+    }
+`

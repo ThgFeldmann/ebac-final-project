@@ -3,7 +3,6 @@ import { breakpoints, colors } from "../../../../styles";
 
 export const UserSection = styled.div`
     width: 200px;
-    height: 100px;
     margin: 18px auto 0;
 
     h3 {
