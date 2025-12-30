@@ -21,3 +21,35 @@ export const PasswordModal = styled(Modal)`
         background-color: ${colors.vermelho};
     }
 `
+
+export const Result = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    margin: 0 auto;
+    text-align: center;
+    
+    h2 {
+        width: 90%;
+        padding: 2px;
+        color: ${colors.cinzaClaro};
+        font-size: 18px;
+    }
+
+    p {
+        margin-top: 4px;
+        color: ${colors.cinzaClaro};
+    }
+
+    div {
+        button {
+            margin: 0 auto;
+        }
+
+        .goBackButton {
+            border-color: ${colors.cinzaClaro};
+            background-color: ${colors.cinza};
+            margin: 0 auto;
+        }
+    }
+`
