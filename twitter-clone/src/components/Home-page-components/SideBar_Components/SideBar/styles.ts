@@ -31,10 +31,11 @@ export const SidebarArea = styled.div`
     background-color: ${colors.azulEscuro};
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
-        height: 70vh;
+        height: 80vh;
     }
 
     @media (max-width: 767px) {
+        height: 100vh;
     }
 `
 
@@ -125,7 +126,7 @@ export const PasswordButton = styled.button`
     margin-bottom: 15px;
     padding: 3px;
 
-    width: 110px;
+    width: 80%;
     height: 30px;
 
     font-size: 16px;
@@ -136,5 +137,15 @@ export const PasswordButton = styled.button`
 
     &:hover {
         border: 4px inset ${colors.cinza};
+    }
+
+    @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+        height: 40px;
+        font-size: 24px;
+        padding: 0;
+    }
+
+    @media (max-width: 767px) {
+        height: 45px;
     }
 `

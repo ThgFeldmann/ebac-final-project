@@ -39,20 +39,20 @@ export const SpecialPostsContainer = styled.div`
     }
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
-        height: 70vh;
+        height: 80vh;
 
         .headliner {
-            height: 80px;
+            height: 110px;
 
             h2 {
-                font-size: 28px;
+                font-size: 26px;
             }
         }
     }
 
     @media (max-width: 767px) {
         .headliner {
-            height: 60px;
+            height: 70px;
             
             h2 {
                 font-size: 12px;
@@ -91,10 +91,9 @@ export const SpecialPostsArea = styled.div`
     }
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
-        
+
     }
 
     @media (max-width: 767px) {
-        
     }
 `

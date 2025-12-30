@@ -11,7 +11,7 @@ type Props = {
 
 const EditPasswordModal = ({ user, Edit, changeEdit }: Props) => {
     const [newPassword, setNewPassword] = useState<string>("")
-    const [success, setSuccess] = useState<boolean>(true)
+    const [success, setSuccess] = useState<boolean>(false)
     const [failed, setFailed] = useState<boolean>(false)
     
     const CloseEdit = () => {
@@ -80,7 +80,15 @@ const EditPasswordModal = ({ user, Edit, changeEdit }: Props) => {
     }
 
     return (
-        <PasswordModal className={(Edit) ? "unhidden" : ""}>
+        <PasswordModal className={
+                (Edit) ? 
+                    "unhidden" 
+                : (Edit && success) ?
+                    "unhidden success"
+                : 
+                    ""
+            }
+            >
             {
                 (!success && !failed) ?
                     <>

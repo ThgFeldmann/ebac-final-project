@@ -16,6 +16,7 @@ export const PostSectionContainer = styled.div`
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
         width: 600px;
+        margin-left: 50px;
     }
 
     @media (max-width: 767px) {
