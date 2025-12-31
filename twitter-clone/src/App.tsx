@@ -16,7 +16,7 @@ import { GlobalStyle } from "./styles";
 // this is the URL for 'Users' section
 export const apiUsers = {
   Get: "https://echobackend-production.up.railway.app/api/users/get/",
-  Update: "https://echobackend-production.up.railway.app/api/users/patch/password",
+  Update: "https://echobackend-production.up.railway.app/api/users/patch/password/",
   Create: "https://echobackend-production.up.railway.app/api/users/create/",
   Delete: "https://echobackend-production.up.railway.app/api/users/delete/"
 }
