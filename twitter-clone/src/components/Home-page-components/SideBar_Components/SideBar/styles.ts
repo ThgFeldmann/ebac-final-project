@@ -121,7 +121,7 @@ export const SearchButton = styled(PostButton)`
     }
 `
 
-export const PasswordButton = styled.button`
+export const AccountButton = styled.button`
     margin-top: 15px;
     margin-bottom: 15px;
     padding: 3px;
@@ -134,6 +134,10 @@ export const PasswordButton = styled.button`
     background-color: ${colors.verde};
     border: 2px solid ${colors.cinzaClaro};
     border-radius: 8px;
+
+    &.accountGoBackButton {
+        background-color: ${colors.cinza};
+    }
 
     &:hover {
         border: 4px inset ${colors.cinza};

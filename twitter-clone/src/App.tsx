@@ -43,29 +43,39 @@ import { GlobalStyle } from "./styles";
 // }
 
 //*Development URLS
-// this is the URL for 'Users' section
+// this is the URL for the 'Users' section
 export const apiUsers = {
   Get: "http://127.0.0.1:8000/api/users/get/",
-  Update: "http://127.0.0.1:8000/api/users/patch/password/",
+  UpdateUsername: "http://127.0.0.1:8000/api/users/patch/username/",
+  UpdateImage: "http://127.0.0.1:8000/api/users/patch/image/",
+  UpdateBio: "http://127.0.0.1:8000/api/users/patch/bio/",
+  UpdatePassword: "http://127.0.0.1:8000/api/users/patch/password/",
   Create: "http://127.0.0.1:8000/api/users/create/",
   Delete: "http://127.0.0.1:8000/api/users/delete/"
 }
 
-// this is the URL for 'Posts' section
+// this is the URL for the 'Posts' section
 export const apiPosts = {
   Get: "http://127.0.0.1:8000/api/posts/get/",
   Create: "http://127.0.0.1:8000/api/posts/create/",
   Delete: "http://127.0.0.1:8000/api/posts/delete/"
 }
 
-//this is the URL for 'Comment' section
+// this is the URL for the 'Likes' section
+export const apiLikes = {
+  Get: "http://127.0.0.1:8000/api/likes/get/",
+  Create: "http://127.0.0.1:8000/api/likes/create/",
+  Delete: "http://127.0.0.1:8000/api/likes/delete/",
+}
+
+// this is the URL for the 'Comments' section
 export const apiComments = {
   Get: "http://127.0.0.1:8000/api/comments/get/",
   Create: "http://127.0.0.1:8000/api/comments/create/",
   Delete: "http://127.0.0.1:8000/api/comments/delete/"
 }
 
-// this is the URL for 'Follows' section
+// this is the URL for the 'Follows' section
 export const apiFollows = {
   Get: "http://127.0.0.1:8000/api/follows/get/",
   Create: "http://127.0.0.1:8000/api/follows/create/",
@@ -78,14 +88,16 @@ export type User = {
   id: number,
   username: string,
   password: string,
-  email: string
+  email: string,
+  bio: string,
+  image: string,
 }
 
 // Type of Follows
 export type Follow = {
-    id: number
-    user_id: number
-    following_id: number,
+  id: number,
+  user_id: number,
+  following_id: number,
 }
 
 // Type of Post
@@ -93,7 +105,14 @@ export type Post = {
   id: number,
   author: string,
   author_id: number,
-  content?: string
+  content?: string,
+}
+
+//Type of Like
+export type Like = {
+  id: number,
+  post_id: number,
+  user_id: number,
 }
 
 // Type of Comment
@@ -102,7 +121,7 @@ export type Comment = {
   id: number,
   author_id: number,
   author: string,
-  content: string
+  content: string,
 }
 
 // Type of Form values

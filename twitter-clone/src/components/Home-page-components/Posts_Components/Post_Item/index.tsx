@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-import { apiComments, Comment, Follow, Post, User } from "../../../../App"
+import { apiComments, apiLikes, Comment, Follow, Like, Post, User } from "../../../../App"
 
 import CommentComponent from "../Post_Comment"
 import PostModal from "../../../Post_Modal"
@@ -16,15 +16,20 @@ type Props = {
     post: Post
     comments: Comment[]
     followingList: Follow[]
+    likeList?: Like[]
+    userLikeList?: Like[]
 }
 
-const PostComponent = ({ user, set_posts, posts, post, comments, followingList }: Props) => {
+const PostComponent = ({ user, set_posts, posts, post, comments, followingList, likeList }: Props) => {
     // states for the modals
     const [modal, setModal] = useState<boolean>(false)
     const [createComment, setCreateComment] = useState<boolean>(false)
 
     const [commentList, setCommentList] = useState<Comment[]>([])
     const [newComment, setNewComment] = useState<string>("")
+
+    const [userLiked, setUserLiked] = useState<boolean>(false)
+    const [postLikes, setPostLikes] = useState<Like[]>([])
 
     const filterComments = (commentArray: Comment[]) => {
         const result = commentArray.filter((comment: Comment) => comment.post_id === post.id)
@@ -75,8 +80,66 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
         toggleOverlay()
     }
 
+    // function that counts the total likes for the current post
+    const countPostLikes = () => {
+        if (likeList === undefined) {
+            console.log("There are no current likes")
+        } else {
+            const filteredLikes: Like[] = likeList?.filter((item: Like) => item.post_id === post.id)
+            setPostLikes(filteredLikes)
+        }
+    }
+
+    const createLike = () => {
+        const object = {
+            post_id: post.id,
+            user_id: user.id
+        }
+
+        console.log("starting the POST request...")
+        fetch(apiLikes.Create, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(object)
+        })
+
+        window.location.reload()
+    }
+
+    const deleteLike = () => {
+        const filteredCases: Like[] = postLikes.filter((item: Like) => 
+                item.post_id === post.id
+                &&
+                item.user_id === user.id
+            )
+
+            const targetCase = filteredCases[0]
+
+            console.log("starting the DELETE request...")
+            fetch(apiLikes.Delete + targetCase.id + "/", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+
+            window.location.reload()
+    }
+
+    const handleLikeButton = () => {
+        if (!userLiked) { //* Create Like case
+            createLike()
+
+        } else { //* Delete Like case
+            deleteLike()
+        }
+    }
+
     useEffect(() => {
         filterComments(comments)
+        countPostLikes()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [post, comments])
 
@@ -130,9 +193,30 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList }
                     <p>{post.content}</p>
                 </PostContentArea>
                 <PostActionArea>
-                    <button className={(!createComment) ? "" : "clicked"} onClick={e => setCreateComment(true)}>
-                        Comentar
-                    </button>
+                    <div>
+                        <p>curtidas: {postLikes.length}</p>
+                        {
+                            (post.author_id !== user.id) ?
+                                <>
+                                    <button className="likeButton" onClick={e => handleLikeButton()}>
+                                        {
+                                            (!userLiked) ?
+                                                "curtir"
+                                            :
+                                                "parar de curtir"
+                                        }
+                                    </button>
+                                </>
+                            :
+                                null
+                        }
+                        <button 
+                            className={(!createComment) ? "" : "clicked"} 
+                            onClick={e => setCreateComment(true)}
+                        >
+                            Comentar
+                        </button>
+                    </div>
                 </PostActionArea>
                 {
                     (comments === null || undefined) ?

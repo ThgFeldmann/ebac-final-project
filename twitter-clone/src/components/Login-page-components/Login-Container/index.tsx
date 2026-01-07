@@ -16,7 +16,9 @@ const LoginContainerComponent = () => {
         id: 0,
         username: '',
         password: '',
-        email: ''
+        email: '',
+        bio: '',
+        image: '',
     })
     // Dictates if there is an error inside the form
     const [formError, setFormError] = useState<boolean>(false)
@@ -31,7 +33,9 @@ const LoginContainerComponent = () => {
             id: 0,
             username: '',
             password: '',
-            email: ''
+            email: '',
+            bio: '',
+            image: '',
         })
     }, [setSuccess, setFormData, setLoggedUser])
 

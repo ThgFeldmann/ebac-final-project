@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-import { Comment, Follow, Post, User } from "../../../../App"
+import { Comment, Follow, Like, Post, User } from "../../../../App"
 
 import PostComponent from "../Post_Item"
 
@@ -11,10 +11,12 @@ type Props = {
     user: User,
     posts: Post[],
     comments: Comment[],
-    followingList: Follow[]
+    followingList: Follow[],
+    likeList: Like[],
+    userLikeList: Like[],
 }
 
-const PostSection = ({ user, posts, comments, followingList, Create }: Props) => {
+const PostSection = ({ user, posts, comments, followingList, likeList, userLikeList, Create }: Props) => {
     const [loading, setLoading] = useState<boolean>(true)
     const [validPosts, setValidPosts] = useState<Post[]>([])
 
@@ -92,6 +94,8 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
                                 post={post}
                                 comments={comments}
                                 followingList={followingList}
+                                likeList={likeList}
+                                userLikeList={userLikeList}
                             />
                         </div>
                     ))

@@ -5,12 +5,12 @@ import { Follow, User } from "../../../../App"
 import UserSectionComponent from "../UserSection"
 import FollowsSectionComponent from "../FollowSection"
 
-import { ButtonsContainer, PasswordButton, PostButton, SearchButton, SidebarArea, SideBarContainer } from "./styles"
+import { ButtonsContainer, AccountButton, PostButton, SearchButton, SidebarArea, SideBarContainer } from "./styles"
 
 type Props = {
     Create: boolean
     Search: boolean
-    Edit: boolean
+    Account: boolean
 
     user: User
     followingList: Follow[]
@@ -18,7 +18,7 @@ type Props = {
 
     changeCreate: any
     changeSearch: any
-    changeEdit: any
+    changeAccount: any
 }
 
 const SideBar = (
@@ -29,9 +29,9 @@ const SideBar = (
         Create, 
         changeCreate, 
         Search, 
-        changeSearch, 
-        changeEdit,
-        Edit
+        changeSearch,
+        Account,
+        changeAccount,
     }: Props) => {
 
     const CreatePostButton = () => {
@@ -39,7 +39,6 @@ const SideBar = (
             changeCreate(true)
         } else {
             changeCreate(false)
-            window.location.reload()
         }
     }
 
@@ -48,16 +47,14 @@ const SideBar = (
             changeSearch(true)
         } else {
             changeSearch(false)
-            window.location.reload()
         }
     }
 
-    const EditPasswordButton = () => {
-        if (!Edit) {
-            changeEdit(true)
+    const OpenAccountButton = () => {
+        if (!Account) {
+            changeAccount(true)
         } else {
-            changeEdit(false)
-            window.location.reload()
+            changeAccount(false)
         }
     }
 
@@ -74,9 +71,16 @@ const SideBar = (
                             username={user.username} 
                             id={user.id}
                         />
-                        <PasswordButton onClick={e => EditPasswordButton()}>
-                            Editar Senha
-                        </PasswordButton>
+                        {
+                            (!Account) ?
+                                <AccountButton onClick={e => OpenAccountButton()}>
+                                    Perfil
+                                </AccountButton>
+                            :
+                                <AccountButton className="accountGoBackButton" onClick={e => OpenAccountButton()}>
+                                    Voltar
+                                </AccountButton>
+                        }
                         <FollowsSectionComponent user={user} followingList={followingList} followedList={followedList} />
                         <ButtonsContainer>
                             {

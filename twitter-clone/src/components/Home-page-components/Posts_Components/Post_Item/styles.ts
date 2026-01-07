@@ -73,36 +73,71 @@ export const PostActionArea = styled.div`
     display: flex;
     width: 100%;
     height: 30px;
-    align-items: center;
     border-top: 1px solid ${colors.cinzaClaro};
 
-    button {
-        width: 80px;
-        height: 20px;
+    div {
         margin: 0 auto;
-        font-size: 14px;
-        font-weight: bold;
-        border: 2px solid ${colors.preto};
-        border-radius: 6px;
-        background-color: ${colors.verdeClaro};
+        width: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
 
-        &: hover, &.clicked {
-            border: 3px inset ${colors.cinza};
+        p {
+            margin: 0 auto;
+            color: ${colors.cinzaClaro};
+        }
+
+        button {
+            margin: 0 auto;
+
+            width: 80px;
+            height: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border: 2px solid ${colors.preto};
+            border-radius: 6px;
+            background-color: ${colors.verdeClaro};
+
+            &: hover, &.clicked {
+                border: 3px inset ${colors.cinza};
+            }
         }
     }
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
-        height: 60px;
 
-        button {
-            width: 150px;
-            height: 45px;
-            font-size: 28px;
+        height: 105px;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            p {
+                font-size: 24px;
+            }
+
+            button {
+                font-size: 22px;
+                width: 120px;
+                height: 50px;
+            }
         }
     }
 
     @media (max-width: 767px) {
-        
+        height: 65px;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            p {
+                font-size: 14px;
+            }
+        }
     }
 `
 

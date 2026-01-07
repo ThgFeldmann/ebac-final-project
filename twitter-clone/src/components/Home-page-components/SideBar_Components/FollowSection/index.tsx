@@ -23,7 +23,9 @@ const FollowsSectionComponent = ({ user, followingList, followedList }: Props) =
         id: 0,
         username: "",
         password: "",
-        email: ""
+        email: "",
+        bio: "",
+        image: "",
     })
 
     // Fetches various users from the api with an array of id's
@@ -42,7 +44,9 @@ const FollowsSectionComponent = ({ user, followingList, followedList }: Props) =
                 id: 0,
                 username: "",
                 password: "",
-                email: ""
+                email: "",
+                bio: "",
+                image: "",
             })
             setModal(false)
         }
