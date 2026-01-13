@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { User } from "../../../App"
 import { AccountContainer, SectionContainer } from "./styles"
 
@@ -28,7 +29,6 @@ const AccountSection = ({
     EditImage,
     changeEditImage,
 }: Props) => {
-
     const EditUsernameButton = () => {
         if (!EditUsername) {
             changeEditUsername(true)
@@ -65,8 +65,7 @@ const AccountSection = ({
         <SectionContainer>
             <AccountContainer>
                 <div className="imageContainer">
-                    placeholder
-                    {user.image}
+                    <img src={user.image} alt="profile_picture" />
                 </div>
                 <h2>{user.username}</h2>
                 <div className="bioContainer">

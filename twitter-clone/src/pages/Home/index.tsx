@@ -93,6 +93,7 @@ const Home = () => {
         setEditPassword(false)
         setEditUsername(false)
         setEditBio(false)
+        setEditImage(false)
     }
 
     const handleOverlayDisplay = () => {

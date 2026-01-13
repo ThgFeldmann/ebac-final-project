@@ -11,7 +11,8 @@ type Props = {
 }
 
 const EditImageModal = ({ user, EditImage, changeEditImage }: Props) => {
-    const [newImage, setNewImage] = useState<string>("")
+    const [imageCode, setImageCode] = useState<any>("")
+    const [newImage, setNewImage] = useState<any>()
     const [success, setSuccess] = useState<boolean>(false)
     const [failed, setFailed] = useState<boolean>(false)
 
@@ -32,7 +33,9 @@ const EditImageModal = ({ user, EditImage, changeEditImage }: Props) => {
             image: image
         }
 
-        console.log("Alterando o nome...")
+        console.log(JSON.stringify(object))
+
+        console.log("Alterando a imagem...")
         const response: any = await fetch(apiUsers.UpdateImage + user.id + "/", {
             method: 'PUT',
             headers: {
@@ -50,12 +53,30 @@ const EditImageModal = ({ user, EditImage, changeEditImage }: Props) => {
         }
     }
 
-    const HandleSubmit = () => {
-        if (newImage === "") {
-            setFailed(true)
-            return console.log("A entrada não existe.")
-        } else {
-            PatchRequest(newImage)
+    // Function that handles the image conversion to a base64 code string
+    const imageConverter = (file: any) => {
+        const reader = new FileReader()
+
+        reader.onload = () => {
+            setImageCode(reader.result)
+        }
+
+        reader.readAsDataURL(file)
+
+        return true
+
+    }
+
+    const handleSubmit = () => {
+        PatchRequest(imageCode)
+    }
+
+    const handleFileChange = (event: any) => {
+        const selectedFile = event.target.files[0]
+
+        if (selectedFile) {
+            setNewImage(selectedFile)
+            imageConverter(selectedFile)
         }
     }
 
@@ -72,17 +93,27 @@ const EditImageModal = ({ user, EditImage, changeEditImage }: Props) => {
             {
                 (!success && !failed) ?
                     <>
-                        <h2>Coloque sua nova foto abaixo:</h2>
+                        <h2>Escolha sua nova foto abaixo:</h2>
                         <input 
                             type="file" 
-                            value={newImage}
-                            onChange={e => setNewImage(e.target.value)}
+                            accept="image/*"
+                            onChange={handleFileChange}
                         />
-                        <div>
+                        {
+                            (newImage) ?
+                                <div>
+                                    <p>
+                                        foto selecionada
+                                    </p>
+                                </div>
+                            :
+                                null
+                        }
+                        <div className="buttonContainer">
                             <button 
                                 className="submitButton"
                                 type="submit"
-                                onClick={e => HandleSubmit()}
+                                onClick={e => handleSubmit()}
                             >
                                 Atualizar
                             </button>

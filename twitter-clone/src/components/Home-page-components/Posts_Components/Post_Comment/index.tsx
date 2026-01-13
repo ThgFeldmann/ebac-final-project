@@ -31,18 +31,24 @@ const CommentComponent = ({ comment, set_posts, posts, post, user, followingList
             <div>
                 <CommentUserArea>
                     <h4 onClick={e => setModal(true)}>{comment.author}</h4>
-                    <PostModal
-                        state={modal}
-                        post_type="normal"
-                        set_posts={set_posts}
-                        posts={posts}
-                        logged_user_id={user.id}
-                        followingList={followingList}
-                        data={{
-                            user_id: comment.author_id,
-                            username: comment.author
-                        }}
-                    />
+                    {
+                        (modal === true) ?
+                            <PostModal
+                                state={modal}
+                                post_type="normal"
+                                set_posts={set_posts}
+                                posts={posts}
+                                logged_user_id={user.id}
+                                followingList={followingList}
+                                data={{
+                                    user_id: comment.author_id,
+                                    username: comment.author
+                                }}
+                                post_author_id={comment.author_id}
+                            />
+                        :
+                            null
+                    }
                 </CommentUserArea>
                 <CommentContentArea>
                     <p>{comment.content}</p>

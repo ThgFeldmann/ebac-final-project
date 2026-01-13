@@ -1,9 +1,6 @@
-//TODO fix modal on post section
-//TODO handleClick is always running the create follow function
-//TODO the 'posts' list has old items in it, specificaly from user 'Siclano', that is causing errors
 import { useEffect, useState } from "react"
 
-import { Follow, Post } from "../../App"
+import { apiUsers, Follow, Post, User } from "../../App"
 
 import { PostModalContainer } from "./styles"
 import { createFollow, deleteFollow, filterFollow, sleep } from "../../utils"
@@ -19,6 +16,8 @@ type Props = {
         user_id: number,
         username: string
     }
+
+    post_author_id: number
 }
 
 const PostModal = (
@@ -34,6 +33,21 @@ const PostModal = (
 ) => {
     const [isFollowed, setIsFollowed] = useState<boolean>(false)
     const [isLoggedUser, setIsLoggedUser] = useState<boolean>(false)
+
+    const [authorData, setAuthorData] = useState<User>()
+
+    const fetchAuthorData = (author_id: number) => {
+        /*
+            Function that receives the 'post.author_id' as parameter
+                executes a GET request using the 'author_id'
+                receives a specific 'User' data, equal to the author
+                updates the 'authorData' state with the request response (that is an User data)
+        */
+
+        fetch(apiUsers.Get + author_id + "/")
+            .then((response) => response.json())
+            .then((response: User) => {setAuthorData(response)})
+    }
 
     // function that checks if the user is following the author of this post
     const CheckFollow = (followingList: Follow[], id: number) => {
@@ -115,28 +129,37 @@ const PostModal = (
     }
 
     useEffect(() => {
+        fetchAuthorData(data.user_id)
 
         if (logged_user_id === data.user_id) {
             setIsLoggedUser(true)
         } else {
+
             if (post_type === "normal") {
                 setIsFollowed(true)
             }
 
             setIsLoggedUser(false)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state, logged_user_id, data.username, data.user_id, followingList, post_type])
 
     return (
         <>
             <PostModalContainer className={ContainerClass()}>
                 <div>
+                    {
+                        (authorData?.image !== "") ?
+                            <img src={authorData?.image} alt="profile_picture" />
+                        :
+                            <p>Nenhuma imagem encontrada</p>
+                    }
                     <h3>
                         {
                             (!data.username) ?
                                 "não foi encontrado nenhum nome."
                             :
-                                data.username
+                                authorData?.username
                         }
                     </h3>
                 </div>

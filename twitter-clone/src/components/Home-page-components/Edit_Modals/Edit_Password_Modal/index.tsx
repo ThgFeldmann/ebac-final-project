@@ -92,7 +92,7 @@ const EditPasswordModal = ({ user, EditPassword, changeEditPassword }: Props) =>
             {
                 (!success && !failed) ?
                     <>
-                        <h2>Digite a sua nova bio abaixo:</h2>
+                        <h2>Digite a sua nova senha abaixo:</h2>
                         <input 
                             type="password" 
                             value={newPassword}

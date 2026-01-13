@@ -126,7 +126,7 @@ export const AccountButton = styled.button`
     margin-bottom: 15px;
     padding: 3px;
 
-    width: 80%;
+    width: 45%;
     height: 30px;
 
     font-size: 16px;
@@ -150,6 +150,7 @@ export const AccountButton = styled.button`
     }
 
     @media (max-width: 767px) {
+        width: auto;
         height: 45px;
     }
 `

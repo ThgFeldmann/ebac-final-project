@@ -33,16 +33,22 @@ const SpecialPost = ({ post, followingList, userId }: Props) => {
                     <h4 onClick={e => toggleModal()}>
                         {post.author}
                     </h4>
-                    <PostModal
-                        state={modal} 
-                        post_type="special"
-                        logged_user_id={userId}
-                        followingList={followingList}
-                        data={{
-                            user_id: post.author_id,
-                            username: post.author
-                        }}
-                    />
+                    {
+                        (modal === true) ?
+                            <PostModal
+                                state={modal} 
+                                post_type="special"
+                                logged_user_id={userId}
+                                followingList={followingList}
+                                data={{
+                                    user_id: post.author_id,
+                                    username: post.author
+                                }}
+                                post_author_id={post.author_id}
+                            />
+                        :
+                            null
+                    }
                 </SpecialPostUserNameArea>
                 <SpecialPostContentArea>
                     <p>{post.content}</p>

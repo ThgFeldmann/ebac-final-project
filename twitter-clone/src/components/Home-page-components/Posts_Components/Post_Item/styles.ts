@@ -91,13 +91,17 @@ export const PostActionArea = styled.div`
         button {
             margin: 0 auto;
 
-            width: 80px;
+            min-width: 80px;
             height: 20px;
             font-size: 14px;
             font-weight: bold;
             border: 2px solid ${colors.preto};
             border-radius: 6px;
             background-color: ${colors.verdeClaro};
+
+            &.likeButton {
+                width: 105px;
+            }
 
             &: hover, &.clicked {
                 border: 3px inset ${colors.cinza};
@@ -107,7 +111,7 @@ export const PostActionArea = styled.div`
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
 
-        height: 105px;
+        height: auto;
 
         div {
             display: flex;
@@ -120,7 +124,7 @@ export const PostActionArea = styled.div`
 
             button {
                 font-size: 22px;
-                width: 120px;
+                min-width: 120px;
                 height: 50px;
             }
         }

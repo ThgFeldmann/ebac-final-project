@@ -13,74 +13,77 @@ import { GlobalStyle } from "./styles";
 
 //*Production URLS
 
-// // this is the URL for 'Users' section
-// export const apiUsers = {
-//   Get: "https://echobackend-production.up.railway.app/api/users/get/",
-//   Update: "https://echobackend-production.up.railway.app/api/users/patch/password/",
-//   Create: "https://echobackend-production.up.railway.app/api/users/create/",
-//   Delete: "https://echobackend-production.up.railway.app/api/users/delete/"
-// }
+// this is the URL for 'Users' section
+export const apiUsers = {
+  Get: "https://echobackend-production.up.railway.app/api/users/get/",
+  UpdateUsername: "https://echobackend-production.up.railway.app/api/users/patch/username/",
+  UpdateImage: "https://echobackend-production.up.railway.app/api/users/patch/image",
+  UpdateBio: "https://echobackend-production.up.railway.app/api/users/patch/bio/",
+  UpdatePassword: "https://echobackend-production.up.railway.app/api/users/patch/password/",
+  Create: "https://echobackend-production.up.railway.app/api/users/create/",
+  Delete: "https://echobackend-production.up.railway.app/api/users/delete/"
+}
 
-// // this is the URL for 'Posts' section
-// export const apiPosts = {
-//   Get: "https://echobackend-production.up.railway.app/api/posts/get/",
-//   Create: "https://echobackend-production.up.railway.app/api/posts/create/",
-//   Delete: "https://echobackend-production.up.railway.app/api/posts/delete/"
-// }
+// this is the URL for 'Posts' section
+export const apiPosts = {
+  Get: "https://echobackend-production.up.railway.app/api/posts/get/",
+  Create: "https://echobackend-production.up.railway.app/api/posts/create/",
+  Delete: "https://echobackend-production.up.railway.app/api/posts/delete/"
+}
 
-// //this is the URL for 'Comment' section
-// export const apiComments = {
-//   Get: "https://echobackend-production.up.railway.app/api/comments/get/",
-//   Create: "https://echobackend-production.up.railway.app/api/comments/create/",
-//   Delete: "https://echobackend-production.up.railway.app/api/comments/delete/"
-// }
+//this is the URL for 'Comment' section
+export const apiComments = {
+  Get: "https://echobackend-production.up.railway.app/api/comments/get/",
+  Create: "https://echobackend-production.up.railway.app/api/comments/create/",
+  Delete: "https://echobackend-production.up.railway.app/api/comments/delete/"
+}
 
-// // this is the URL for 'Follows' section
-// export const apiFollows = {
-//   Get: "https://echobackend-production.up.railway.app/api/follows/get/",
-//   Create: "https://echobackend-production.up.railway.app/api/follows/create/",
-//   Delete: "https://echobackend-production.up.railway.app/api/follows/delete/"
-// }
+// this is the URL for 'Follows' section
+export const apiFollows = {
+  Get: "https://echobackend-production.up.railway.app/api/follows/get/",
+  Create: "https://echobackend-production.up.railway.app/api/follows/create/",
+  Delete: "https://echobackend-production.up.railway.app/api/follows/delete/"
+}
 
 //*Development URLS
-// this is the URL for the 'Users' section
-export const apiUsers = {
-  Get: "http://127.0.0.1:8000/api/users/get/",
-  UpdateUsername: "http://127.0.0.1:8000/api/users/patch/username/",
-  UpdateImage: "http://127.0.0.1:8000/api/users/patch/image/",
-  UpdateBio: "http://127.0.0.1:8000/api/users/patch/bio/",
-  UpdatePassword: "http://127.0.0.1:8000/api/users/patch/password/",
-  Create: "http://127.0.0.1:8000/api/users/create/",
-  Delete: "http://127.0.0.1:8000/api/users/delete/"
-}
+// // this is the URL for the 'Users' section
+// export const apiUsers = {
+//   Get: "http://127.0.0.1:8000/api/users/get/",
+//   UpdateUsername: "http://127.0.0.1:8000/api/users/patch/username/",
+//   UpdateImage: "http://127.0.0.1:8000/api/users/patch/image/",
+//   UpdateBio: "http://127.0.0.1:8000/api/users/patch/bio/",
+//   UpdatePassword: "http://127.0.0.1:8000/api/users/patch/password/",
+//   Create: "http://127.0.0.1:8000/api/users/create/",
+//   Delete: "http://127.0.0.1:8000/api/users/delete/"
+// }
 
-// this is the URL for the 'Posts' section
-export const apiPosts = {
-  Get: "http://127.0.0.1:8000/api/posts/get/",
-  Create: "http://127.0.0.1:8000/api/posts/create/",
-  Delete: "http://127.0.0.1:8000/api/posts/delete/"
-}
+// // this is the URL for the 'Posts' section
+// export const apiPosts = {
+//   Get: "http://127.0.0.1:8000/api/posts/get/",
+//   Create: "http://127.0.0.1:8000/api/posts/create/",
+//   Delete: "http://127.0.0.1:8000/api/posts/delete/"
+// }
 
-// this is the URL for the 'Likes' section
-export const apiLikes = {
-  Get: "http://127.0.0.1:8000/api/likes/get/",
-  Create: "http://127.0.0.1:8000/api/likes/create/",
-  Delete: "http://127.0.0.1:8000/api/likes/delete/",
-}
+// // this is the URL for the 'Likes' section
+// export const apiLikes = {
+//   Get: "http://127.0.0.1:8000/api/likes/get/",
+//   Create: "http://127.0.0.1:8000/api/likes/create/",
+//   Delete: "http://127.0.0.1:8000/api/likes/delete/",
+// }
 
-// this is the URL for the 'Comments' section
-export const apiComments = {
-  Get: "http://127.0.0.1:8000/api/comments/get/",
-  Create: "http://127.0.0.1:8000/api/comments/create/",
-  Delete: "http://127.0.0.1:8000/api/comments/delete/"
-}
+// // this is the URL for the 'Comments' section
+// export const apiComments = {
+//   Get: "http://127.0.0.1:8000/api/comments/get/",
+//   Create: "http://127.0.0.1:8000/api/comments/create/",
+//   Delete: "http://127.0.0.1:8000/api/comments/delete/"
+// }
 
-// this is the URL for the 'Follows' section
-export const apiFollows = {
-  Get: "http://127.0.0.1:8000/api/follows/get/",
-  Create: "http://127.0.0.1:8000/api/follows/create/",
-  Delete: "http://127.0.0.1:8000/api/follows/delete/"
-}
+// // this is the URL for the 'Follows' section
+// export const apiFollows = {
+//   Get: "http://127.0.0.1:8000/api/follows/get/",
+//   Create: "http://127.0.0.1:8000/api/follows/create/",
+//   Delete: "http://127.0.0.1:8000/api/follows/delete/"
+// }
 
 //* Tipos de dados
 // Type of User

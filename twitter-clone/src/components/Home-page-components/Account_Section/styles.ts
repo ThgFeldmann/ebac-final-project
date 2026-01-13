@@ -25,7 +25,7 @@ export const SectionContainer = styled.div`
 export const AccountContainer = styled.div`
     background-color: ${colors.azulClaro};
     width: 30vw;
-    height: 60vh;
+    height: 70vh;
     margin: 0 auto;
 
     border: 2px solid ${colors.cinzaClaro};
@@ -33,11 +33,15 @@ export const AccountContainer = styled.div`
     padding: 12px;
 
     .imageContainer {
-        width: 80px;
-        height: 75px;
+        width: 120px;
+        height: 120px;
         margin: 0 auto;
-        border-radius: 50px;
-        background-color: ${colors.cinza};
+
+        img {
+            width: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
     }
 
     h2 {
@@ -87,6 +91,11 @@ export const AccountContainer = styled.div`
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
         height: 60vh;
 
+        .imageContainer {
+            width: 150px;
+            height: 150px;
+        }
+
         h2 {
             font-size: 28px;
         }
@@ -107,7 +116,8 @@ export const AccountContainer = styled.div`
     }
 
     @media (max-width: 767px) {
-        height: 60vh;
+        width: 40vw;
+        height: 90vh;
 
         .bioContainer {
             width: 85%;

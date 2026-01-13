@@ -13,7 +13,8 @@ export const PostModalContainer = styled.div`
     }
 
     width: 180px;
-    min-height: 115px;
+    min-height: 165px;
+    height: 220px;
     margin: 0 auto;
 
     text-align: center;
@@ -25,6 +26,12 @@ export const PostModalContainer = styled.div`
 
     &.logged_user {
         height: 70px;
+    }
+
+    img {
+        margin-top: 10px;
+        width: 90px;
+        height: 90px;
     }
 
     h3, h4 {
@@ -76,7 +83,8 @@ export const PostModalContainer = styled.div`
     }
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
-        height: 240px;
+        min-height: 220px;
+        height: 350px;
 
         div: first-child {
             h3 {
@@ -106,7 +114,8 @@ export const PostModalContainer = styled.div`
 
     @media (max-width: 767px) {
         width: 130px;
-        height: 125px;
+        min-height: 165px;
+        height: 225px;
 
         div.buttonContainer {
             button {

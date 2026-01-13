@@ -131,24 +131,29 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
     const handleLikeButton = () => {
         if (!userLiked) { //* Create Like case
             createLike()
-
+            setUserLiked(true)
         } else { //* Delete Like case
             deleteLike()
+        }
+    }
+
+    const checkIfUserLike = () => {
+        const userLikesOnPost: Like[] = postLikes.filter((item: Like) => 
+            item.user_id === user.id
+        )
+
+        if (userLikesOnPost.length > 0) {
+            setUserLiked(true)
         }
     }
 
     useEffect(() => {
         filterComments(comments)
         countPostLikes()
+
+        checkIfUserLike()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [post, comments])
-
-    const test = () => {
-        console.log("posts data: ", posts)
-        console.log("post data: ", post)
-        console.log("post author id: ", post.author_id)
-        setModal(true)
-    }
 
     return (
         <>
@@ -175,19 +180,25 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
                     </div>
                 </CreationContainer>
                 <PostUserNameArea>
-                    <h4 onClick={e => test()}>{post.author}</h4>
-                    <PostModal
-                        state={modal}
-                        post_type="normal"
-                        set_posts={set_posts}
-                        posts={posts}
-                        logged_user_id={user.id}
-                        followingList={followingList}
-                        data={{
-                            user_id: post.author_id,
-                            username: post.author
-                        }}
-                    />
+                    <h4 onClick={e => setModal(true)}>{post.author}</h4>
+                    {
+                        (modal === true) ?
+                            <PostModal
+                                state={modal}
+                                post_type="normal"
+                                set_posts={set_posts}
+                                posts={posts}
+                                logged_user_id={user.id}
+                                followingList={followingList}
+                                data={{
+                                    user_id: post.author_id,
+                                    username: post.author
+                                }}
+                                post_author_id={post.author_id}
+                            />
+                        :
+                            null
+                    }
                 </PostUserNameArea>
                 <PostContentArea>
                     <p>{post.content}</p>
@@ -203,7 +214,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
                                             (!userLiked) ?
                                                 "curtir"
                                             :
-                                                "parar de curtir"
+                                                "deixar de curtir"
                                         }
                                     </button>
                                 </>
