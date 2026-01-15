@@ -92,16 +92,10 @@ const SearchUserModal = ({Search, user, changeSearch}: Props) => {
     const handleCreateButton = async (user_id: number, following_id: number | undefined) => {
         try {
             if (following_id !== undefined) {
+                //TODO create follow not working
                 const response = await createFollow(user_id, following_id)
-
-                console.log("response: ", response)
-
-                if (response >= 200 && response < 300) {
-                    console.log("follow successfull")
-                    window.location.reload()
-                } else {
-                    console.log("follow creation failed")
-                }
+                console.log("follow successfull")
+                window.location.reload()
             } else {
                 console.log("Este 'id' não existe")
             }
