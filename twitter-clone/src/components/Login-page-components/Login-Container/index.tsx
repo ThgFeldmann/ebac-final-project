@@ -24,6 +24,26 @@ const LoginContainerComponent = () => {
 
     const navigate = useNavigate()
 
+    const TouchServer = () => {
+
+        /*
+            Function that sends a get request for the server to 'wake up'
+            the server goes to 'sleep' after 10 minutes of inactivity
+        */
+
+        fetch(apiUsers.Get)
+    }
+
+    const ContainerClass = () => {
+        TouchServer()
+
+        if (success) {
+            return "successContainer"
+        } else {
+            return ""
+        }
+    }
+
     // resets the states on re-render
     useEffect(() => {
         setSuccess(false)
@@ -69,7 +89,7 @@ const LoginContainerComponent = () => {
     }
 
     return (
-        <LoginContainer className={success ? 'successContainer' : ''}>
+        <LoginContainer className={ContainerClass()}>
             {(success === true) ?
                 <SuccessSection>
                     <h2>Bem vindo {loggedUser.username}!</h2>
