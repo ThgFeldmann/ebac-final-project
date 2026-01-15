@@ -31,6 +31,13 @@ export const apiPosts = {
   Delete: "https://echobackend-production.up.railway.app/api/posts/delete/"
 }
 
+// this is the URL for the 'Likes' section
+export const apiLikes = {
+  Get: "https://echobackend-production.up.railway.app/api/likes/get/",
+  Create: "https://echobackend-production.up.railway.app/api/likes/create/",
+  Delete: "https://echobackend-production.up.railway.app/api/likes/delete/",
+}
+
 //this is the URL for 'Comment' section
 export const apiComments = {
   Get: "https://echobackend-production.up.railway.app/api/comments/get/",
