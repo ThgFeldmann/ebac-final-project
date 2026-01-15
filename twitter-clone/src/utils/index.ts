@@ -118,7 +118,8 @@ export const deleteFollow = (target_id: number) => {
 // Function that handles the creation of a follow case
 // this function receives a 'user_id' type number and an 'follow_user_id' type number
 export const createFollow = (user_id: number, following_id: number) => {
-    fetch(apiFollows.Create, {
+    console.log("Starting follow creation...")
+    const response = fetch(apiFollows.Create, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -128,4 +129,8 @@ export const createFollow = (user_id: number, following_id: number) => {
                 following_id
             })
         })
+        .then((response) => response.json())
+        .then((response) => {return response.status})
+    
+    return response
 }
