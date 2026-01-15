@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { apiUsers, FormValues, User } from "../../../App";
 
 import { ButtonContainer, InputContainer, Button, LoginContainer, SuccessSection } from "./styles" 
-import { fetchUserFollowedData, fetchUserFollowingData } from "../../../utils";
 
 const LoginContainerComponent = () => {
     // Dictates if login is a success or not
@@ -52,7 +51,7 @@ const LoginContainerComponent = () => {
                         &&
                         u.password === formData.password
                 )
-                if (user) { //TODO add extra checks
+                if (user) {
                     console.log("Login successful!")
                     setLoggedUser(user)
                     setSuccess(true)
@@ -61,30 +60,12 @@ const LoginContainerComponent = () => {
                     setFormError(true)
                 }
             })
-
-        // SWITCH TO THIS FUNCTION WHEN BACK-END IS DONE
-        // const token = 'byG9wZuXK0my1AhXHI88PEYAToR6DgKBwkDwa3X01IbL91VmCVgWavmiP64COuYz'
-
-        // fetch(apiUsers.Create, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Authorization': `Bearer ${token}`,
-        //         'Content-Type': 'application/json',
-        //     }
-        // })
-        //     .then((response) => response.json())
-        //     .then(data => console.log(data))
-        //     .catch(error => console.error('Error: ', error))
     }
 
-    //* handles the navigation
+    //* handles the navigation, also sends the user data to the home page
     const handleNavigate = async (user: User) => {
 
-        // fetch follow datas
-        const followingData = await fetchUserFollowingData(user)
-        const followedData = await fetchUserFollowedData(user)
-
-        navigate('/Home', {state: {user: loggedUser, followingList: followingData, followedList: followedData}})
+        navigate('/Home', {state: {user: user}})
     }
 
     return (

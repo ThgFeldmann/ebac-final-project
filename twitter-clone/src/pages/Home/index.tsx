@@ -15,6 +15,7 @@ import AccountSection from "../../components/Home-page-components/Account_Sectio
 import EditUsernameModal from "../../components/Home-page-components/Edit_Modals/Edit_Username_Modal"
 import EditBioModal from "../../components/Home-page-components/Edit_Modals/Edit_Bio_Modal"
 import EditImageModal from "../../components/Home-page-components/Edit_Modals/Edit_Image_Modal"
+import { fetchUserFollowedData, fetchUserFollowingData } from "../../utils"
 
 const Home = () => {
     const [Account, setAccount] = useState<boolean>(false)
@@ -26,6 +27,8 @@ const Home = () => {
     const [EditPassword, setEditPassword] = useState<boolean>(false)
     const [EditImage, setEditImage] = useState<boolean>(false)
 
+    const [FollowingList, setFollowingList] = useState<Follow[]>([])
+    const [FollowedList, setFollowedList] = useState<Follow[]>([])
     const [PostList, setPostList] = useState<Post[]>([])
     const [CommentList, setCommentList] = useState<Comment[]>([])
     const [LikeList, setLikeList] = useState<Like[]>([])
@@ -34,8 +37,6 @@ const Home = () => {
     const location = useLocation()
 
     const user: User = location.state.user
-    const followingList: Follow[] = location.state.followingList
-    const followedList: Follow[] = location.state.followedList
 
     const ChangeCreateStatus = (boolean: boolean) => {
         setCreate(boolean)
@@ -66,6 +67,14 @@ const Home = () => {
     }
     
     const FetchLists = async (user: User) => {
+
+        // fetch follow datas
+        const followingData = await fetchUserFollowingData(user)
+        const followedData = await fetchUserFollowedData(user)
+        
+        setFollowingList(followingData)
+        setFollowedList(followedData)
+
         // GET request for the "Posts" section of the api
         fetch(apiPosts.Get)
             .then((response) => response.json())
@@ -109,7 +118,7 @@ const Home = () => {
             FetchLists(user)
         // Timeout milliseconds
         }, 1000)
-    }, [followedList, followingList, user])
+    }, [user])
 
     return (
         <>
@@ -117,8 +126,8 @@ const Home = () => {
             <HomeContainer>
                 <SideBar 
                     user={user}
-                    followingList={followingList}
-                    followedList={followedList}
+                    followingList={FollowingList}
+                    followedList={FollowedList}
                     Create={Create}
                     changeCreate={ChangeCreateStatus}
                     Search={Search}
@@ -133,7 +142,7 @@ const Home = () => {
                                 Create={Create}
                                 user={user} 
                                 posts={PostList} 
-                                followingList={followingList} 
+                                followingList={FollowingList} 
                                 comments={CommentList}
                                 likeList={LikeList}
                                 userLikeList={UserLikeList}
@@ -144,7 +153,7 @@ const Home = () => {
                             <CreationSection 
                                 changeCreate={ChangeCreateStatus} 
                                 user={user} 
-                                followingList={followingList}
+                                followingList={FollowingList}
                             />
                         </>
                     : (!Create && Account) ?
@@ -223,7 +232,7 @@ const Home = () => {
                 <SpecialPostsSection
                     posts={PostList}
                     comments={CommentList}
-                    followingList={followingList}
+                    followingList={FollowingList}
                     userId={user.id}
                 />
             </HomeContainer>
