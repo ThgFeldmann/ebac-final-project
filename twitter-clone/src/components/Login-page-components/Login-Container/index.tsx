@@ -62,7 +62,7 @@ const LoginContainerComponent = () => {
 
         setTimeout(() => {
             setLoading(false)
-        }, 4000)
+        }, 5000)
     }, [setSuccess, setFormData, setLoggedUser])
 
     // executes all submit functions and checks if successful
