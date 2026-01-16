@@ -7,7 +7,10 @@ import { ButtonContainer, InputContainer, Button, LoginContainer, SuccessSection
 
 const LoginContainerComponent = () => {
     // Dictates if login is a success or not
-    const [success, setSuccess] = useState<boolean>(false) 
+    const [success, setSuccess] = useState<boolean>(false)
+    // Dictates if the page is loading
+    const [loading, setLoading] = useState<boolean>(true)
+
     // Holds informations typed on the form
     const [formData, setFormData] = useState<FormValues>({email: '', password: ''}) 
     // Stores user information in case login is a success
@@ -56,6 +59,10 @@ const LoginContainerComponent = () => {
             bio: '',
             image: '',
         })
+
+        setTimeout(() => {
+            setLoading(false)
+        }, 3000)
     }, [setSuccess, setFormData, setLoggedUser])
 
     // executes all submit functions and checks if successful
@@ -96,6 +103,8 @@ const LoginContainerComponent = () => {
                     <p>Para ir até a página principal, aperte o botão abaixo.</p>
                     <button onClick={event => handleNavigate(loggedUser)}>Clique aqui!</button>
                 </SuccessSection>
+            : (loading === true) ?
+                <h2>Carregando...</h2>
             :
                 <InputContainer onSubmit={e => handleSubmit(e)}>
                     {formError ? <p className="error">Algum dos campos abaixo está com informações erradas.</p> : null}
