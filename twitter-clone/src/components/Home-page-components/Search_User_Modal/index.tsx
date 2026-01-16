@@ -3,7 +3,7 @@ import { useState } from "react"
 import { apiFollows, Follow, User } from "../../../App"
 
 import { Modal } from "./styles"
-import { createFollow, deleteFollow, fetchUserIdWithUsername, filterFollow, sleep } from "../../../utils"
+import { createFollow, deleteFollow, fetchUserIdWithUsername, filterFollow } from "../../../utils"
 
 type Props = {
     Search: boolean
@@ -93,8 +93,7 @@ const SearchUserModal = ({Search, user, changeSearch}: Props) => {
         try {
             if (following_id !== undefined) {
                 //TODO create follow not working
-                const response = await createFollow(user_id, following_id)
-                console.log("follow successfull")
+                createFollow(user_id, following_id)
                 window.location.reload()
             } else {
                 console.log("Este 'id' não existe")

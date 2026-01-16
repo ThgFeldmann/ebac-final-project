@@ -217,6 +217,10 @@ export const CreationContentArea = styled.div`
         border: 3px dotted ${colors.cinzaClaro};
         background-color: ${colors.azulClaro};
         resize: none;
+
+        &.error {
+            border: 3px dotted ${colors.vermelho};
+        }
     }
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {

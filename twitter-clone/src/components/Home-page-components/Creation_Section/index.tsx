@@ -78,6 +78,7 @@ export const CreationSection = ({ changeCreate, user, followingList }: Props) =>
                     </label>
                     <textarea 
                         id="content" 
+                        className={(emptyFormError) ? "error" : ""}
                         name="content" 
                         autoComplete="off"
                         value={formData.content}
