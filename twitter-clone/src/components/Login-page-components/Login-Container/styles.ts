@@ -18,6 +18,10 @@ export const LoginContainer = styled.div`
         height: 300px;
     }
 
+    .loading {
+        margin-top: 20px;
+    }
+
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
         width: 700px;
         height: 600px;
