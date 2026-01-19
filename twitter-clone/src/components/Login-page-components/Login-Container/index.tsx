@@ -47,24 +47,6 @@ const LoginContainerComponent = () => {
         }
     }
 
-    // resets the states on re-render
-    useEffect(() => {
-        setSuccess(false)
-        setFormData({email: '', password: ''})
-        setLoggedUser({
-            id: 0,
-            username: '',
-            password: '',
-            email: '',
-            bio: '',
-            image: '',
-        })
-
-        setTimeout(() => {
-            setLoading(false)
-        }, 5000)
-    }, [])
-
     // executes all submit functions and checks if successful
     const handleSubmit = (e: any) => {
         e.preventDefault()
@@ -72,12 +54,16 @@ const LoginContainerComponent = () => {
         fetch(apiUsers.Get)
             .then((response) => response.json())
             .then((users) => {
-                const user = users.find(
+
+                //? maybe remove verifications from the request?
+
+                const user: User = users.find(
                     (u: User) =>
                         u.email === formData.email 
                         &&
                         u.password === formData.password
                 )
+
                 if (user) {
                     console.log("Login successful!")
                     setLoggedUser(user)
@@ -94,6 +80,26 @@ const LoginContainerComponent = () => {
 
         navigate('/Home', {state: {user: user}})
     }
+
+    // resets the states on re-render
+    useEffect(() => {
+        setSuccess(false)
+        setFormData({email: '', password: ''})
+        setLoggedUser({
+            id: 0,
+            username: '',
+            password: '',
+            email: '',
+            bio: '',
+            image: '',
+        })
+
+        // setTimeout(() => {
+        //     setLoading(false)
+        // }, 5000)
+
+        setLoading(false)
+    }, [])
 
     return (
         <LoginContainer className={ContainerClass()}>
