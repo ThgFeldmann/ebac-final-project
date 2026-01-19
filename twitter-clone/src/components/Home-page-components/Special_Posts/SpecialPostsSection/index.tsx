@@ -5,7 +5,6 @@ import SpecialPost from "../SpecialPost"
 import { SpecialPostsContainer, SpecialPostsArea } from "./styles"
 
 import { apiPosts, Comment, Follow, Post } from "../../../../App"
-import { sleep } from "../../../../utils"
 
 type Props = {
     posts: Post[]
@@ -38,7 +37,7 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
         })
 
         // adjusting the order of the values in the array, so that the more frequent a number is
-        // the nearer to the start of the array, it will be
+        // the closer to the start of the array, it will be
         const formatArray = sortedArray.filter((item, index, self) => {
             return self.indexOf(item) === index
         })
@@ -65,8 +64,9 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
     }
 
     const handleLoading = () => {
-        sleep(4)
-        setLoading(false)
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000)
     }
 
     useEffect(() => {
