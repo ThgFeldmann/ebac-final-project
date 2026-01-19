@@ -34,6 +34,11 @@ export const PostModalContainer = styled.div`
         height: 90px;
     }
 
+    p {
+        margin: 15px 0;
+        color: ${colors.cinzaClaro};
+    }
+
     h3, h4 {
         color: ${colors.cinzaClaro};
     }
