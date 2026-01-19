@@ -35,7 +35,7 @@ export const PostModalContainer = styled.div`
     }
 
     p {
-        margin: 15px 0;
+        margin: 15px 0 10px;
         color: ${colors.cinzaClaro};
     }
 

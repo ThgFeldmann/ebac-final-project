@@ -212,9 +212,9 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
                                     <button className="likeButton" onClick={e => handleLikeButton()}>
                                         {
                                             (!userLiked) ?
-                                                "curtir"
+                                                "Curtir"
                                             :
-                                                "deixar de curtir"
+                                                "Deixar de curtir"
                                         }
                                     </button>
                                 </>
