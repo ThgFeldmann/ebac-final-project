@@ -63,7 +63,7 @@ const LoginContainerComponent = () => {
         setTimeout(() => {
             setLoading(false)
         }, 5000)
-    }, [setSuccess, setFormData, setLoggedUser])
+    }, [])
 
     // executes all submit functions and checks if successful
     const handleSubmit = (e: any) => {
@@ -107,7 +107,7 @@ const LoginContainerComponent = () => {
                 <h2 className="loading">Carregando...</h2>
             :
                 <InputContainer onSubmit={e => handleSubmit(e)}>
-                    {formError ? <p className="error">Algum dos campos abaixo está com informações erradas.</p> : null}
+                    {formError ? <p className="error">Algum dos campos abaixo está com informações erradas</p> : null}
                     <div>
                         <label htmlFor="email">Email do Usuário:</label>
                         <input 
