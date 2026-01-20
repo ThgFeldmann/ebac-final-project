@@ -56,8 +56,10 @@ const LoginContainerComponent = () => {
             .then((response) => response.json())
             .then((users) => {
 
+                console.log("Request response: ", users)
                 //? maybe remove verifications from the request?
 
+                console.log("Filtering user...")
                 const user: User = users.find(
                     (u: User) =>
                         u.email === formData.email 
@@ -65,6 +67,9 @@ const LoginContainerComponent = () => {
                         u.password === formData.password
                 )
 
+                console.log("User: ", user)
+
+                console.log("Validating user...")
                 if (user) {
                     console.log("Login successful!")
                     setLoggedUser(user)
