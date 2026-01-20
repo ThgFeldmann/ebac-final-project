@@ -51,6 +51,7 @@ const LoginContainerComponent = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
+        console.log("Starting the request...")
         fetch(apiUsers.Get)
             .then((response) => response.json())
             .then((users) => {
@@ -94,11 +95,9 @@ const LoginContainerComponent = () => {
             image: '',
         })
 
-        // setTimeout(() => {
-        //     setLoading(false)
-        // }, 5000)
-
-        setLoading(false)
+        setTimeout(() => {
+            setLoading(false)
+        }, 2500)
     }, [])
 
     return (
