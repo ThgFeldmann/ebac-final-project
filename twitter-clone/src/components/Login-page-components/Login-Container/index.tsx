@@ -13,6 +13,10 @@ const LoginContainerComponent = () => {
 
     // Holds informations typed on the form
     const [formData, setFormData] = useState<FormValues>({email: '', password: ''}) 
+
+    // Holds information on every user
+    const [usersList, setUsersList] = useState<User[]>([])
+
     // Stores user information in case login is a success
     const [loggedUser, setLoggedUser] = useState<User>({
         id: 0,
@@ -35,6 +39,10 @@ const LoginContainerComponent = () => {
         */
 
         fetch(apiUsers.Get)
+
+        setTimeout(() => {
+            setLoading(false)
+        }, 2500)
     }
 
     const ContainerClass = () => {
@@ -47,39 +55,72 @@ const LoginContainerComponent = () => {
         }
     }
 
-    // executes all submit functions and checks if successful
+    const GetUsersList = () => {
+        console.log("Starting request...")
+        fetch(apiUsers.Get)
+            .then((response) => response.json())
+            .then((response: User[]) => {setUsersList(response)})
+    }
+
+    const FilterUser = (usersList: User[]) => {
+        console.log("Filtering user...")
+        const user = usersList.find(
+            (u: User) =>
+                u.email === formData.email 
+                &&
+                u.password === formData.password
+        )
+
+        if (user) {
+            console.log("Login successfull...")
+            setLoggedUser(user)
+            setSuccess(true)
+        } else {
+            console.log("Invalid Credentials")
+            setFormError(true)
+        }
+    }
+
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
-        console.log("Starting the request...")
-        fetch(apiUsers.Get)
-            .then((response) => response.json())
-            .then((users) => {
-
-                console.log("Request response: ", users)
-                //? maybe remove verifications from the request?
-
-                console.log("Filtering user...")
-                const user: User = users.find(
-                    (u: User) =>
-                        u.email === formData.email 
-                        &&
-                        u.password === formData.password
-                )
-
-                console.log("User: ", user)
-
-                console.log("Validating user...")
-                if (user) {
-                    console.log("Login successful!")
-                    setLoggedUser(user)
-                    setSuccess(true)
-                } else {
-                    console.log("Invalid Credentials")
-                    setFormError(true)
-                }
-            })
+        GetUsersList()
+        FilterUser(usersList)
     }
+
+    // // executes all submit functions and checks if successful
+    // const handleSubmit = (e: any) => {
+    //     e.preventDefault()
+
+    //     console.log("Starting the request...")
+    //     fetch(apiUsers.Get)
+    //         .then((response) => response.json())
+    //         .then((users) => {
+
+    //             console.log("Request response: ", users)
+    //             //? maybe remove verifications from the request?
+
+    //             console.log("Filtering user...")
+    //             const user: User = users.find(
+    //                 (u: User) =>
+    //                     u.email === formData.email 
+    //                     &&
+    //                     u.password === formData.password
+    //             )
+
+    //             console.log("User: ", user)
+
+    //             console.log("Validating user...")
+    //             if (user) {
+    //                 console.log("Login successful!")
+    //                 setLoggedUser(user)
+    //                 setSuccess(true)
+    //             } else {
+    //                 console.log("Invalid Credentials")
+    //                 setFormError(true)
+    //             }
+    //         })
+    // }
 
     //* handles the navigation, also sends the user data to the home page
     const handleNavigate = async (user: User) => {
@@ -91,6 +132,7 @@ const LoginContainerComponent = () => {
     useEffect(() => {
         setSuccess(false)
         setFormData({email: '', password: ''})
+        setUsersList([])
         setLoggedUser({
             id: 0,
             username: '',
@@ -99,10 +141,6 @@ const LoginContainerComponent = () => {
             bio: '',
             image: '',
         })
-
-        setTimeout(() => {
-            setLoading(false)
-        }, 2500)
     }, [])
 
     return (
