@@ -55,9 +55,9 @@ const LoginContainerComponent = () => {
         }
     }
 
-    const GetUsersList = () => {
+    const GetUsersList = async () => {
         console.log("Starting request...")
-        fetch(apiUsers.Get)
+        await fetch(apiUsers.Get)
             .then((response) => response.json())
             .then((response: User[]) => {setUsersList(response)})
     }
