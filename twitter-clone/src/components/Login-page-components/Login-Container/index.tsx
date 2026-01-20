@@ -59,7 +59,10 @@ const LoginContainerComponent = () => {
         console.log("Starting request...")
         await fetch(apiUsers.Get)
             .then((response) => response.json())
-            .then((response: User[]) => {setUsersList(response)})
+            .then((response: User[]) => {
+                console.log("response: ", response)
+                setUsersList(response)
+            })
     }
 
     const FilterUser = (usersList: User[]) => {
