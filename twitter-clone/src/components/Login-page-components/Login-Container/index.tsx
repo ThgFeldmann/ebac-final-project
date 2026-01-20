@@ -63,6 +63,8 @@ const LoginContainerComponent = () => {
     }
 
     const FilterUser = (usersList: User[]) => {
+        console.log("Users list: ", usersList)
+
         console.log("Filtering user...")
         const user = usersList.find(
             (u: User) =>
@@ -70,6 +72,8 @@ const LoginContainerComponent = () => {
                 &&
                 u.password === formData.password
         )
+
+        console.log("user: ", user)
 
         if (user) {
             console.log("Login successfull...")
