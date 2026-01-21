@@ -105,7 +105,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
             body: JSON.stringify(object)
         })
             .then((response) => response.json())
-            .then((response: Response) => {
+            .then((response) => {
                 console.log("response: ", response.status)
 
                 if (response.status >= 200 && response.status < 300) {
