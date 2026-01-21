@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 
-import { apiComments, apiLikes, apiPosts, Comment, Follow, Like, Post, User } from "../../App"
+import { apiComments, apiPosts, Comment, Follow, Post, User } from "../../App"
 
 import SideBar from "../../components/Home-page-components/SideBar_Components/SideBar"
 import PostSection from "../../components/Home-page-components/Posts_Components/PostSection"
