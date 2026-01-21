@@ -17,7 +17,6 @@ type Props = {
     comments: Comment[]
     followingList: Follow[]
     likeList?: Like[]
-    userLikeList?: Like[]
 }
 
 const PostComponent = ({ user, set_posts, posts, post, comments, followingList, likeList }: Props) => {
@@ -149,21 +148,36 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
         }
     }
 
-    const checkIfUserLike = () => {
-        const userLikesOnPost: Like[] = postLikes.filter((item: Like) => 
+    const checkIfUserLikesPost = () => {
+        const userLikes = postLikes.filter((item: Like) => 
+            item.post_id === post.id
+            &&
             item.user_id === user.id
         )
 
-        if (userLikesOnPost.length > 0) {
+        if (userLikes.length > 0) {
             setUserLiked(true)
         }
     }
+
+    // //TODO check not working
+    // const checkIfUserLike = () => {
+    //     const userLikesOnPost: Like[] = postLikes.filter((item: Like) => 
+    //         item.user_id === user.id
+    //     )
+
+    //     if (userLikesOnPost.length > 0) {
+    //         setUserLiked(true)
+    //     }
+    // }
 
     useEffect(() => {
         filterComments(comments)
         countPostLikes()
 
-        checkIfUserLike()
+        // checkIfUserLike()
+        checkIfUserLikesPost()
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [post, comments])
 

@@ -17,7 +17,6 @@ type Props = {
 const PostSection = ({ user, posts, comments, followingList, Create }: Props) => {
     const [loading, setLoading] = useState<boolean>(true)
     const [likeList, setLikeList] = useState<Like[]>([])
-    const [userLikeList, setUserLikeList] = useState<Like[]>([])
     const [validPosts, setValidPosts] = useState<Post[]>([])
 
     // Filtering the posts list for the logged user
@@ -64,8 +63,6 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
         fetch(apiLikes.Get)
             .then((response) => response.json())
             .then((response) => {
-                const filteredLikes = response.filter((item: Like) => item.user_id === user.id)
-                setUserLikeList(filteredLikes)
                 setLikeList(response)
             })
     }
@@ -110,7 +107,6 @@ const PostSection = ({ user, posts, comments, followingList, Create }: Props) =>
                                 comments={comments}
                                 followingList={followingList}
                                 likeList={likeList}
-                                userLikeList={userLikeList}
                             />
                         </div>
                     ))
