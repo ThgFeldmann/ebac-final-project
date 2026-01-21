@@ -31,8 +31,6 @@ const Home = () => {
     const [FollowedList, setFollowedList] = useState<Follow[]>([])
     const [PostList, setPostList] = useState<Post[]>([])
     const [CommentList, setCommentList] = useState<Comment[]>([])
-    const [LikeList, setLikeList] = useState<Like[]>([])
-    const [UserLikeList, setUserLikeList] = useState<Like[]>([])
 
     const location = useLocation()
 
@@ -84,16 +82,6 @@ const Home = () => {
         fetch(apiComments.Get)
             .then((response) => response.json())
             .then((response) => setCommentList(response))
-
-        // GET request for the "Likes" section of the api | 
-        //  also filtering those related to the logged user
-        fetch(apiLikes.Get)
-            .then((response) => response.json())
-            .then((response) => {
-                const filteredLikes = response.filter((item: Like) => item.user_id === user.id)
-                setUserLikeList(filteredLikes)
-                setLikeList(response)
-            })
     }
 
     // function that removes the overlay
@@ -144,8 +132,6 @@ const Home = () => {
                                 posts={PostList} 
                                 followingList={FollowingList} 
                                 comments={CommentList}
-                                likeList={LikeList}
-                                userLikeList={UserLikeList}
                             />
                         </>
                     : (Create && !Account) ?

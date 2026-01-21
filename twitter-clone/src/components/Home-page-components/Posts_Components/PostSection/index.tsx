@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-import { Comment, Follow, Like, Post, User } from "../../../../App"
+import { apiLikes, Comment, Follow, Like, Post, User } from "../../../../App"
 
 import PostComponent from "../Post_Item"
 
@@ -12,12 +12,12 @@ type Props = {
     posts: Post[],
     comments: Comment[],
     followingList: Follow[],
-    likeList: Like[],
-    userLikeList: Like[],
 }
 
-const PostSection = ({ user, posts, comments, followingList, likeList, userLikeList, Create }: Props) => {
+const PostSection = ({ user, posts, comments, followingList, Create }: Props) => {
     const [loading, setLoading] = useState<boolean>(true)
+    const [likeList, setLikeList] = useState<Like[]>([])
+    const [userLikeList, setUserLikeList] = useState<Like[]>([])
     const [validPosts, setValidPosts] = useState<Post[]>([])
 
     // Filtering the posts list for the logged user
@@ -60,15 +60,30 @@ const PostSection = ({ user, posts, comments, followingList, likeList, userLikeL
         concatArrays(array_1, array_2)
     }
 
+    const FetchLikeList = () => {
+        fetch(apiLikes.Get)
+            .then((response) => response.json())
+            .then((response) => {
+                const filteredLikes = response.filter((item: Like) => item.user_id === user.id)
+                setUserLikeList(filteredLikes)
+                setLikeList(response)
+            })
+    }
+
     useEffect(() => {
         // set 'Loading' to 'True'
         setLoading(true)
+        
+        // get request for the likes
+        FetchLikeList()
 
         // executes the posts functions
         HandlePostsFunctions()
 
-        // set 'Loading' to 'False' at the end of the timeout
-        setLoading(false)
+        setTimeout(() => {
+            // set 'Loading' to 'False' at the end of the timeout
+            setLoading(false)
+        }, 1000)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, posts, Create])

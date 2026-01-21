@@ -85,7 +85,10 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
         if (likeList === undefined) {
             console.log("There are no current likes")
         } else {
-            const filteredLikes: Like[] = likeList?.filter((item: Like) => item.post_id === post.id)
+            const filteredLikes: Like[] = likeList?.filter(
+                (item: Like) => 
+                    item.post_id === post.id
+            )
             setPostLikes(filteredLikes)
         }
     }
