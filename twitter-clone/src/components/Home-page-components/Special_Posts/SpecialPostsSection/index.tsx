@@ -47,7 +47,7 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
 
     // function that fetches the posts based on the received array of ids
     const filterPosts = async (array: number[]) => {
-        // selects the top six comments and removes the rest
+        // selects the top six posts and removes the rest
         const splicedArray = array.splice(0, 6)
 
         // executing a fetch promise with every id in 'splicedArray'
@@ -56,9 +56,12 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
                 fetch(apiPosts.Get + id)
                     .then((response) => response.json())
             )
-        ).then((responses: Post[]) => { // returning the collected posts in a 'Post[]' type
+        ).then((responses: Post[]) => {
+            // returning the collected posts in a 'Post[]' type
             return responses
         })
+
+        console.log("Valid post: ", result)
 
         setValidPosts(result)
     }
@@ -77,6 +80,7 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
         // filtering the posts based on the sorted array
         filterPosts(sortArray)
         handleLoading()
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [posts])
 
