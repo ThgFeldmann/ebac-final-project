@@ -65,9 +65,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
                 body: JSON.stringify(commentBody)
             })
 
-            sleep(3)
             toggleOverlay()
-            sleep(2)
             window.location.reload()
         } catch (error) {
             console.log(error)
@@ -82,12 +80,15 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
     // function that counts the total likes for the current post
     const countPostLikes = () => {
         if (likeList === undefined) {
-            console.log("There are no current likes")
+            console.log("This post does not have any likes")
         } else {
             const filteredLikes: Like[] = likeList?.filter(
                 (item: Like) => 
                     item.post_id === post.id
             )
+
+            console.log("count function value set to state: ", filteredLikes)
+
             setPostLikes(filteredLikes)
         }
     }
@@ -148,26 +149,31 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
         }
     }
 
-    const checkIfUserLikesPost = () => {
+    //TODO postLikes is empty on function
+    const checkIfUserLikesPost = (likes: Like[]) => {
         console.log("post id: ", post.id)
 
         console.log("likes on this post: ", postLikes)
 
         console.log("starting the like check...")
-        const userLikes = postLikes.filter((item: Like) => 
-            item.post_id === post.id
-            &&
+        // const userLikes = postLikes.filter((item: Like) => 
+        //     item.post_id === post.id
+        //     &&
+        //     item.user_id === user.id
+        // )
+
+        const userLikes = likes.find((item: Like) =>
             item.user_id === user.id
         )
 
         console.log("user likes: ", userLikes)
 
-        if (userLikes.length > 0) {
+        if (userLikes !== undefined) {
             setUserLiked(true)
         }
     }
 
-    // //TODO check not working
+    //TODO check not working
     // const checkIfUserLike = () => {
     //     const userLikesOnPost: Like[] = postLikes.filter((item: Like) => 
     //         item.user_id === user.id
@@ -182,8 +188,10 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
         filterComments(comments)
         countPostLikes()
 
-        // checkIfUserLike()
-        checkIfUserLikesPost()
+        if (post.author_id !== user.id) {
+            // checkIfUserLike()
+            checkIfUserLikesPost(postLikes)
+        }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [post, comments])
