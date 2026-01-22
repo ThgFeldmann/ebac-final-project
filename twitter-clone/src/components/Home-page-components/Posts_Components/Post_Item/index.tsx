@@ -122,6 +122,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
         // window.location.reload()
     }
 
+    //TODO not working
     const deleteLike = () => {
         const filteredCases: Like[] = postLikes.filter((item: Like) => 
                 item.post_id === post.id
@@ -151,7 +152,6 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
         }
     }
 
-    //TODO postLikes is empty on function
     const checkIfUserLikesPost = (likes: Like[]) => {
         console.log("post id: ", post.id)
 
@@ -174,17 +174,6 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
             setUserLiked(true)
         }
     }
-
-    //TODO check not working
-    // const checkIfUserLike = () => {
-    //     const userLikesOnPost: Like[] = postLikes.filter((item: Like) => 
-    //         item.user_id === user.id
-    //     )
-
-    //     if (userLikesOnPost.length > 0) {
-    //         setUserLiked(true)
-    //     }
-    // }
 
     useEffect(() => {
         filterComments(comments)
