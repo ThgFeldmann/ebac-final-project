@@ -7,7 +7,6 @@ import PostModal from "../../../Post_Modal"
 
 import { ModalOverlay } from "../../../../styles"
 import { CreationContainer, PostActionArea, PostContainer, PostContentArea, PostUserNameArea } from "./styles"
-import { sleep } from "../../../../utils"
 
 type Props = {
     user: User
