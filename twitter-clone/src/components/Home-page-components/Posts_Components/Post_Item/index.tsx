@@ -117,7 +117,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
                 }
             })
 
-        // window.location.reload()
+        window.location.reload()
     }
 
     //TODO test this
@@ -141,6 +141,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
                     "Content-Type": "application/json",
                 }
             })
+
             window.location.reload()
         } else {
             console.log("Target not found")
