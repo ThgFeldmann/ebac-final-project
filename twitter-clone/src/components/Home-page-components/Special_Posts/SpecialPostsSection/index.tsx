@@ -20,6 +20,7 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
 
     // function that sorts the 'postId's (from the comments) based on frequency
     const SortComments = (array: number[]) => {
+        //* 'array' is a comment[]
 
         // functions that check for frequency
         const freqMap: any = {}
@@ -70,6 +71,11 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
 
     useEffect(() => {
         setLoading(true)
+
+        console.log("post list: ", posts)
+        console.log("comment list: ", comments)
+        console.log("following list: ", followingList)
+        console.log("user id: ", userId)
 
         // mapping the the 'post_id's in every comment
         const mapIds = comments.map((comment: Comment) => comment.post_id)
