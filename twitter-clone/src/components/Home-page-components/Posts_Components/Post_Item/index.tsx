@@ -102,6 +102,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
         }
     }
 
+    //TODO not working
     const createLike = () => {
         const object = {
             post_id: post.id,
@@ -126,7 +127,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
                 }
             })
 
-        window.location.reload()
+        //window.location.reload()
     }
 
     //TODO request not working
