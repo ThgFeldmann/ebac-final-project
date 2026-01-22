@@ -120,7 +120,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
         window.location.reload()
     }
 
-    //TODO test this
+    //TODO request not working
     const deleteLike = () => {
         console.log("target post: ", post)
 
@@ -130,7 +130,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
             item.user_id === user.id
         )
 
-        console.log("target found: ", target)
+        console.log("target: ", target)
 
         if (target !== undefined) {
             console.log("Starting the DELETE request...")
@@ -142,7 +142,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
                 }
             })
 
-            window.location.reload()
+            //window.location.reload()
         } else {
             console.log("Target not found")
         }
