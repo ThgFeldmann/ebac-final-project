@@ -149,6 +149,10 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
     }
 
     const checkIfUserLikesPost = () => {
+        console.log("post id: ", post.id)
+
+        console.log("likes on this post: ", postLikes)
+
         console.log("starting the like check...")
         const userLikes = postLikes.filter((item: Like) => 
             item.post_id === post.id
