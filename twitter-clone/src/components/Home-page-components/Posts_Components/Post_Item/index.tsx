@@ -102,7 +102,6 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
         }
     }
 
-    //TODO not working
     const createLike = () => {
         const object = {
             post_id: post.id,
@@ -123,10 +122,9 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
 
         setTimeout(() => {
             window.location.reload()
-        }, 1000)
+        }, 500)
     }
 
-    //TODO request not working
     const deleteLike = () => {
         console.log("target post: ", post)
 
@@ -150,33 +148,11 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
 
             setTimeout(() => {
                 window.location.reload()
-            }, 1000)
+            }, 500)
         } else {
             console.log("Target not found")
         }
     }
-
-    //TODO not working
-    // const deleteLike = () => {
-    //     const filteredCases: Like[] = postLikes.filter((item: Like) => 
-    //             item.post_id === post.id
-    //             &&
-    //             item.user_id === user.id
-    //         )
-
-    //         const targetCase = filteredCases[0]
-
-    //         console.log("starting the DELETE request...")
-        
-    //         fetch(apiLikes.Delete + targetCase.id + "/", {
-    //             method: "DELETE",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             }
-    //         })
-
-    //         window.location.reload()
-    // }
 
     const handleLikeButton = () => {
         if (!userLiked) { //* Create Like case
