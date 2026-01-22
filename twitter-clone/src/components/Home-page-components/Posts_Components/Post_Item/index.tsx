@@ -89,6 +89,9 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
             console.log("count function value set to state: ", filteredLikes)
 
             setPostLikes(filteredLikes)
+
+            return filteredLikes
+
         }
     }
 
@@ -185,11 +188,14 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
 
     useEffect(() => {
         filterComments(comments)
-        countPostLikes()
+        const likes: Like[] | undefined = countPostLikes()
 
         if (post.author_id !== user.id) {
-            // checkIfUserLike()
-            checkIfUserLikesPost(postLikes)
+
+            if (likes !== undefined) {
+                // checkIfUserLike()
+                checkIfUserLikesPost(likes)
+            }
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
