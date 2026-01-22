@@ -29,6 +29,15 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
     const [userLiked, setUserLiked] = useState<boolean>(false)
     const [postLikes, setPostLikes] = useState<Like[]>([])
 
+    const resetStates = () => {
+        setModal(false)
+        setCreateComment(false)
+        setCommentList([])
+        setNewComment("")
+        setUserLiked(false)
+        setPostLikes([])
+    }
+
     const filterComments = (commentArray: Comment[]) => {
         const result = commentArray.filter((comment: Comment) => comment.post_id === post.id)
         setCommentList(result)
@@ -191,6 +200,8 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
     }
 
     useEffect(() => {
+        resetStates()
+
         filterComments(comments)
         const likes: Like[] | undefined = countPostLikes()
 
