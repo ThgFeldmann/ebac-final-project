@@ -120,26 +120,61 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
         // window.location.reload()
     }
 
-    //TODO not working
+    //TODO test this
     const deleteLike = () => {
-        const filteredCases: Like[] = postLikes.filter((item: Like) => 
-                item.post_id === post.id
-                &&
-                item.user_id === user.id
-            )
+        console.log("target post: ", post)
 
-            const targetCase = filteredCases[0]
+        const target: Like | undefined = postLikes.find((item: Like) =>
+            item.post_id === post.id
+            &&
+            item.user_id === user.id
+        )
 
-            console.log("starting the DELETE request...")
-            fetch(apiLikes.Delete + targetCase.id + "/", {
+        console.log("target found: ", target)
+
+        if (target !== undefined) {
+            console.log("Starting the DELETE request...")
+
+            fetch(apiLikes.Delete + target.id + "/", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                 }
             })
-
-            window.location.reload()
+                .then((response) => response.json())
+                .then((response: Response) => {
+                    if (response.status > 200 && response.status < 300) {
+                        window.location.reload()
+                    } else {
+                        console.log("DELETE request failed")
+                    }
+                })
+        } else {
+            console.log("Target not found")
+        }
     }
+
+    //TODO not working
+    // const deleteLike = () => {
+    //     const filteredCases: Like[] = postLikes.filter((item: Like) => 
+    //             item.post_id === post.id
+    //             &&
+    //             item.user_id === user.id
+    //         )
+
+    //         const targetCase = filteredCases[0]
+
+    //         console.log("starting the DELETE request...")
+        
+    //         fetch(apiLikes.Delete + targetCase.id + "/", {
+    //             method: "DELETE",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             }
+    //         })
+
+    //         window.location.reload()
+    // }
 
     const handleLikeButton = () => {
         if (!userLiked) { //* Create Like case
