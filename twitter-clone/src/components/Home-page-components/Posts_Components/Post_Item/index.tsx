@@ -126,15 +126,12 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
     }
 
     const deleteLike = () => {
-        console.log("target post: ", post)
 
         const target: Like | undefined = postLikes.find((item: Like) =>
             item.post_id === post.id
             &&
             item.user_id === user.id
         )
-
-        console.log("target: ", target)
 
         if (target !== undefined) {
             console.log("Starting the DELETE request...")
