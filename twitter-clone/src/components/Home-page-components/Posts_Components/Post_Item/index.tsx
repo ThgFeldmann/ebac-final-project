@@ -141,14 +141,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
                     "Content-Type": "application/json",
                 }
             })
-                .then((response) => response.json())
-                .then((response: any) => {
-                    if (response.status > 200 && response.status < 300) {
-                        window.location.reload()
-                    } else {
-                        console.log("DELETE request failed")
-                    }
-                })
+            window.location.reload()
         } else {
             console.log("Target not found")
         }
