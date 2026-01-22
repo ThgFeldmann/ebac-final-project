@@ -31,7 +31,7 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
         const sortedArray = array.sort((a, b) => { // sorting the 'array' based on frequency
             if (freqMap[a] !== freqMap[b]) {
                 return freqMap[b] - freqMap[a]
-            } else { // IFF THE ARE NO REPEATED VALUES
+            } else { // IF THE ARE NO REPEATED VALUES
                 return b - a
             }
         })
@@ -50,6 +50,8 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
         // selects the top six posts and removes the rest
         const splicedArray = array.splice(0, 6)
 
+        console.log("spliced array: ", splicedArray)
+
         // executing a fetch promise with every id in 'splicedArray'
         const result = await Promise.all(
             splicedArray.map((id: number) => 
@@ -61,25 +63,28 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
             return responses
         })
 
-        console.log("Valid post: ", result)
+        console.log("Valid posts: ", result)
 
         setValidPosts(result)
     }
 
-    const handleLoading = () => {
-        setTimeout(() => {
-            setLoading(false)
-        }, 2000)
-    }
-
     useEffect(() => {
+        setLoading(true)
+
         // mapping the the 'post_id's in every comment
         const mapIds = comments.map((comment: Comment) => comment.post_id)
+
         // sorting the mapped id's
         const sortArray: number[] = SortComments(mapIds)
+
+        console.log("sorted array: ", sortArray)
+
         // filtering the posts based on the sorted array
         filterPosts(sortArray)
-        handleLoading()
+        
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [posts])
