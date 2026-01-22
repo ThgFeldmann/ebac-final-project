@@ -43,6 +43,8 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
             return self.indexOf(item) === index
         })
 
+        console.log("format array: ", formatArray)
+
         return formatArray
     }
 
