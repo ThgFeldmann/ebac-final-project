@@ -142,7 +142,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
                 }
             })
                 .then((response) => response.json())
-                .then((response: Response) => {
+                .then((response: any) => {
                     if (response.status > 200 && response.status < 300) {
                         window.location.reload()
                     } else {
