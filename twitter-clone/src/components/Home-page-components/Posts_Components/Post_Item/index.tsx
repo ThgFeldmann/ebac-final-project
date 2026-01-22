@@ -121,7 +121,9 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
         console.log("Like created")
         setUserLiked(true)
 
-        //window.location.reload()
+        setTimeout(() => {
+            window.location.reload()
+        }, 1000)
     }
 
     //TODO request not working
@@ -146,7 +148,9 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
                 }
             })
 
-            //window.location.reload()
+            setTimeout(() => {
+                window.location.reload()
+            }, 1000)
         } else {
             console.log("Target not found")
         }
