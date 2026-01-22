@@ -86,8 +86,6 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
                     item.post_id === post.id
             )
 
-            console.log("count function value set to state: ", filteredLikes)
-
             setPostLikes(filteredLikes)
 
             return filteredLikes
@@ -153,22 +151,10 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
     }
 
     const checkIfUserLikesPost = (likes: Like[]) => {
-        console.log("post id: ", post.id)
-
-        console.log("likes on this post: ", postLikes)
-
-        console.log("starting the like check...")
-        // const userLikes = postLikes.filter((item: Like) => 
-        //     item.post_id === post.id
-        //     &&
-        //     item.user_id === user.id
-        // )
 
         const userLikes = likes.find((item: Like) =>
             item.user_id === user.id
         )
-
-        console.log("user likes: ", userLikes)
 
         if (userLikes !== undefined) {
             setUserLiked(true)
