@@ -117,15 +117,9 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
             },
             body: JSON.stringify(object)
         })
-            .then((response) => response.json())
-            .then((response) => {
-                console.log("response: ", response.status)
 
-                if (response.status >= 200 && response.status < 300) {
-                    console.log("Like created")
-                    setUserLiked(true)
-                }
-            })
+        console.log("Like created")
+        setUserLiked(true)
 
         //window.location.reload()
     }
