@@ -237,6 +237,7 @@ const Home = () => {
                             comments={CommentList}
                             followingList={FollowingList}
                             userId={user.id}
+                            loading={false}
                         />
                     :
                         <SpecialPostsSection
@@ -244,6 +245,7 @@ const Home = () => {
                             comments={CommentList}
                             followingList={FollowingList}
                             userId={user.id}
+                            loading={true}
                         />
                 }
             </HomeContainer>
