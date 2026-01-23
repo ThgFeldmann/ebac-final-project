@@ -40,6 +40,7 @@ const LoginContainerComponent = () => {
             the server goes to 'sleep' after 10 minutes of inactivity
         */
 
+        //TODO not working (url does not exist)
         fetch("https://echobackend-production.up.railway.app/api/")
 
         setTimeout(() => {
