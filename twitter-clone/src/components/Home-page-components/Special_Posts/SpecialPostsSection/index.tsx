@@ -20,6 +20,9 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
 
     // function that sorts the 'postId's (from the comments) based on frequency
     const sortCommentsId = (array: number[]): number[] => {
+        console.log("sort comments id function start...")
+        console.log("parameter received: ", array)
+
         const freq: Record<number, number> = {}
 
         for (const id of array) {
@@ -33,6 +36,9 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
 
     // function that fetches the posts based on the received array of ids
     const filterPosts = async (array: number[]) => {
+        console.log("filter posts function start...")
+        console.log("parameter received: ", array)
+
         // take top 6 postIds (no mutation)
         const topPostIds = array.slice(0, 6)
 
