@@ -64,6 +64,21 @@ const Home = () => {
         setEditImage(boolean)
     }
     
+    const fetchComments = async () => {
+        try {
+            const res = await fetch(apiComments.Get)
+            if (!res.ok) {
+            throw new Error(`HTTP ${res.status}`)
+            }
+
+            const data: Comment[] = await res.json()
+            console.log("response data: ", data)
+            setCommentList(data)
+        } catch (err) {
+            console.error("Failed to fetch comments:", err)
+        }
+    }
+
     const FetchLists = async (user: User) => {
 
         // fetch follow datas
@@ -78,10 +93,12 @@ const Home = () => {
             .then((response) => response.json())
             .then((response) => setPostList(response))
 
-        // GET request for the "Comments" section of the api
-        fetch(apiComments.Get)
-            .then((response) => response.json())
-            .then((response) => setCommentList(response))
+        // // GET request for the "Comments" section of the api
+        // fetch(apiComments.Get)
+        //     .then((response) => response.json())
+        //     .then((response) => setCommentList(response))
+
+        fetchComments()
     }
 
     // function that removes the overlay
