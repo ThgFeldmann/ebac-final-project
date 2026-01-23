@@ -59,6 +59,8 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
     useEffect(() => {
         setLoading(true)
 
+        console.log("comments: ", comments)
+
         // mapping the the 'post_id's in every comment
         const mapIds = comments.map((comment: Comment) => comment.post_id)
 
