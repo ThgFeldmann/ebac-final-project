@@ -230,12 +230,22 @@ const Home = () => {
                     :
                         null
                 }
-                <SpecialPostsSection
-                    posts={PostList}
-                    comments={CommentList}
-                    followingList={FollowingList}
-                    userId={user.id}
-                />
+                {
+                    (CommentList.length > 0) ?
+                        <SpecialPostsSection
+                            posts={PostList}
+                            comments={CommentList}
+                            followingList={FollowingList}
+                            userId={user.id}
+                        />
+                    :
+                        <SpecialPostsSection
+                            posts={PostList}
+                            comments={CommentList}
+                            followingList={FollowingList}
+                            userId={user.id}
+                        />
+                }
             </HomeContainer>
         </>
     )
