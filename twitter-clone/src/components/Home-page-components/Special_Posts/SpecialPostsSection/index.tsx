@@ -20,9 +20,6 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId, loading }
 
     // function that sorts the 'postId's (from the comments) based on frequency
     const sortCommentsId = (array: number[]): number[] => {
-        console.log("sort comments id function start...")
-        console.log("parameter received: ", array)
-
         const freq: Record<number, number> = {}
 
         for (const id of array) {
@@ -36,13 +33,9 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId, loading }
 
     // function that fetches the posts based on the received array of ids
     const filterPosts = async (array: number[]) => {
-        console.log("filter posts function start...")
-        console.log("parameter received: ", array)
 
         // take top 6 postIds (no mutation)
         const topPostIds = array.slice(0, 6)
-
-        console.log("top post ids:", topPostIds)
 
         // fetch posts in parallel
         const result: Post[] = await Promise.all(
@@ -50,8 +43,6 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId, loading }
             fetch(apiPosts.Get + id).then(res => res.json())
             )
         )
-
-        console.log("Valid posts:", result)
 
         setValidPosts(result)
     }
@@ -62,8 +53,6 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId, loading }
 
         // mapping the the 'post_id's in every comment
         const mapIds = comments.map((comment: Comment) => comment.post_id)
-
-        console.log("map ids: ", mapIds)
 
         // sorting the mapped id's
         const sortArray: number[] = sortCommentsId(mapIds)
