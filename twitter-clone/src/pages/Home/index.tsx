@@ -106,6 +106,8 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    console.log("Comment list on home page: ", CommentList)
+
     return (
         <>
             <ModalOverlay onClick={e => removeOverlay()} className={handleOverlayDisplay()} />
