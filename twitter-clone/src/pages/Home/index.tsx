@@ -119,12 +119,9 @@ const Home = () => {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            FetchLists(user)
-        // Timeout milliseconds
-        }, 1000)
+        FetchLists(user)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user])
+    }, [])
 
     return (
         <>
