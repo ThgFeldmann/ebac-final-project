@@ -11,12 +11,12 @@ type Props = {
     comments: Comment[]
     followingList: Follow[]
     userId: number
-    loading: boolean
 }
 
-const SpecialPostsSection = ({ posts, comments, followingList, userId, loading }: Props) => {
+const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) => {
     // posts that will be rendered
     const [validPosts, setValidPosts] = useState<Post[]>([])
+    const [loading, setLoading] = useState<boolean>(true)
 
     // function that sorts the 'postId's (from the comments) based on frequency
     const sortCommentsId = (array: number[]): number[] => {
@@ -44,6 +44,10 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId, loading }
             )
         )
 
+        if (result.length > 0) {
+            setLoading(false)
+        }
+
         setValidPosts(result)
     }
 
@@ -61,7 +65,6 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId, loading }
             // filtering the posts based on the sorted array
             filterPosts(sortArray)
         }
-
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [posts, comments])

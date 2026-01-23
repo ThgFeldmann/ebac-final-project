@@ -220,7 +220,6 @@ const Home = () => {
                     comments={CommentList}
                     followingList={FollowingList}
                     userId={user.id}
-                    loading={CommentList.length === 0}
                 />
             </HomeContainer>
         </>
