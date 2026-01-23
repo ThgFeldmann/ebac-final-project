@@ -62,10 +62,10 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
         // mapping the the 'post_id's in every comment
         const mapIds = comments.map((comment: Comment) => comment.post_id)
 
+        console.log("map ids: ", mapIds)
+
         // sorting the mapped id's
         const sortArray: number[] = sortCommentsId(mapIds)
-
-        console.log("sorted array: ", sortArray)
 
         // filtering the posts based on the sorted array
         filterPosts(sortArray)
