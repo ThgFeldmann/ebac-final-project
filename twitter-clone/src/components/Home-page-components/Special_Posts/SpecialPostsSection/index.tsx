@@ -19,54 +19,33 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
     const [loading, setLoading] = useState<boolean>(true)
 
     // function that sorts the 'postId's (from the comments) based on frequency
-    const SortComments = (array: number[]) => {
-        //* 'array' is a comment[]
+    const sortCommentsId = (array: number[]): number[] => {
+        const freq: Record<number, number> = {}
 
-        // functions that check for frequency
-        const freqMap: any = {}
-        array.forEach(num => {
-            freqMap[num] =
-                (freqMap[num] || 0) + 1
-        })
+        for (const id of array) {
+            freq[id] = (freq[id] ?? 0) + 1
+        }
 
-        const sortedArray = array.sort((a, b) => { // sorting the 'array' based on frequency
-            if (freqMap[a] !== freqMap[b]) {
-                return freqMap[b] - freqMap[a]
-            } else { // IF THE ARE NO REPEATED VALUES
-                return b - a
-            }
-        })
-
-        // adjusting the order of the values in the array, so that the more frequent a number is
-        // the closer to the start of the array, it will be
-        const formatArray = sortedArray.filter((item, index, self) => {
-            return self.indexOf(item) === index
-        })
-
-        console.log("format array: ", formatArray)
-
-        return formatArray
+        return Object.keys(freq)
+            .map(Number)
+            .sort((a, b) => freq[b] - freq[a] || b - a)
     }
 
     // function that fetches the posts based on the received array of ids
     const filterPosts = async (array: number[]) => {
-        // selects the top six posts and removes the rest
-        const splicedArray = array.splice(0, 6)
+        // take top 6 postIds (no mutation)
+        const topPostIds = array.slice(0, 6)
 
-        console.log("spliced array: ", splicedArray)
+        console.log("top post ids:", topPostIds)
 
-        // executing a fetch promise with every id in 'splicedArray'
-        const result = await Promise.all(
-            splicedArray.map((id: number) => 
-                fetch(apiPosts.Get + id)
-                    .then((response) => response.json())
+        // fetch posts in parallel
+        const result: Post[] = await Promise.all(
+            topPostIds.map(id =>
+            fetch(apiPosts.Get + id).then(res => res.json())
             )
-        ).then((responses: Post[]) => {
-            // returning the collected posts in a 'Post[]' type
-            return responses
-        })
+        )
 
-        console.log("Valid posts: ", result)
+        console.log("Valid posts:", result)
 
         setValidPosts(result)
     }
@@ -74,16 +53,11 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId }: Props) 
     useEffect(() => {
         setLoading(true)
 
-        console.log("post list: ", posts)
-        console.log("comment list: ", comments)
-        console.log("following list: ", followingList)
-        console.log("user id: ", userId)
-
         // mapping the the 'post_id's in every comment
         const mapIds = comments.map((comment: Comment) => comment.post_id)
 
         // sorting the mapped id's
-        const sortArray: number[] = SortComments(mapIds)
+        const sortArray: number[] = sortCommentsId(mapIds)
 
         console.log("sorted array: ", sortArray)
 
