@@ -51,17 +51,20 @@ const SpecialPostsSection = ({ posts, comments, followingList, userId, loading }
 
         console.log("comments: ", comments)
 
-        // mapping the the 'post_id's in every comment
-        const mapIds = comments.map((comment: Comment) => comment.post_id)
+        if (comments) {
+            // mapping the the 'post_id's in every comment
+            const mapIds = comments.map((comment: Comment) => comment.post_id)
+    
+            // sorting the mapped id's
+            const sortArray: number[] = sortCommentsId(mapIds)
+    
+            // filtering the posts based on the sorted array
+            filterPosts(sortArray)
+        }
 
-        // sorting the mapped id's
-        const sortArray: number[] = sortCommentsId(mapIds)
-
-        // filtering the posts based on the sorted array
-        filterPosts(sortArray)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [posts])
+    }, [posts, comments])
 
     return (
         <SpecialPostsContainer>
