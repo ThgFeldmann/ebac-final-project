@@ -36,11 +36,11 @@ const LoginContainerComponent = () => {
     const TouchServer = () => {
 
         /*
-            Function that sends a get request for the server to 'wake up'
+            Function that sends a ping request for the server to 'wake up'
             the server goes to 'sleep' after 10 minutes of inactivity
         */
 
-        fetch(apiUsers.Get)
+        fetch("https://echobackend-production.up.railway.app/api/")
 
         setTimeout(() => {
             setLoading(false)
@@ -98,36 +98,56 @@ const LoginContainerComponent = () => {
     // }
 
     // executes all submit functions and checks if successful
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault()
 
-        console.log("Starting the request...")
-        fetch(apiUsers.Get)
-            .then((response) => response.json())
-            .then((users) => {
+        // console.log("Starting the request...")
+        // fetch(apiUsers.Get)
+        //     .then((response) => response.json())
+        //     .then((users) => {
 
-                console.log("Request response: ", users)
+        //         console.log("Request response: ", users)
 
-                console.log("Filtering user...")
-                const user: User = users.find(
-                    (u: User) =>
-                        u.email === formData.email 
-                        &&
-                        u.password === formData.password
-                )
+        //         console.log("Filtering user...")
+        //         const user: User | undefined = users.find(
+        //             (u: User) =>
+        //                 u.email === formData.email 
+        //                 &&
+        //                 u.password === formData.password
+        //         )
 
-                console.log("User: ", user)
+        //         console.log("User: ", user)
 
-                console.log("Validating user...")
-                if (user) {
-                    console.log("Login successful!")
-                    setLoggedUser(user)
-                    setSuccess(true)
-                } else {
-                    console.log("Invalid Credentials")
-                    setFormError(true)
-                }
+        //         if (user) {
+        //             console.log("Login successful!")
+        //             setLoggedUser(user)
+        //             setSuccess(true)
+        //         } else {
+        //             console.log("Invalid Credentials")
+        //             setFormError(true)
+        //         }
+        //     })
+        //     .catch(error => console.error("Login request failed: ", error))
+
+        //* Sends the 'formData' to the back-end and receives a 'user' if successfull
+        fetch(apiUsers.Login, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData)
             })
+                .then((response) => response.json())
+                .then((response: User | undefined) => {
+                    if (response) {
+                        console.log("Login successful!")
+                        setLoggedUser(response)
+                        setSuccess(true)
+                    } else {
+                        console.log("Login request failed")
+                        setFormError(true)
+                    }
+                })
     }
 
     //* handles the navigation, also sends the user data to the home page
@@ -136,11 +156,10 @@ const LoginContainerComponent = () => {
         navigate('/Home', {state: {user: user}})
     }
 
-    // resets the states on re-render
+    // resets the states on render
     useEffect(() => {
         setSuccess(false)
         setFormData({email: '', password: ''})
-        // setUsersList([])
         setLoggedUser({
             id: 0,
             username: '',
