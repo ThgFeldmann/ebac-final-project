@@ -40,17 +40,14 @@ const LoginContainerComponent = () => {
             the server goes to 'sleep' after 10 minutes of inactivity
         */
 
-        //TODO not working (url does not exist)
-        fetch("https://echobackend-production.up.railway.app/api/")
+        // Url to ping the server to 'wake up'
+        // not in 'App' file as is will not be used again
+        const apiPing = "https://echobackend-production.up.railway.app/api/ping/"
 
-        setTimeout(() => {
-            setLoading(false)
-        }, 2500)
+        fetch(apiPing)
     }
 
     const ContainerClass = () => {
-        TouchServer()
-
         if (success) {
             return "successContainer"
         } else {
@@ -159,6 +156,8 @@ const LoginContainerComponent = () => {
 
     // resets the states on render
     useEffect(() => {
+        TouchServer()
+
         setSuccess(false)
         setFormData({email: '', password: ''})
         setLoggedUser({
@@ -169,6 +168,10 @@ const LoginContainerComponent = () => {
             bio: '',
             image: '',
         })
+
+        setTimeout(() => {
+            setLoading(false)
+        }, 2500)
     }, [])
 
     return (
