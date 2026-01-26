@@ -33,19 +33,20 @@ const LoginContainerComponent = () => {
 
     const navigate = useNavigate()
 
-    const TouchServer = () => {
+    
+    // const TouchServer = () => {
 
-        /*
-            Function that sends a ping request for the server to 'wake up'
-            the server goes to 'sleep' after 10 minutes of inactivity
-        */
+    //     /*
+    //         Function that sends a ping request for the server to 'wake up'
+    //         the server goes to 'sleep' after 10 minutes of inactivity
+    //     */
 
-        // Url to ping the server to 'wake up'
-        // not in 'App' file as is will not be used again
-        const apiPing = "https://echobackend-production.up.railway.app/api/ping/"
+    //     // Url to ping the server to 'wake up'
+    //     // not in 'App' file as is will not be used again
+    //     const apiPing = "https://echobackend-production.up.railway.app/api/ping/"
 
-        fetch(apiPing)
-    }
+    //     fetch(apiPing)
+    // }
 
     const ContainerClass = () => {
         if (success) {
@@ -88,12 +89,12 @@ const LoginContainerComponent = () => {
 
     // resets the states on render
     useEffect(() => {
-        const pinged = sessionStorage.getItem("serverAwake")
+        // const pinged = sessionStorage.getItem("serverAwake")
 
-        if (!pinged) {
-            TouchServer()
-            sessionStorage.setItem("serverAwake", "true")
-        }
+        // if (!pinged) {
+        //     TouchServer()
+        //     sessionStorage.setItem("serverAwake", "true")
+        // }
 
         setSuccess(false)
         setFormData({email: '', password: ''})

@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 
 import { GlobalStyle } from "./styles";
+import { useEffect } from "react";
 
 // Saving the api URLs for simplicity
 
@@ -150,6 +151,29 @@ function App() {
     cookieDomain: window.location.hostname,
     cookieSecure: window.location.protocol === 'https:'
   })
+
+  const TouchServer = () => {
+
+        /*
+            Function that sends a ping request for the server to 'wake up'
+            the server goes to 'sleep' after 10 minutes of inactivity
+        */
+
+        // Url to ping the server to 'wake up'
+        // not in 'App' file as is will not be used again
+        const apiPing = "https://echobackend-production.up.railway.app/api/ping/"
+
+        fetch(apiPing)
+    }
+
+  useEffect(() => {
+    const pinged = sessionStorage.getItem("serverAwake")
+
+    if (!pinged) {
+        TouchServer()
+        sessionStorage.setItem("serverAwake", "true")
+    }
+  }, [])
 
   return (
     <div className="App">
