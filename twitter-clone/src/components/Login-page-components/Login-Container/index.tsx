@@ -55,77 +55,9 @@ const LoginContainerComponent = () => {
         }
     }
 
-    // const GetUsersList = () => {
-    //     console.log("Starting request...")
-    //     fetch(apiUsers.Get)
-    //         .then((response) => response.json())
-    //         .then((response: User[]) => {
-    //             console.log("response: ", response)
-    //             setUsersList(response)
-    //         })
-    // }
-
-    // const FilterUser = (usersList: User[]) => {
-    //     console.log("Users list: ", usersList)
-
-    //     console.log("Filtering user...")
-    //     const user = usersList.find(
-    //         (u: User) =>
-    //             u.email === formData.email 
-    //             &&
-    //             u.password === formData.password
-    //     )
-
-    //     console.log("user: ", user)
-
-    //     if (user) {
-    //         console.log("Login successfull...")
-    //         setLoggedUser(user)
-    //         setSuccess(true)
-    //     } else {
-    //         console.log("Invalid Credentials")
-    //         setFormError(true)
-    //     }
-    // }
-
-    // const handleSubmit = (e: any) => {
-    //     e.preventDefault()
-
-    //     GetUsersList()
-    //     FilterUser(usersList)
-    // }
-
     // executes all submit functions and checks if successful
     const handleSubmit = async (e: any) => {
         e.preventDefault()
-
-        // console.log("Starting the request...")
-        // fetch(apiUsers.Get)
-        //     .then((response) => response.json())
-        //     .then((users) => {
-
-        //         console.log("Request response: ", users)
-
-        //         console.log("Filtering user...")
-        //         const user: User | undefined = users.find(
-        //             (u: User) =>
-        //                 u.email === formData.email 
-        //                 &&
-        //                 u.password === formData.password
-        //         )
-
-        //         console.log("User: ", user)
-
-        //         if (user) {
-        //             console.log("Login successful!")
-        //             setLoggedUser(user)
-        //             setSuccess(true)
-        //         } else {
-        //             console.log("Invalid Credentials")
-        //             setFormError(true)
-        //         }
-        //     })
-        //     .catch(error => console.error("Login request failed: ", error))
 
         //* Sends the 'formData' to the back-end and receives a 'user' if successfull
         fetch(apiUsers.Login, {
@@ -137,7 +69,6 @@ const LoginContainerComponent = () => {
             })
                 .then((response) => response.json())
                 .then((response: User | undefined) => {
-                    console.log("Response: ", response)
                     if (response !== undefined) {
                         console.log("Login successful!")
                         setLoggedUser(response)
