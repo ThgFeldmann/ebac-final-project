@@ -98,6 +98,10 @@ export const PostModalContainer = styled.div`
         min-height: 220px;
         max-height: 330px;
 
+        p.userBio {
+            font-size: 18px;
+        }
+
         div: first-child {
             h3 {
                 font-size: 40px;
