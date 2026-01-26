@@ -107,9 +107,7 @@ const PostModal = (
         if (!followed) {
             createFollow(logged_user_id, data.user_id)
             setIsFollowed(true)
-            
-            sleep(2)
-            
+
             window.location.reload()
         } else {
             RemoveFollow(logged_user_id, data.user_id)
@@ -130,10 +128,6 @@ const PostModal = (
         if (logged_user_id === data.user_id) {
             setIsLoggedUser(true)
         } else {
-
-            if (post_type === "normal") {
-                setIsFollowed(true)
-            }
 
             setIsLoggedUser(false)
         }
