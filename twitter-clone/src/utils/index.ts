@@ -106,15 +106,8 @@ export const deleteFollow = (target_id: number) => {
     fetch(apiFollows.Delete + target_id + '/', {
         method: "DELETE",
     })
-        .then((response) => response.json())
-        .then((response) => {
-            if (response.ok) {
-                window.location.reload()
-            } else {
-                console.log("Error in response. Response: ", response)
-            }
-        })
 
+    window.location.reload()
 }
 
 // Function that handles the creation of a follow case
