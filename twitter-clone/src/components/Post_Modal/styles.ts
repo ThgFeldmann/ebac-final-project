@@ -13,7 +13,9 @@ export const PostModalContainer = styled.div`
     }
 
     width: 180px;
-    height: auto;
+
+    height: 240;
+
     margin: 0 auto;
 
     text-align: center;
