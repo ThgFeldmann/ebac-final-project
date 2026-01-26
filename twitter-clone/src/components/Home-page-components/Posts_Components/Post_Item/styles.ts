@@ -156,8 +156,11 @@ export const CreationContainer = styled.div`
     z-index: 2;
 
     position: absolute;
-    top: 180px;
-    left: 80px;
+    // top: 180px;
+    // left: 80px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     width: 400px;
     min-height: 110px;
