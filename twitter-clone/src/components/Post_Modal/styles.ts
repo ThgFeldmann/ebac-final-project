@@ -14,7 +14,8 @@ export const PostModalContainer = styled.div`
 
     width: 180px;
 
-    height: 240;
+    min-height: 190px;
+    max-height: 225px;
 
     margin: 0 auto;
 
@@ -24,10 +25,6 @@ export const PostModalContainer = styled.div`
     border-radius: 8px;
 
     background-color: ${colors.azulEscuro};
-
-    &.logged_user {
-        height: 70px;
-    }
 
     img {
         margin-top: 10px;

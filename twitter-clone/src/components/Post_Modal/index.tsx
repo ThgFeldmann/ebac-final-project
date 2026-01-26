@@ -118,11 +118,7 @@ const PostModal = (
 
     const ContainerClass = () => {
         if (state) {
-            if (isLoggedUser) {
-                return "unhidden logged_user"
-            } else {
-                return "unhidden"
-            }
+            return "unhidden"
         } else {
             return ""
         }
