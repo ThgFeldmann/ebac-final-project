@@ -14,6 +14,10 @@ export const PostSectionContainer = styled.div`
     border-left: 2px solid ${colors.cinzaClaro};
     border-right: 2px solid ${colors.cinzaClaro};
 
+    h4 {
+        color: ${colors.cinzaClaro};
+    }
+
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
         width: 600px;
         margin-left: 50px;
