@@ -14,7 +14,7 @@ export const PostModalContainer = styled.div`
 
     width: 180px;
     min-height: 165px;
-    height: 220px;
+    max-height: 240px;
     margin: 0 auto;
 
     text-align: center;
@@ -35,8 +35,15 @@ export const PostModalContainer = styled.div`
     }
 
     p {
-        margin: 15px 0 10px;
         color: ${colors.cinzaClaro};
+        
+        &.imageError {
+            margin: 15px 0 10px;
+        }
+
+        &.userBio {
+            margin: 8px auto;
+        }
     }
 
     h3, h4 {

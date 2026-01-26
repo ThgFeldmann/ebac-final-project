@@ -152,7 +152,7 @@ const PostModal = (
                         (authorData?.image !== "") ?
                             <img src={authorData?.image} alt="profile_picture" />
                         :
-                            <p>Nenhuma imagem encontrada</p>
+                            <p className="imageError">Nenhuma imagem encontrada</p>
                     }
                     <h3>
                         {
@@ -162,6 +162,14 @@ const PostModal = (
                                 authorData?.username
                         }
                     </h3>
+                    {
+                        (authorData?.bio !== "") ?
+                            <p className="userBio">
+                                {authorData?.bio}
+                            </p>
+                        :
+                            null
+                    }
                 </div>
                 {
                     (!isLoggedUser) ?
