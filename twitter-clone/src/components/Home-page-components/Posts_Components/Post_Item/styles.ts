@@ -156,8 +156,6 @@ export const CreationContainer = styled.div`
     z-index: 2;
 
     position: absolute;
-    // top: 180px;
-    // left: 80px;
     top: 35%;
     left: 49.5%;
     transform: translate(-50%, -50%);

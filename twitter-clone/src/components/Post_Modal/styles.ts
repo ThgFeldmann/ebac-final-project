@@ -94,7 +94,7 @@ export const PostModalContainer = styled.div`
 
     @media (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
         min-height: 220px;
-        height: 350px;
+        max-height: 330px;
 
         div: first-child {
             h3 {
@@ -125,7 +125,7 @@ export const PostModalContainer = styled.div`
     @media (max-width: 767px) {
         width: 130px;
         min-height: 165px;
-        height: 225px;
+        max-height: 225px;
 
         div.buttonContainer {
             button {
