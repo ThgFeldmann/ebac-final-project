@@ -76,8 +76,10 @@ const FollowsSectionComponent = ({ user, followingList, followedList }: Props) =
         // fetching users data from each id on the array
         fetchData(idList)
 
-        // the component is not loading anymore at this point
-        setLoading(false)
+        setTimeout(() => {
+            // the component is not loading anymore at this point
+            setLoading(false)
+        }, 2000)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [followingList, followedList])
