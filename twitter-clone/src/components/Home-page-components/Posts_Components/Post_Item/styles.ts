@@ -158,8 +158,8 @@ export const CreationContainer = styled.div`
     position: absolute;
     // top: 180px;
     // left: 80px;
-    top: 30%;
-    left: 50%;
+    top: 35%;
+    left: 45%;
     transform: translate(-50%, -50%);
 
     width: 400px;
