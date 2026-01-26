@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { apiFollows, Follow, User } from "../../../../App"
+import { Follow, User } from "../../../../App"
 import { deleteFollow, filterFollow } from "../../../../utils"
 
 import { FollowModalContainer } from "./styles"
