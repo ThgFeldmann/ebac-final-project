@@ -52,9 +52,33 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
         }
     }
 
+    const CreateComment = async (body: any) => {
+        try {
+            const response = await fetch(apiComments.Create, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body),
+            })
+
+            if (!response.ok) {
+                const errorData = await response.json()
+                throw new Error(errorData?.detail || "Failed to create the comment")
+            }
+
+            const data = await response.json();
+            console.log("Comment created")
+            return data
+        } catch (error) {
+            console.error("Error creating comment: ", error)
+            throw error
+        }
+    }
+
     // function that handles the comment creation
     const handleSubmit = () => {
-        const commentBody = {
+        const body = {
             author_id: user.id,
             author: user.username,
             content: newComment,
@@ -65,13 +89,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
             // creating the new comment
             // upon page reload, the new comments appear
             // the reload happens at the end of this function
-            fetch(apiComments.Create, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(commentBody)
-            })
+            CreateComment(body)
 
             toggleOverlay()
             window.location.reload()
