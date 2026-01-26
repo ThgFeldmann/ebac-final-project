@@ -30,6 +30,8 @@ export const PostModalContainer = styled.div`
         margin-top: 10px;
         width: 90px;
         height: 90px;
+        border-radius: 50%;
+        object-fit: cover;
     }
 
     p {
