@@ -99,7 +99,7 @@ export const PostModalContainer = styled.div`
         max-height: 330px;
 
         p.userBio {
-            font-size: 18px;
+            font-size: 20px;
         }
 
         div: first-child {
