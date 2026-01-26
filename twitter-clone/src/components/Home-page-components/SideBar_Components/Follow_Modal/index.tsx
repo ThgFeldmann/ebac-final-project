@@ -6,35 +6,24 @@ import { FollowModalContainer } from "./styles"
 
 type Props = {
     state: boolean
-    user: User,
+    user: User
     follow_user: User
+    following_list: Follow[]
 }
 
-const FollowModal = ({ state, user, follow_user }: Props) => {
-    const [followList, setFollowList] = useState<Follow[]>()
-
-    // Runs a GET request for the follow cases and filters then based on user and follow_user.
-    const getFollow = () => {
-
-        fetch(apiFollows.Get)
-            .then((response) => response.json())
-            .then((response) => setFollowList(response))
-    }
+const FollowModal = ({ state, user, follow_user, following_list }: Props) => {
 
     const handleClick = () => {
 
         /*
-            Function that handles the 'onClick' effect, executing the functions: 
-            'getFollow', 'filterFollow' and 'deleteFollow', in order.
+            Function that handles the 'onClick' effect, executing the functions
+            'filterFollow' and 'deleteFollow', in order.
         */
 
-        // executing 'getFollow' function
-        getFollow()
-
-        if (followList === undefined) {
-            console.log("error, followList is undefined")
+        if (following_list === undefined) {
+            console.log("Erro, lista não encontrada")
         } else {
-            const target = filterFollow(followList, user.id, follow_user.id)
+            const target = filterFollow(following_list, user.id, follow_user.id)
             
             if (target !== undefined) {
                 if (target.id > 0) { // checking if 'target' has any content
@@ -43,11 +32,10 @@ const FollowModal = ({ state, user, follow_user }: Props) => {
                 } else {
                     console.log("error in target: ", target)
                 }
+            } else {
+                console.log("Alvo não encontrado")
             }
         }
-        
-
-        
     }
 
     return (

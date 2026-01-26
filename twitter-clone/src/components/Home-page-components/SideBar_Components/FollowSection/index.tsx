@@ -128,6 +128,7 @@ const FollowsSectionComponent = ({ user, followingList, followedList }: Props) =
                     state={modal}
                     user={user}
                     follow_user={followedUser}
+                    following_list={followingList}
                 />
             </FollowList>
         </FollowSection>
