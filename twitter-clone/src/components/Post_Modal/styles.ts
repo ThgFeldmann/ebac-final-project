@@ -115,6 +115,8 @@ export const PostModalContainer = styled.div`
         }
 
         div.buttonContainer {
+            margin-bottom: 15px;
+
             button {
                 height: 60px;
                 font-size: 24px;
@@ -128,6 +130,8 @@ export const PostModalContainer = styled.div`
         max-height: 225px;
 
         div.buttonContainer {
+            margin-bottom: 10px;
+
             button {
                 width: 90%;
             }
