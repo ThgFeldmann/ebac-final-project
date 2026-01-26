@@ -117,16 +117,42 @@ export const deleteFollow = (target_id: number) => {
 
 // Function that handles the creation of a follow case
 // this function receives a 'user_id' type number and an 'follow_user_id' type number
-export const createFollow = (user_id: number, following_id: number) => {
+export const createFollow = async (user_id: number, following_id: number) => {
+    // console.log("Starting follow creation...")
+    // fetch(apiFollows.Create, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({
+    //             user_id,
+    //             following_id
+    //         })
+    //     })
+
     console.log("Starting follow creation...")
-    fetch(apiFollows.Create, {
+    try {
+        const response = await fetch(apiFollows.Create, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 user_id,
-                following_id
-            })
+                following_id,
+            }),
         })
+
+        if (!response.ok) {
+            const errorData = await response.json()
+            throw new Error(errorData?.detail || "Failed to create follow")
+        }
+
+        const data = await response.json()
+        console.log("Follow created")
+        return data
+    } catch (error) {
+        console.error("Error creating follow:", error)
+        throw error
+    }
 }
