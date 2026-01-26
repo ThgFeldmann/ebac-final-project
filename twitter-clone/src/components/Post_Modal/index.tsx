@@ -162,14 +162,14 @@ const PostModal = (
                                 authorData?.username
                         }
                     </h3>
-                    {
-                        (authorData?.bio !== "") ?
-                            <p className="userBio">
-                                {authorData?.bio}
-                            </p>
-                        :
-                            null
-                    }
+                    <p className="userBio">
+                        {
+                            (authorData?.bio !== "") ?
+                                authorData?.bio
+                            :
+                                null
+                        }
+                    </p>
                 </div>
                 {
                     (!isLoggedUser) ?
