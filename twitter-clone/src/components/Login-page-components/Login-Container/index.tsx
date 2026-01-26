@@ -88,7 +88,12 @@ const LoginContainerComponent = () => {
 
     // resets the states on render
     useEffect(() => {
-        TouchServer()
+        const pinged = sessionStorage.getItem("serverAwake")
+
+        if (!pinged) {
+            TouchServer()
+            sessionStorage.setItem("serverAwake", "true")
+        }
 
         setSuccess(false)
         setFormData({email: '', password: ''})
