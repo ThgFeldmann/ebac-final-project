@@ -14,7 +14,7 @@ export const PostModalContainer = styled.div`
 
     width: 180px;
     min-height: 185px;
-    height: auto;
+    height: 240px;
     margin: 0 auto;
 
     text-align: center;
@@ -42,7 +42,7 @@ export const PostModalContainer = styled.div`
         }
 
         &.userBio {
-            margin: 8px auto;
+            margin: 6px auto;
         }
     }
 
