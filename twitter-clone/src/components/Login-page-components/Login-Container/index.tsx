@@ -16,9 +16,6 @@ const LoginContainerComponent = () => {
     // Holds informations typed on the form
     const [formData, setFormData] = useState<FormValues>({email: '', password: ''}) 
 
-    // // Holds information on every user
-    // const [usersList, setUsersList] = useState<User[]>([])
-
     // Stores user information in case login is a success
     const [loggedUser, setLoggedUser] = useState<User>({
         id: 0,
@@ -32,29 +29,6 @@ const LoginContainerComponent = () => {
     const [formError, setFormError] = useState<boolean>(false)
 
     const navigate = useNavigate()
-
-    
-    // const TouchServer = () => {
-
-    //     /*
-    //         Function that sends a ping request for the server to 'wake up'
-    //         the server goes to 'sleep' after 10 minutes of inactivity
-    //     */
-
-    //     // Url to ping the server to 'wake up'
-    //     // not in 'App' file as is will not be used again
-    //     const apiPing = "https://echobackend-production.up.railway.app/api/ping/"
-
-    //     fetch(apiPing)
-    // }
-
-    const ContainerClass = () => {
-        if (success) {
-            return "successContainer"
-        } else {
-            return ""
-        }
-    }
 
     // executes all submit functions and checks if successful
     const handleSubmit = async (e: any) => {
@@ -89,13 +63,6 @@ const LoginContainerComponent = () => {
 
     // resets the states on render
     useEffect(() => {
-        // const pinged = sessionStorage.getItem("serverAwake")
-
-        // if (!pinged) {
-        //     TouchServer()
-        //     sessionStorage.setItem("serverAwake", "true")
-        // }
-
         setSuccess(false)
         setFormData({email: '', password: ''})
         setLoggedUser({
@@ -113,7 +80,7 @@ const LoginContainerComponent = () => {
     }, [])
 
     return (
-        <LoginContainer className={ContainerClass()}>
+        <LoginContainer className={(success) ? "successContainer" : ""}>
             {(success === true) ?
                 <SuccessSection>
                     <h2>Bem vindo {loggedUser.username}!</h2>
