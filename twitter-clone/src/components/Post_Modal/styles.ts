@@ -13,8 +13,7 @@ export const PostModalContainer = styled.div`
     }
 
     width: 180px;
-    min-height: 185px;
-    height: 240px;
+    height: auto;
     margin: 0 auto;
 
     text-align: center;
