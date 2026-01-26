@@ -75,6 +75,8 @@ export const PostActionArea = styled.div`
     height: 30px;
     border-top: 1px solid ${colors.cinzaClaro};
 
+    padding-bottom: 5px;
+
     div {
         margin: 0 auto;
         width: 50%;
