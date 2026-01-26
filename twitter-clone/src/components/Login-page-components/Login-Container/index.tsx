@@ -137,7 +137,7 @@ const LoginContainerComponent = () => {
             })
                 .then((response) => response.json())
                 .then((response: User | undefined) => {
-                    if (response) {
+                    if (response !== undefined) {
                         console.log("Login successful!")
                         setLoggedUser(response)
                         setSuccess(true)
