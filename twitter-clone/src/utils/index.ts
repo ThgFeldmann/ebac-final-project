@@ -105,31 +105,21 @@ export const filterFollow = (followList: Follow[], user_id: number, target_id: n
 export const deleteFollow = (target_id: number) => {
     fetch(apiFollows.Delete + target_id + '/', {
         method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-        }
     })
+        .then((response) => response.json())
+        .then((response) => {
+            if (response.ok) {
+                window.location.reload()
+            } else {
+                console.log("Error in response. Response: ", response)
+            }
+        })
 
-    sleep(2)
-
-    window.location.reload()
 }
 
 // Function that handles the creation of a follow case
 // this function receives a 'user_id' type number and an 'follow_user_id' type number
 export const createFollow = async (user_id: number, following_id: number) => {
-    // console.log("Starting follow creation...")
-    // fetch(apiFollows.Create, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             user_id,
-    //             following_id
-    //         })
-    //     })
-
     console.log("Starting follow creation...")
     try {
         const response = await fetch(apiFollows.Create, {

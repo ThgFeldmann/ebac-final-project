@@ -92,7 +92,6 @@ const SearchUserModal = ({Search, user, changeSearch}: Props) => {
     const handleCreateButton = async (user_id: number, following_id: number | undefined) => {
         try {
             if (following_id !== undefined) {
-                //TODO create follow not working
                 createFollow(user_id, following_id)
                 window.location.reload()
             } else {
