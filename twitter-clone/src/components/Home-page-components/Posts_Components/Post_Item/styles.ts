@@ -159,7 +159,7 @@ export const CreationContainer = styled.div`
     // top: 180px;
     // left: 80px;
     top: 35%;
-    left: 48%;
+    left: 49%;
     transform: translate(-50%, -50%);
 
     width: 400px;
