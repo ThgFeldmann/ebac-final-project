@@ -99,11 +99,7 @@ const PostModal = (
     // function that handles the button click
     const HandleClick = async () => {
 
-        console.log(data.user_id)
-
         const followed: boolean = CheckFollow(followingList, data.user_id)
-
-        console.log("followed: ", followed)
 
         setIsFollowed(followed)
 
@@ -134,10 +130,13 @@ const PostModal = (
     useEffect(() => {
         fetchAuthorData(data.user_id)
 
+        //TODO testing | will remove
+        const followed: boolean = CheckFollow(followingList, data.user_id)
+        console.log("followed: ", followed)
+
         if (logged_user_id === data.user_id) {
             setIsLoggedUser(true)
         } else {
-
             setIsLoggedUser(false)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps

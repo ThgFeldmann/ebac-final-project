@@ -78,7 +78,7 @@ export const PostModalContainer = styled.div`
         button {
             width: 150px;
             height: 20px;
-            margin-top: 4px;
+            margin: 4px 0;
 
             font-weight: bold;
 
