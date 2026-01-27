@@ -92,7 +92,11 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
             CreateComment(body)
 
             toggleOverlay()
-            window.location.reload()
+            
+            setTimeout(() => {
+                window.location.reload()
+            }, 1500)
+
         } catch (error) {
             console.log(error)
         }

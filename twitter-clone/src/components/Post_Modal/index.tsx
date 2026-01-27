@@ -1,4 +1,3 @@
-//TODO isFollowed state is always false
 import { useEffect, useState } from "react"
 
 import { apiUsers, Follow, Post, User } from "../../App"
