@@ -103,20 +103,24 @@ const PostModal = (
 
         setIsFollowed(followed)
 
-        if (followed) {
-            RemoveFollow(logged_user_id, data.user_id)
-        } else {
-            await createFollow(logged_user_id, data.user_id)
-        }
+        console.log("mid function followed: ", followed)
 
-        if (!followed) {
-            createFollow(logged_user_id, data.user_id)
-            setIsFollowed(true)
+        //* removed for tests
+        // if (followed) {
+        //     RemoveFollow(logged_user_id, data.user_id)
+        // } else {
+        //     await createFollow(logged_user_id, data.user_id)
+        // }
 
-            window.location.reload()
-        } else {
-            RemoveFollow(logged_user_id, data.user_id)
-        }
+        //* old code
+        // if (!followed) {
+        //     createFollow(logged_user_id, data.user_id)
+        //     setIsFollowed(true)
+
+        //     window.location.reload()
+        // } else {
+        //     RemoveFollow(logged_user_id, data.user_id)
+        // }
     }
 
     const ContainerClass = () => {
