@@ -50,16 +50,15 @@ const PostModal = (
     }
 
     // function that checks if the user is following the author of this post
-    const CheckFollow = (followingList: Follow[], id: number) => {
-        const exists: boolean = followingList.some((item: Follow) => item.following_id === id)
+    const CheckFollow = (
+        followingList: Follow[],
+        author_id: number
+    ) => {
+        const exists: boolean = followingList.some(
+            (item: Follow) => item.following_id === author_id
+        )
 
-        if (!exists) {
-            setIsFollowed(false)
-            return false
-        } else {
-            setIsFollowed(true)
-            return true
-        }
+        return exists
     }
 
     // function that handles the 'unfollow'
@@ -76,9 +75,9 @@ const PostModal = (
                 RemovePosts(target_follow.id)
             }
     
-            sleep(2)
-    
-            window.location.reload()
+            setTimeout(() => {
+                window.location.reload()
+            }, 1000)
         }
 
     }
@@ -98,11 +97,19 @@ const PostModal = (
     }
 
     // function that handles the button click
-    const HandleClick = () => {
+    const HandleClick = async () => {
 
         console.log(data.user_id)
 
         const followed: boolean = CheckFollow(followingList, data.user_id)
+
+        setIsFollowed(followed)
+
+        if (followed) {
+            RemoveFollow(logged_user_id, data.user_id)
+        } else {
+            await createFollow(logged_user_id, data.user_id)
+        }
 
         if (!followed) {
             createFollow(logged_user_id, data.user_id)

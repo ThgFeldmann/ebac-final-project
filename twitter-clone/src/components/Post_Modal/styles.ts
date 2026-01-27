@@ -15,7 +15,7 @@ export const PostModalContainer = styled.div`
     width: 180px;
 
     min-height: 190px;
-    max-height: 245px;
+    max-height: 260px;
 
     margin: 0 auto;
 
