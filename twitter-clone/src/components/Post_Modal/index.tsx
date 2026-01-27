@@ -108,33 +108,15 @@ const PostModal = (
         } else {
             await createFollow(logged_user_id, data.user_id)
             setIsFollowed(followed)
-        }
 
-        //* old code
-        // if (!followed) {
-        //     createFollow(logged_user_id, data.user_id)
-        //     setIsFollowed(true)
-
-        //     window.location.reload()
-        // } else {
-        //     RemoveFollow(logged_user_id, data.user_id)
-        // }
-    }
-
-    const ContainerClass = () => {
-        if (state) {
-            return "unhidden"
-        } else {
-            return ""
+            setTimeout(() => {
+                window.location.reload()
+            }, 1000)
         }
     }
 
     useEffect(() => {
         fetchAuthorData(data.user_id)
-
-        //TODO testing | will remove
-        const followed: boolean = CheckFollow(followingList, data.user_id)
-        console.log("followed: ", followed)
 
         if (logged_user_id === data.user_id) {
             setIsLoggedUser(true)
@@ -144,14 +126,9 @@ const PostModal = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state, logged_user_id, data.username, data.user_id, followingList, post_type])
 
-    //* Test function | will be removed | called on author name click
-    const test = () => {
-        console.log("isFollowed: ", isFollowed)
-    }
-
     return (
         <>
-            <PostModalContainer className={ContainerClass()}>
+            <PostModalContainer className={(state) ? "unhidden" : ""}>
                 <div>
                     {
                         (authorData?.image !== "") ?
@@ -159,7 +136,7 @@ const PostModal = (
                         :
                             <p className="imageError">Nenhuma imagem encontrada</p>
                     }
-                    <h3 onClick={e => test()}>
+                    <h3>
                         {
                             (!data.username) ?
                                 "não foi encontrado nenhum nome."
