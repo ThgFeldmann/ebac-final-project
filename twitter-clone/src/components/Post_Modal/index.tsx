@@ -103,6 +103,8 @@ const PostModal = (
 
         const followed: boolean = CheckFollow(followingList, data.user_id)
 
+        console.log("followed: ", followed)
+
         setIsFollowed(followed)
 
         if (followed) {
