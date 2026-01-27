@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { apiUsers, Follow, Post, User } from "../../App"
 
 import { PostModalContainer } from "./styles"
-import { createFollow, deleteFollow, filterFollow, sleep } from "../../utils"
+import { createFollow, deleteFollow, filterFollow } from "../../utils"
 
 type Props = {
     state: boolean,
