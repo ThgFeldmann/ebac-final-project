@@ -1,3 +1,4 @@
+//TODO isFollowed state is always false
 import { useEffect, useState } from "react"
 
 import { apiUsers, Follow, Post, User } from "../../App"
@@ -58,6 +59,7 @@ const PostModal = (
             (item: Follow) => item.following_id === author_id
         )
 
+        setIsFollowed(exists)
         return exists
     }
 
@@ -101,12 +103,11 @@ const PostModal = (
 
         const followed: boolean = CheckFollow(followingList, data.user_id)
 
-        setIsFollowed(followed)
-
         if (followed) {
             RemoveFollow(logged_user_id, data.user_id)
         } else {
             await createFollow(logged_user_id, data.user_id)
+            setIsFollowed(followed)
         }
 
         //* old code
