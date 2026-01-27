@@ -77,7 +77,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
     }
 
     // function that handles the comment creation
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const body = {
             author_id: user.id,
             author: user.username,
@@ -89,7 +89,7 @@ const PostComponent = ({ user, set_posts, posts, post, comments, followingList, 
             // creating the new comment
             // upon page reload, the new comments appear
             // the reload happens at the end of this function
-            CreateComment(body)
+            await CreateComment(body)
 
             toggleOverlay()
             
