@@ -103,14 +103,11 @@ const PostModal = (
 
         setIsFollowed(followed)
 
-        console.log("mid function followed: ", followed)
-
-        //* removed for tests
-        // if (followed) {
-        //     RemoveFollow(logged_user_id, data.user_id)
-        // } else {
-        //     await createFollow(logged_user_id, data.user_id)
-        // }
+        if (followed) {
+            RemoveFollow(logged_user_id, data.user_id)
+        } else {
+            await createFollow(logged_user_id, data.user_id)
+        }
 
         //* old code
         // if (!followed) {
@@ -146,6 +143,11 @@ const PostModal = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state, logged_user_id, data.username, data.user_id, followingList, post_type])
 
+    //* Test function | will be removed | called on author name click
+    const test = () => {
+        console.log("isFollowed: ", isFollowed)
+    }
+
     return (
         <>
             <PostModalContainer className={ContainerClass()}>
@@ -156,7 +158,7 @@ const PostModal = (
                         :
                             <p className="imageError">Nenhuma imagem encontrada</p>
                     }
-                    <h3>
+                    <h3 onClick={e => test()}>
                         {
                             (!data.username) ?
                                 "não foi encontrado nenhum nome."
